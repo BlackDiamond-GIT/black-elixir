@@ -67,14 +67,6 @@
   }
 }
 
-.hero__watermark {
-  position: absolute; bottom: 0; left: -2%;
-  font-family: var(--f-head); font-size: clamp(8rem, 20vw, 22rem);
-  font-weight: 300; line-height: 1; letter-spacing: 0.05em;
-  color: rgba(201,169,138,0.03); pointer-events: none; user-select: none;
-  white-space: nowrap; z-index: 1;
-}
-
 /* ============================================================
    SVC / PRICE SQUARES — blur-reveal
    ============================================================ */

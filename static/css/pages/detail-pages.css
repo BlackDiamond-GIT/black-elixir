@@ -248,12 +248,27 @@
   }
 }
 
-.masseuse-detail__photo img {
+.masseuse-detail__photo {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  height: auto;
-  border-radius: var(--r-md);
   aspect-ratio: 3 / 4;
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  isolation: isolate;
+}
+
+.masseuse-detail__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
   object-fit: cover;
+  object-position: center top;
+  display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .masseuse-detail__body .s-eyebrow {

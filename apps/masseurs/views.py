@@ -3,11 +3,9 @@ from django.urls import reverse
 
 from apps.blog.models import Post
 from apps.core.i18n_utils import localize_post, localized_field
+from apps.core.media_utils import media_field_url
 from apps.masseurs.models import Masseuse
 from apps.masseurs.seed_content import generate_masseuse_faqs
-from apps.pages.content import MASSEUSE_IMAGES
-
-
 from apps.pages.content import MASSEUSE_IMAGES
 
 
@@ -23,7 +21,10 @@ class MasseuseListView(ListView):
         context['masseuse_cards'] = [
             {
                 'obj': masseuse,
-                'image': MASSEUSE_IMAGES.get(masseuse.slug, ''),
+                'image': media_field_url(
+                    masseuse.photo,
+                    MASSEUSE_IMAGES.get(masseuse.slug, ''),
+                ),
                 'spec': localized_field(masseuse, 'spec', lang),
             }
             for masseuse in context['masseuses']
@@ -51,9 +52,9 @@ class MasseuseDetailView(DetailView):
 
         context['masseuse_spec'] = localized_field(masseuse, 'spec', lang)
         context['masseuse_bio'] = localized_field(masseuse, 'bio', lang)
-        context['masseuse_image'] = (
-            masseuse.photo.url if masseuse.photo
-            else MASSEUSE_IMAGES.get(masseuse.slug, '')
+        context['masseuse_image'] = media_field_url(
+            masseuse.photo,
+            MASSEUSE_IMAGES.get(masseuse.slug, ''),
         )
         context['related_services'] = masseuse.services.filter(is_active=True)
         context['related_posts'] = [

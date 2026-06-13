@@ -292,29 +292,12 @@ p  { max-width: 66ch; text-wrap: pretty; }
   .hero__float { display: block; }
 }
 
-/* Large screen watermark */
-.hero__watermark {
-  position: absolute; bottom: -8%; left: -2%;
-  font-family: var(--f-head); font-size: clamp(8rem, 20vw, 22rem);
-  font-weight: 300; line-height: 1; letter-spacing: 0.05em;
-  color: rgba(201,169,138,0.03); pointer-events: none; user-select: none;
-  white-space: nowrap; z-index: 1;
-}
-
 /* ============================================================
    PAGE HEADER (non-home pages)
    ============================================================ */
 .page-header {
   padding: calc(var(--nav-h) + var(--sp-8)) var(--sp-4) var(--sp-8);
   background: var(--bg-2); border-bottom: 1px solid var(--border);
-  position: relative; overflow: hidden;
-}
-.page-header::before {
-  content: attr(data-title);
-  position: absolute; right: -2%; bottom: -20%;
-  font-family: var(--f-head); font-size: clamp(4rem, 12vw, 14rem);
-  font-weight: 300; color: rgba(201,169,138,0.04);
-  white-space: nowrap; pointer-events: none; line-height: 1;
 }
 .breadcrumbs {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
@@ -347,12 +330,25 @@ p  { max-width: 66ch; text-wrap: pretty; }
   box-shadow: var(--shadow-glow), var(--shadow-card);
 }
 .card__imgwrap {
-  width: 100%; aspect-ratio: 4/3; overflow: hidden;
-  position: relative; background: var(--surface-2);
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  position: relative;
+  background: var(--surface-2);
+  isolation: isolate;
 }
 .card__imgwrap img {
-  width: 100%; height: 100%; object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
   transition: transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .card:hover .card__imgwrap img { transform: scale(1.05); }
 .card__body { padding: var(--sp-3) var(--sp-3) var(--sp-4); }
@@ -860,8 +856,6 @@ p  { max-width: 66ch; text-wrap: pretty; }
 .price-square__ph {
   width: 100%; height: 100%;
   background: var(--surface-2);
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,0.08); font-size: 3rem;
 }
 .price-square img {
   position: absolute; inset: 0;
@@ -934,14 +928,28 @@ p  { max-width: 66ch; text-wrap: pretty; }
    MASSEUSE PHOTO HOVER
    ============================================================ */
 .mass-photo-wrap {
-  position: relative; overflow: hidden;
-  width: 100%; aspect-ratio: 3/4; cursor: pointer; background: var(--surface-2);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  background: var(--surface-2);
+  isolation: isolate;
 }
 .mass-photo-wrap img {
-  width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
   filter: blur(7px) brightness(0.3) saturate(0.45);
   transform: scale(1.1);
   transition: filter 450ms cubic-bezier(0.4,0,0.2,1), transform 450ms cubic-bezier(0.4,0,0.2,1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .mass-photo-wrap:hover img {
   filter: blur(0px) brightness(0.72) saturate(1);

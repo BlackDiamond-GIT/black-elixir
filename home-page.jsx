@@ -31,8 +31,6 @@ function Hero({ lang, setPage }) {
 
   return (
     <section className="hero">
-      <span className="hero__watermark" aria-hidden="true">SPA</span>
-
       <div className="hero__left" ref={ref}>
         <p className="hero__eyebrow">{h.eyebrow}</p>
         <h1 className="hero__title" style={{ paddingBottom:'0.1em' }}>

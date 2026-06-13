@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from django.urls import reverse
 
 from apps.core.i18n_utils import localized_field
+from apps.core.media_utils import media_field_url
 from apps.masseurs.models import Masseuse
 from apps.schedule.schedule_data import DAYS_SHORT, TIMES
 from apps.services.models import MassageType
@@ -41,7 +42,7 @@ class HomeView(TemplateView):
             {
                 'obj': svc,
                 'name': localized_field(svc, 'name', lang),
-                'image': SERVICE_IMAGES.get(svc.slug, ''),
+                'image': media_field_url(svc.image, SERVICE_IMAGES.get(svc.slug, '')),
                 'caption': captions[i % len(captions)],
             }
             for i, svc in enumerate(services[:4])
@@ -49,7 +50,7 @@ class HomeView(TemplateView):
         context['masseuses_preview'] = [
             {
                 'obj': mas,
-                'image': MASSEUSE_IMAGES.get(mas.slug, ''),
+                'image': media_field_url(mas.photo, MASSEUSE_IMAGES.get(mas.slug, '')),
                 'surname': MASSEUSE_SURNAMES.get(mas.slug, ''),
             }
             for mas in masseuses
@@ -70,7 +71,7 @@ class MassagesView(TemplateView):
             {
                 'obj': svc,
                 'name': localized_field(svc, 'name', lang),
-                'image': SERVICE_IMAGES.get(svc.slug, ''),
+                'image': media_field_url(svc.image, SERVICE_IMAGES.get(svc.slug, '')),
                 'caption': captions[i % len(captions)],
             }
             for i, svc in enumerate(services)
@@ -95,7 +96,7 @@ class PricesView(TemplateView):
             {
                 'obj': svc,
                 'name': getattr(svc, f'name_{lang}', None) or svc.name_cs,
-                'image': SERVICE_IMAGES.get(svc.slug, ''),
+                'image': media_field_url(svc.image, SERVICE_IMAGES.get(svc.slug, '')),
                 'caption': captions[i % len(captions)],
             }
             for i, svc in enumerate(services)

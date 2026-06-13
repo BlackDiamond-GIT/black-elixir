@@ -3,7 +3,9 @@ from django import template
 from django.conf import settings
 from django.urls import reverse
 from django.utils.html import format_html
-from urllib.parse import urlencode
+
+from apps.core.media_utils import media_field_url
+from apps.pages.content import BLOG_IMAGES, MASSEUSE_IMAGES, SERVICE_IMAGES
 
 register = template.Library()
 
@@ -82,7 +84,7 @@ def schema_person(masseuse):
         'name': masseuse.name,
         'jobTitle': 'Massage Therapist',
         'description': masseuse.bio_cs,
-        'image': masseuse.photo.url if masseuse.photo else '',
+        'image': media_field_url(masseuse.photo, MASSEUSE_IMAGES.get(masseuse.slug, '')),
         'worksFor': {
             '@type': 'Organization',
             'name': 'Black Elixir Spa',
@@ -98,6 +100,7 @@ def schema_service(service):
         '@type': 'Service',
         'name': service.name_cs,
         'description': service.description_cs,
+        'image': media_field_url(service.image, SERVICE_IMAGES.get(service.slug, '')),
         'provider': {
             '@type': 'Organization',
             'name': 'Black Elixir Spa',
@@ -123,7 +126,7 @@ def schema_article(post):
         '@type': 'Article',
         'headline': post.title_cs,
         'description': post.excerpt_cs,
-        'image': post.image.url if post.image else '',
+        'image': media_field_url(post.image, BLOG_IMAGES.get(post.slug, '')),
         'datePublished': post.published_at.isoformat(),
         'dateModified': post.updated_at.isoformat(),
         'author': {

@@ -3,13 +3,12 @@ from django.urls import reverse
 
 from apps.blog.models import Post
 from apps.core.i18n_utils import localize_post, localized_field
+from apps.core.media_utils import media_field_url
 from apps.pages.content import BLOG_IMAGES
 
 
 def blog_cover_image(post):
-    if post.image:
-        return post.image.url
-    return BLOG_IMAGES.get(post.slug, '')
+    return media_field_url(post.image, BLOG_IMAGES.get(post.slug, ''))
 
 
 class PostListView(ListView):

@@ -15,7 +15,10 @@ class MassageType(models.Model):
     
     meta_title = models.CharField(max_length=60, default='')
     meta_description = models.CharField(max_length=160, default='')
-    
+
+    image = models.ImageField(upload_to='services/', blank=True)
+    image_alt = models.CharField(max_length=200, default='', blank=True)
+
     order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
     

@@ -113,10 +113,43 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CLOUDINARY_URL = config('CLOUDINARY_URL', default='')
+CLOUDINARY_CLOUD_NAME = config('CLOUDINARY_CLOUD_NAME', default='')
+USE_CLOUDINARY = bool(CLOUDINARY_URL or CLOUDINARY_CLOUD_NAME)
+
+if USE_CLOUDINARY:
+    static_index = INSTALLED_APPS.index('django.contrib.staticfiles')
+    INSTALLED_APPS.insert(static_index, 'cloudinary_storage')
+    INSTALLED_APPS.insert(static_index + 2, 'cloudinary')
+
+    if CLOUDINARY_CLOUD_NAME:
+        CLOUDINARY_STORAGE = {
+            'CLOUD_NAME': CLOUDINARY_CLOUD_NAME,
+            'API_KEY': config('CLOUDINARY_API_KEY', default=''),
+            'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
+        }
+
+    STORAGES = {
+        'default': {
+            'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
+        },
+        'staticfiles': {
+            'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+        },
+    }
+else:
+    STORAGES = {
+        'default': {
+            'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        },
+        'staticfiles': {
+            'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+        },
+    }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
