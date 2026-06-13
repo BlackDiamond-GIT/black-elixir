@@ -20,6 +20,10 @@ if RENDER_EXTERNAL_HOSTNAME and RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 INSTALLED_APPS = [
+    'unfold',
+    'unfold.contrib.filters',
+    'unfold.contrib.forms',
+    'unfold.contrib.inlines',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,8 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.humanize',
+    'tinymce',
     'rosetta',
     'apps.core',
+    'apps.media_library',
     'apps.masseurs',
     'apps.services',
     'apps.schedule',
@@ -41,6 +48,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'apps.core.middleware.AdminLocaleMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -153,8 +161,6 @@ else:
         },
     }
 
-STATICFILES_STORAGE = STORAGES['staticfiles']['BACKEND']
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
@@ -194,4 +200,18 @@ LOGGING = {
         'console': {'class': 'logging.StreamHandler'},
     },
     'root': {'handlers': ['console'], 'level': 'INFO'},
+}
+
+SITE_WHATSAPP = config('SITE_WHATSAPP', default='+420000000000')
+
+from apps.core.unfold_config import UNFOLD  # noqa: E402
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': '100%',
+    'menubar': False,
+    'plugins': 'link lists code',
+    'toolbar': 'undo redo | bold italic | bullist numlist | link | code',
+    'skin': 'oxide-dark',
+    'content_css': 'dark',
 }

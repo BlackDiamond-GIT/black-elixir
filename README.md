@@ -66,11 +66,14 @@ python manage.py loaddata apps/masseurs/fixtures/masseuses.json
 python manage.py createsuperuser
 ```
 
-### 4. Compile Translations (Optional)
+### 4. Compile Translations
 
 ```bash
-python manage.py compilemessages -l cs -l en -l ru
+./scripts/compile_translations.sh
 ```
+
+Uses `msgfmt` (GNU gettext) if available, otherwise installs `polib` and compiles locally.
+On Render/production, `build.sh` runs the same compile step automatically.
 
 ### 5. Run Development Server
 
@@ -78,20 +81,23 @@ python manage.py compilemessages -l cs -l en -l ru
 python manage.py runserver
 ```
 
-Visit: **http://localhost:8000**  
+Visit: **http://localhost:8000/cs/**  
 Admin: **http://localhost:8000/admin**
 
 ## URL Structure
 
-- `/` — Home
-- `/cs/masaeustky/` — Masseuses list (Czech)
+All public pages use a language prefix. Czech is the default (`x-default`).
+
+- `/cs/` — Home (Czech, primary)
+- `/cs/masseuses/` — Masseuses list (Czech)
 - `/en/masseuses/` — Masseuses list (English)
-- `/masseuses/elena/` — Masseuse detail
-- `/schedule/` — Weekly schedule
-- `/prices/` — Price page
-- `/contacts/` — Contact page
-- `/reservation/` — 5-step booking (HTMX)
-- `/blog/` — Blog list
+- `/ru/masseuses/` — Masseuses list (Russian)
+- `/cs/masseuses/julia/` — Masseuse detail
+- `/cs/schedule/` — Weekly schedule
+- `/cs/prices/` — Price page
+- `/cs/contacts/` — Contact page
+- `/cs/reservation/` — 5-step booking (HTMX)
+- `/cs/blog/` — Blog list
 - `/admin/` — Django admin
 
 ## SEO Features
@@ -159,7 +165,7 @@ All endpoints return **HTML partials** (Django templates), not JSON. HTMX uses `
 
 ## Localization (i18n)
 
-- **Base language:** Czech (`cs`) — prefix_default_language=True → `/cs/` URLs
+- **Base language:** Czech (`cs`) — `prefix_default_language=False` → all locales use `/cs/`, `/en/`, `/ru/` prefixes; `/` redirects to `/cs/`
 - **Other languages:** English (`en`), Russian (`ru`) → `/en/`, `/ru/`
 - `.po` files in `locale/cs/`, `locale/en/`, `locale/ru/`
 - Use `{% trans %}` tags in templates

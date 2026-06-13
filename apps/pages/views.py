@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from django.urls import reverse
 
+from apps.core.breadcrumbs import build_breadcrumbs, make_breadcrumb
 from apps.core.i18n_utils import localized_field
 from apps.core.media_utils import media_field_url
 from apps.masseurs.models import Masseuse
@@ -23,7 +24,7 @@ class LegalPageView(TemplateView):
         page = LEGAL_PAGES[self.page_key].get(lang, LEGAL_PAGES[self.page_key]['cs'])
         context['page'] = page
         context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
+            make_breadcrumb('Home', reverse('pages:home')),
             {'name': page['title'], 'url': '#'},
         ]
         return context
@@ -76,10 +77,10 @@ class MassagesView(TemplateView):
             }
             for i, svc in enumerate(services)
         ]
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Massages', 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('Massages', '#'),
+        )
         return context
 
 
@@ -101,10 +102,10 @@ class PricesView(TemplateView):
             }
             for i, svc in enumerate(services)
         ]
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Prices', 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('Prices', '#'),
+        )
         context['schedule_times'] = TIMES
         context['schedule_days'] = DAYS_SHORT.get(lang, DAYS_SHORT['cs'])
         return context
@@ -114,10 +115,10 @@ class ContactsView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Contact', 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('Contact', '#'),
+        )
         return context
 
 
@@ -128,10 +129,10 @@ class FaqView(TemplateView):
         context = super().get_context_data(**kwargs)
         lang = self.request.LANGUAGE_CODE
         context['faqs'] = FAQ_ITEMS.get(lang, FAQ_ITEMS['cs'])
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'FAQ', 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('FAQ', '#'),
+        )
         return context
 
 

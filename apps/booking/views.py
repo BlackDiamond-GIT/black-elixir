@@ -8,6 +8,8 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
 
+from apps.core.breadcrumbs import build_breadcrumbs
+
 from apps.booking.models import Reservation
 from apps.core.i18n_utils import localized_field
 from apps.masseurs.models import Masseuse
@@ -28,10 +30,10 @@ class ReservationView(TemplateView):
             }
             for service in MassageType.objects.filter(is_active=True)
         ]
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Booking', 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('Booking', '#'),
+        )
         return context
 
 

@@ -7,7 +7,7 @@ MASSEUSE_CATALOG = [
         'order': 1,
         'spec_cs': 'Klasická & Relax masáž',
         'spec_en': 'Classic & Relax Massage',
-        'spec_ru': 'Класичний & Релакс масаж',
+        'spec_ru': 'Классический & Релакс-массаж',
         'service_slugs': ['klasicka-masaz', 'cbd-relaxacni-masaz', 'thajska-masaz'],
     },
     {
@@ -18,7 +18,7 @@ MASSEUSE_CATALOG = [
         'order': 2,
         'spec_cs': 'Uvolňující & Aromamasáž',
         'spec_en': 'Relaxing & Aroma Massage',
-        'spec_ru': 'Розслабляючий & Аромамасаж',
+        'spec_ru': 'Расслабляющий & Аромамассаж',
         'service_slugs': ['thajska-masaz', 'aromaterapie', 'cbd-relaxacni-masaz'],
     },
     {
@@ -29,7 +29,7 @@ MASSEUSE_CATALOG = [
         'order': 3,
         'spec_cs': 'Aromamasáž & Relax masáž',
         'spec_en': 'Aroma & Relax Massage',
-        'spec_ru': 'Аромамасаж & Релакс масаж',
+        'spec_ru': 'Аромамассаж & Релакс-массаж',
         'service_slugs': ['aromaterapie', 'cbd-relaxacni-masaz', 'klasicka-masaz'],
     },
     {
@@ -40,7 +40,7 @@ MASSEUSE_CATALOG = [
         'order': 4,
         'spec_cs': 'Klasická & Sportovní masáž',
         'spec_en': 'Classic & Sports Massage',
-        'spec_ru': 'Класичний & Спортивний масаж',
+        'spec_ru': 'Классический & Спортивный массаж',
         'service_slugs': ['klasicka-masaz', 'sportovni-masaz', 'lymfaticka-masaz'],
     },
     {
@@ -51,7 +51,7 @@ MASSEUSE_CATALOG = [
         'order': 5,
         'spec_cs': 'Sportovní & Regenerační masáž',
         'spec_en': 'Sports & Recovery Massage',
-        'spec_ru': 'Спортивний & Відновлювальний масаж',
+        'spec_ru': 'Спортивный & Восстановительный массаж',
         'service_slugs': ['sportovni-masaz', 'klasicka-masaz', 'thajska-masaz'],
     },
     {
@@ -62,7 +62,7 @@ MASSEUSE_CATALOG = [
         'order': 6,
         'spec_cs': 'Lymfatická & Aromamasáž',
         'spec_en': 'Lymphatic & Aroma Massage',
-        'spec_ru': 'Лімфотичний & Аромамасаж',
+        'spec_ru': 'Лимфодренажный & Аромамассаж',
         'service_slugs': ['lymfaticka-masaz', 'aromaterapie', 'cbd-relaxacni-masaz'],
     },
 ]

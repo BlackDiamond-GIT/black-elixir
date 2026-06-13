@@ -3,9 +3,30 @@ from django.urls import reverse
 from django.contrib.sitemaps import Sitemap
 from django.contrib.sitemaps.views import sitemap as sitemap_view
 from django.views.decorators.cache import cache_page
+from django.contrib.admin.views.decorators import staff_member_required
+from django.shortcuts import redirect
+
 from apps.masseurs.models import Masseuse
 from apps.services.models import MassageType
 from apps.blog.models import Post
+
+from .middleware import _ADMIN_LANG_COOKIE
+
+
+@staff_member_required(login_url='/admin/login/')
+def toggle_admin_language(request):
+    redirect_to = request.META.get('HTTP_REFERER', '/admin/')
+    current = request.COOKIES.get(_ADMIN_LANG_COOKIE, 'cs')
+    next_lang = 'en' if current == 'cs' else 'cs'
+    response = redirect(redirect_to)
+    response.set_cookie(
+        _ADMIN_LANG_COOKIE,
+        next_lang,
+        max_age=60 * 60 * 24 * 365,
+        httponly=True,
+        samesite='Lax',
+    )
+    return response
 
 
 def healthz(request):
@@ -24,6 +45,7 @@ def robots_txt(request):
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
 class HomeSitemap(Sitemap):
+    i18n = True
     priority = 1.0
     changefreq = 'weekly'
     
@@ -37,6 +59,7 @@ class HomeSitemap(Sitemap):
         return item['priority']
 
 class MasseuseSitemap(Sitemap):
+    i18n = True
     priority = 0.8
     changefreq = 'monthly'
     
@@ -50,6 +73,7 @@ class MasseuseSitemap(Sitemap):
         return obj.updated_at
 
 class ServiceSitemap(Sitemap):
+    i18n = True
     priority = 0.8
     changefreq = 'monthly'
     
@@ -63,6 +87,7 @@ class ServiceSitemap(Sitemap):
         return None
 
 class StaticPagesSitemap(Sitemap):
+    i18n = True
     priority = 0.6
     changefreq = 'monthly'
     
@@ -87,6 +112,7 @@ class StaticPagesSitemap(Sitemap):
         return item['priority']
 
 class BlogSitemap(Sitemap):
+    i18n = True
     priority = 0.5
     changefreq = 'weekly'
     

@@ -21,9 +21,8 @@ msgid "Premium massage and relaxation in the heart of Prague."
 msgstr "Prémiová masáž a relaxace v srdci Prahy."
 
 #: templates/blog/detail.html:4
-#| msgid "Back to Blog"
 msgid "Black Elixir Spa Blog"
-msgstr "Zpět na blog"
+msgstr "Blog — Black Elixir Spa"
 
 #: templates/blog/detail.html:14
 msgid "Updated"

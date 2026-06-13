@@ -4,6 +4,7 @@ from django.utils.translation import get_language
 from django.views.generic import TemplateView
 from django.urls import reverse
 
+from apps.core.breadcrumbs import build_breadcrumbs
 from apps.masseurs.models import Masseuse
 from apps.schedule.models import TimeSlot
 from apps.schedule.schedule_data import (
@@ -40,9 +41,9 @@ class ScheduleView(TemplateView):
             'days_short': DAYS_SHORT.get(lang, DAYS_SHORT['cs']),
             'today_idx': today_idx,
             'rows': build_schedule_rows(grid, today_idx),
-            'breadcrumb_items': [
-                {'name': 'Home', 'url': reverse('pages:home')},
-                {'name': 'Schedule', 'url': '#'},
-            ],
+            'breadcrumb_items': build_breadcrumbs(
+                ('Home', reverse('pages:home')),
+                ('Schedule', '#'),
+            ),
         })
         return context

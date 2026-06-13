@@ -14,6 +14,20 @@ class Masseuse(models.Model):
     spec_ru = models.CharField(max_length=200)
     
     photo = models.ImageField(upload_to='masseuses/', blank=True)
+    main_cloudinary_photo = models.ForeignKey(
+        'media_library.CloudinaryImage',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='masseuse_main',
+        verbose_name='Головне фото (Cloudinary)',
+    )
+    gallery_cloudinary = models.ManyToManyField(
+        'media_library.CloudinaryImage',
+        blank=True,
+        related_name='masseuse_gallery',
+        verbose_name='Галерея (Cloudinary)',
+    )
     photo_alt = models.CharField(max_length=200)
     
     meta_title = models.CharField(max_length=60, default='')
@@ -33,3 +47,11 @@ class Masseuse(models.Model):
     
     def __str__(self):
         return self.name
+
+    @property
+    def photo_url(self):
+        if self.main_cloudinary_photo_id:
+            return self.main_cloudinary_photo.thumbnail_url
+        if self.photo:
+            return self.photo.url
+        return ''

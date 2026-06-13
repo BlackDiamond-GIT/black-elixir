@@ -2,12 +2,18 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
+from django.shortcuts import redirect
 from django.urls import path, include
 from django.contrib.sitemaps.views import sitemap
-from apps.core.views import healthz, robots_txt, sitemaps
+from apps.core.views import healthz, robots_txt, sitemaps, toggle_admin_language
 
 urlpatterns = [
+    path('', lambda request: redirect('/cs/')),
     path('admin/', admin.site.urls),
+    path('admin/media-library/', include('apps.media_library.urls')),
+    path('admin/toggle-lang/', toggle_admin_language, name='admin_toggle_lang'),
+    path('tinymce/', include('tinymce.urls')),
+    path('booking/', include('apps.booking.click_urls')),
     path('healthz/', healthz, name='healthz'),
     path('robots.txt', robots_txt, name='robots'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
@@ -23,7 +29,7 @@ urlpatterns += i18n_patterns(
     path('schedule/', include('apps.schedule.urls')),
     path('reservation/', include('apps.booking.urls')),
     path('blog/', include('apps.blog.urls')),
-    prefix_default_language=True,
+    prefix_default_language=False,
 )
 
 if settings.DEBUG:

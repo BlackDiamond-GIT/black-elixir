@@ -2,11 +2,12 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse
 
 from apps.blog.models import Post
+from apps.core.breadcrumbs import build_breadcrumbs, make_breadcrumb
 from apps.core.i18n_utils import localize_post, localized_field
 from apps.core.media_utils import media_field_url
-from apps.masseurs.models import Masseuse
 from apps.masseurs.seed_content import generate_masseuse_faqs
 from apps.pages.content import MASSEUSE_IMAGES
+from apps.masseurs.models import Masseuse
 
 
 class MasseuseListView(ListView):
@@ -29,10 +30,10 @@ class MasseuseListView(ListView):
             }
             for masseuse in context['masseuses']
         ]
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Masseuses', 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('Masseuses', '#'),
+        )
         return context
 
 
@@ -63,8 +64,8 @@ class MasseuseDetailView(DetailView):
         ]
         context['faqs'] = generate_masseuse_faqs(masseuse, lang)
         context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Masseuses', 'url': reverse('masseurs:list')},
+            make_breadcrumb('Home', reverse('pages:home')),
+            make_breadcrumb('Masseuses', reverse('masseurs:list')),
             {'name': masseuse.name, 'url': '#'},
         ]
         return context

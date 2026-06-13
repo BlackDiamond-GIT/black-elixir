@@ -2,6 +2,7 @@ from django.views.generic import ListView, DetailView
 from django.urls import reverse
 
 from apps.blog.models import Post
+from apps.core.breadcrumbs import build_breadcrumbs, make_breadcrumb
 from apps.core.i18n_utils import localize_post, localized_field
 from apps.core.media_utils import media_field_url
 from apps.pages.content import BLOG_IMAGES
@@ -26,10 +27,10 @@ class PostListView(ListView):
             localized.cover_image = blog_cover_image(post)
             posts.append(localized)
         context['posts'] = posts
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Blog', 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('Blog', '#'),
+        )
         return context
 
 
@@ -49,8 +50,8 @@ class PostDetailView(DetailView):
         context['post_content'] = localized_field(post, 'content', lang)
         context['post_cover_image'] = blog_cover_image(post)
         context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Blog', 'url': reverse('blog:list')},
+            make_breadcrumb('Home', reverse('pages:home')),
+            make_breadcrumb('Blog', reverse('blog:list')),
             {'name': context['post_title'], 'url': '#'},
         ]
         return context

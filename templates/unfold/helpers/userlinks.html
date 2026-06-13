@@ -1,0 +1,36 @@
+{% load i18n static %}
+
+<div class="be-admin-userlinks">
+  <nav class="be-admin-userlinks__nav" aria-label="Меню користувача">
+    {% get_current_language as CURRENT_LANG %}
+    <a href="{% url 'admin_toggle_lang' %}"
+       class="be-admin-userlinks__link"
+       title="{% if CURRENT_LANG == 'cs' %}Switch to English{% else %}Перейти на чеську{% endif %}">
+      {% if CURRENT_LANG == 'cs' %}EN{% else %}CS{% endif %}
+    </a>
+
+    {% if site_url %}
+      <a href="{{ site_url }}"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="be-admin-userlinks__link">
+        {% translate 'View site' %}
+      </a>
+    {% endif %}
+
+    {% if user.has_usable_password %}
+      <a href="{% url 'admin:password_change' %}"
+         class="be-admin-userlinks__link">
+        {% translate 'Change password' %}
+      </a>
+    {% endif %}
+
+    <form method="post" action="{% url 'admin:logout' %}" class="be-admin-userlinks__logout-form">
+      {% csrf_token %}
+      <button type="submit" class="be-admin-userlinks__logout">
+        {% translate 'Log out' %}
+        <span class="be-admin-userlinks__logout-icon material-symbols-outlined" aria-hidden="true">logout</span>
+      </button>
+    </form>
+  </nav>
+</div>

@@ -2,6 +2,7 @@ from django.views.generic import DetailView
 from django.urls import reverse
 
 from apps.blog.models import Post
+from apps.core.breadcrumbs import build_breadcrumbs
 from apps.core.i18n_utils import localize_post, localized_field
 from apps.masseurs.models import Masseuse
 from apps.core.media_utils import media_field_url
@@ -49,9 +50,9 @@ class ServiceDetailView(DetailView):
             localize_post(post, lang)
             for post in Post.objects.filter(is_published=True)[:2]
         ]
-        context['breadcrumb_items'] = [
-            {'name': 'Home', 'url': reverse('pages:home')},
-            {'name': 'Prices', 'url': reverse('pages:prices')},
-            {'name': context['service_name'], 'url': '#'},
-        ]
+        context['breadcrumb_items'] = build_breadcrumbs(
+            ('Home', reverse('pages:home')),
+            ('Prices', reverse('pages:prices')),
+            (context['service_name'], '#'),
+        )
         return context
