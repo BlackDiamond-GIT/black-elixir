@@ -1,0 +1,21 @@
+{% load i18n %}
+{% with rm=request.resolver_match %}
+<nav class="mobile-bar" aria-label="{% trans 'Quick navigation' %}">
+  <a href="{% url 'pages:massages' %}"
+     class="mobile-bar__item{% if rm.namespace == 'pages' and rm.url_name == 'massages' %} is-active{% endif %}">
+    <span class="mobile-bar__label">{% trans "Massages" %}</span>
+  </a>
+  <a href="{% url 'masseurs:list' %}"
+     class="mobile-bar__item{% if rm.namespace == 'masseurs' and rm.url_name == 'list' %} is-active{% endif %}">
+    <span class="mobile-bar__label">{% trans "Masseuses" %}</span>
+  </a>
+  <a href="{% url 'pages:prices' %}"
+     class="mobile-bar__item{% if rm.namespace == 'pages' and rm.url_name == 'prices' %} is-active{% endif %}">
+    <span class="mobile-bar__label">{% trans "Prices" %}</span>
+  </a>
+  <a href="{% url 'booking:index' %}"
+     class="mobile-bar__item mobile-bar__item--cta{% if rm.namespace == 'booking' and rm.url_name == 'index' %} is-active{% endif %}">
+    <span class="mobile-bar__label">{% trans "Booking" %}</span>
+  </a>
+</nav>
+{% endwith %}

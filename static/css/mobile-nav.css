@@ -1,0 +1,182 @@
+/* ============================================================
+   MOBILE — WhatsApp in header + sticky bottom bar
+   ============================================================ */
+:root {
+  --mobile-bar-h: 56px;
+}
+
+/* WhatsApp icon (mobile header only) */
+.nav__wa {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  color: var(--accent);
+  border-radius: var(--r-sm);
+  transition: color var(--t), background var(--t);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav__wa:hover,
+.nav__wa:focus-visible {
+  color: var(--text);
+  background: rgba(212, 165, 165, 0.12);
+}
+
+.nav__wa svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 110;
+    padding-top: env(safe-area-inset-top, 0px);
+    min-height: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  }
+
+  .nav__wa {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-bar {
+    display: none;
+  }
+}
+
+/* Sticky bottom quick menu */
+.mobile-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 105;
+  display: flex;
+  align-items: stretch;
+  height: calc(var(--mobile-bar-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  background: rgba(10, 10, 10, 0.97);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 280ms ease, opacity 280ms ease;
+}
+
+.mobile-bar.is-hidden {
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mobile-bar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: var(--mobile-bar-h);
+  padding: 6px 4px;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color var(--t), background var(--t);
+}
+
+.mobile-bar__item:hover,
+.mobile-bar__item:focus-visible {
+  color: var(--text);
+}
+
+.mobile-bar__item.is-active {
+  color: var(--accent);
+}
+
+.mobile-bar__item--cta {
+  color: var(--bg);
+  background: var(--accent);
+  margin: 6px 4px;
+  border-radius: var(--r-sm);
+  min-height: calc(var(--mobile-bar-h) - 12px);
+  align-self: center;
+}
+
+.mobile-bar__item--cta:hover,
+.mobile-bar__item--cta:focus-visible {
+  color: var(--bg);
+  background: var(--accent-alt);
+}
+
+.mobile-bar__item--cta.is-active {
+  color: var(--bg);
+  box-shadow: inset 0 0 0 1px rgba(10, 10, 10, 0.15);
+}
+
+.mobile-bar__label {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+@media (max-width: 374px) {
+  .mobile-bar__item {
+    font-size: 0.5rem;
+    letter-spacing: 0.04em;
+    padding: 6px 2px;
+  }
+
+  .nav__wa {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .nav__wa svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    z-index: 110;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding-bottom: calc(var(--sp-8) + var(--mobile-bar-h) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .site-disclaimer {
+    padding-bottom: calc(var(--sp-5) + var(--mobile-bar-h) + env(safe-area-inset-bottom, 0px));
+  }
+}

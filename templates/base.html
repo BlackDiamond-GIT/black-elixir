@@ -40,6 +40,7 @@
   <link rel="stylesheet" href="{% static 'css/layout.css' %}">
   <link rel="stylesheet" href="{% static 'css/components.css' %}">
   <link rel="stylesheet" href="{% static 'css/pages/shared.css' %}">
+  <link rel="stylesheet" href="{% static 'css/mobile-nav.css' %}">
   <style>
     .nav-res-btn { display: none; }
     @media (min-width: 768px) { .nav-res-btn { display: inline-flex; } }
@@ -64,6 +65,7 @@
   
   {% include 'partials/_disclaimer.html' %}
   {% include 'partials/_footer.html' %}
+  {% include 'partials/_mobile_bar.html' %}
   
   <script src="{% static 'js/main.js' %}"></script>
   {% block extra_js %}{% endblock %}
