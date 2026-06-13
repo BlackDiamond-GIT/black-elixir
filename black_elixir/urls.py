@@ -8,10 +8,12 @@ from apps.core.views import robots_txt, sitemaps
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('rosetta/', include('rosetta.urls')),
     path('robots.txt', robots_txt, name='robots'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
+
+if settings.DEBUG:
+    urlpatterns.insert(1, path('rosetta/', include('rosetta.urls')))
 
 urlpatterns += i18n_patterns(
     path('', include('apps.pages.urls')),
