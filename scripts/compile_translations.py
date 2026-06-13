@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-LOCALES = ('cs', 'en', 'ru')
+LOCALES = ('cs', 'en', 'ru', 'uk')
 
 
 def compile_with_msgfmt():

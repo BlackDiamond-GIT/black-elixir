@@ -1,12 +1,12 @@
 {% load i18n static %}
 
 <div class="be-admin-userlinks">
-  <nav class="be-admin-userlinks__nav" aria-label="Меню користувача">
+  <nav class="be-admin-userlinks__nav" aria-label="{% translate 'User menu' %}">
     {% get_current_language as CURRENT_LANG %}
     <a href="{% url 'admin_toggle_lang' %}"
-       class="be-admin-userlinks__link"
-       title="{% if CURRENT_LANG == 'cs' %}Switch to English{% else %}Перейти на чеську{% endif %}">
-      {% if CURRENT_LANG == 'cs' %}EN{% else %}CS{% endif %}
+       class="be-admin-userlinks__link be-admin-userlinks__lang"
+       title="{% if CURRENT_LANG == 'uk' %}{% translate 'Switch to English' %}{% else %}{% translate 'Switch to Ukrainian' %}{% endif %}">
+      {% if CURRENT_LANG == 'uk' %}EN{% else %}UA{% endif %}
     </a>
 
     {% if site_url %}

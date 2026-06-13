@@ -21,7 +21,7 @@ UNFOLD = {
     'SHOW_HISTORY': True,
     'SHOW_VIEW_ON_SITE': True,
     'STYLES': [
-        lambda request: static('css/admin-header.css?v=1'),
+        lambda request: static('css/admin-header.css?v=2'),
     ],
     'COLORS': {
         'primary': {
@@ -53,6 +53,7 @@ UNFOLD = {
     },
     'SIDEBAR': {
         'show_search': True,
+        'search_placeholder': 'Пошук додатків і моделей…',
         'show_all_applications': False,
         'navigation': [
             {

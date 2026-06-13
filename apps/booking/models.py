@@ -13,13 +13,14 @@ class Reservation(models.Model):
         TimeSlot,
         on_delete=models.CASCADE,
         related_name='reservation',
+        verbose_name=_('Time slot'),
     )
-    client_name = models.CharField(max_length=200)
-    client_email = models.EmailField()
-    client_phone = models.CharField(max_length=20)
-    message = models.TextField(blank=True, default='')
-    confirmed = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    client_name = models.CharField(_('Client name'), max_length=200)
+    client_email = models.EmailField(_('Client email'))
+    client_phone = models.CharField(_('Client phone'), max_length=20)
+    message = models.TextField(_('Message'), blank=True, default='')
+    confirmed = models.BooleanField(_('Confirmed'), default=False)
+    created_at = models.DateTimeField(_('Created at'), auto_now_add=True)
 
     class Meta:
         ordering = ['-created_at']

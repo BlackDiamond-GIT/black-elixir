@@ -16,8 +16,8 @@ from .middleware import _ADMIN_LANG_COOKIE
 @staff_member_required(login_url='/admin/login/')
 def toggle_admin_language(request):
     redirect_to = request.META.get('HTTP_REFERER', '/admin/')
-    current = request.COOKIES.get(_ADMIN_LANG_COOKIE, 'cs')
-    next_lang = 'en' if current == 'cs' else 'cs'
+    current = request.COOKIES.get(_ADMIN_LANG_COOKIE, 'uk')
+    next_lang = 'en' if current == 'uk' else 'uk'
     response = redirect(redirect_to)
     response.set_cookie(
         _ADMIN_LANG_COOKIE,
