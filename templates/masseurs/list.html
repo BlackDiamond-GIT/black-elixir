@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load i18n static seo_tags %}
+
+{% block seo_title %}{% trans "Our Masseuses — Black Elixir Spa" %}{% endblock %}
+{% block meta_description %}{% trans "Certified professionals dedicated to massage and wellbeing. Meet our team." %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/detail-pages.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    {% breadcrumbs breadcrumb_items %}
+    <h1>{% trans "Our Masseuses" %}</h1>
+    <p>{% trans "Certified professionals dedicated to massage and wellbeing." %}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="grid-3">
+      {% for item in masseuse_cards %}
+      <div class="card card--m reveal d{{ forloop.counter }}">
+        <div class="card__imgwrap">
+          {% if item.image %}
+          <img src="{{ item.image }}"
+               alt="{{ item.obj.photo_alt|default:item.obj.name }}"
+               width="500" height="667" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="card__body">
+          <h2 class="card__name">{{ item.obj.name }}</h2>
+          <p class="card__spec">{{ item.spec }}</p>
+          <a href="{% url 'masseurs:detail' item.obj.slug %}" class="btn btn--sm btn--primary">{% trans 'View Profile' %}</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

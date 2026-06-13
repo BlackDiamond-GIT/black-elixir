@@ -1,0 +1,712 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Black Elixir Spa\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-11 12:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/base.html:9 templates/partials/_footer.html:6
+msgid "Premium massage and relaxation in the heart of Prague."
+msgstr "Premium massage and relaxation in the heart of Prague."
+
+#: templates/blog/detail.html:4
+#, fuzzy
+#| msgid "Back to Blog"
+msgid "Black Elixir Spa Blog"
+msgstr "Back to Blog"
+
+#: templates/blog/detail.html:14
+msgid "Updated"
+msgstr ""
+
+#: templates/blog/detail.html:26
+msgid "Published by"
+msgstr ""
+
+#: templates/blog/detail.html:28
+msgid ""
+"A team of professional massage and wellness experts with over 12 years of "
+"experience."
+msgstr ""
+
+#: templates/blog/detail.html:36
+msgid "Related services"
+msgstr ""
+
+#: templates/blog/detail.html:38
+msgid "View our full massage catalogue"
+msgstr ""
+
+#: templates/blog/detail.html:39
+#, fuzzy
+#| msgid "Meet Our Masseuses"
+msgid "Meet our masseuses"
+msgstr "Meet Our Masseuses"
+
+#: templates/blog/detail.html:40
+#, fuzzy
+#| msgid "Book a Massage"
+msgid "Book a session"
+msgstr "Book a Massage"
+
+#: templates/blog/detail.html:44
+msgid "Back to Blog"
+msgstr "Back to Blog"
+
+#: templates/blog/list.html:4
+msgid "Blog — Black Elixir Spa"
+msgstr ""
+
+#: templates/blog/list.html:5 templates/blog/list.html:15
+msgid "Tips and guides for relaxation and wellness."
+msgstr "Tips and guides for relaxation and wellness."
+
+#: templates/blog/list.html:14 templates/partials/_nav.html:12
+#: templates/partials/_nav.html:36
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/blog/list.html:31
+msgid "Read"
+msgstr "Read"
+
+#: templates/blog/list.html:40
+#, fuzzy
+#| msgid "Read"
+msgid "Read More"
+msgstr "Read"
+
+#: templates/contacts/index.html:4
+msgid "Contact — Black Elixir Spa"
+msgstr ""
+
+#: templates/contacts/index.html:5
+#, fuzzy
+#| msgid "Find us in the heart of Prague. We look forward to your visit."
+msgid ""
+"Find us in the heart of Prague. Wenceslas Square 12. Phone: +420 777 123 456"
+msgstr "Find us in the heart of Prague. We look forward to your visit."
+
+#: templates/contacts/index.html:8 templates/contacts/index.html:10
+#: templates/faq/index.html:36 templates/partials/_footer.html:27
+#: templates/partials/_footer.html:42 templates/partials/_nav.html:13
+#: templates/partials/_nav.html:37 templates/reservation/index.html:44
+#: templates/services/detail.html:113
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/contacts/index.html:11
+msgid "Find us in the heart of Prague. We look forward to your visit."
+msgstr "Find us in the heart of Prague. We look forward to your visit."
+
+#: templates/contacts/index.html:22
+msgid "Address"
+msgstr "Address"
+
+#: templates/contacts/index.html:23
+msgid "Wenceslas Square 12 Prague 1, 110 00 Czech Republic"
+msgstr ""
+
+#: templates/contacts/index.html:32
+#: templates/reservation/partials/step_4.html:38
+#: templates/reservation/partials/step_5.html:21
+msgid "Phone"
+msgstr "Phone"
+
+#: templates/contacts/index.html:40
+#: templates/reservation/partials/step_4.html:34
+#: templates/reservation/partials/step_5.html:17
+msgid "Email"
+msgstr "Email"
+
+#: templates/contacts/index.html:48
+msgid "Opening Hours"
+msgstr "Opening Hours"
+
+#: templates/contacts/index.html:49
+msgid "Mon–Fri: 10:00–21:00 Sat–Sun: 10:00–19:00"
+msgstr ""
+
+#: templates/contacts/index.html:57
+msgid "Map placeholder"
+msgstr "Map placeholder"
+
+#: templates/faq/index.html:4
+msgid "Frequently Asked Questions — Black Elixir Spa"
+msgstr ""
+
+#: templates/faq/index.html:5
+msgid ""
+"Answers to the most common questions about massages, booking and payment at "
+"Black Elixir Spa."
+msgstr ""
+
+#: templates/faq/index.html:11 templates/home/index.html:156
+#: templates/masseurs/detail.html:76 templates/services/detail.html:81
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: templates/faq/index.html:12
+msgid "Everything you need to know before visiting our spa."
+msgstr ""
+
+#: templates/faq/index.html:35 templates/partials/_nav.html:22
+#: templates/partials/_nav.html:38 templates/reservation/index.html:16
+msgid "Booking"
+msgstr "Booking"
+
+#: templates/home/index.html:4
+msgid "Massage & Relaxation — Black Elixir Spa"
+msgstr ""
+
+#: templates/home/index.html:5
+#, fuzzy
+#| msgid "Premium massage and relaxation in the heart of Prague."
+msgid ""
+"Premium massage and relaxation in the heart of Prague. Classic, Thai, "
+"aromatherapy and hot stone massage."
+msgstr "Premium massage and relaxation in the heart of Prague."
+
+#: templates/home/index.html:19
+#, fuzzy
+#| msgid "Premium massage oils"
+msgid "Premium Spa Prague"
+msgstr "Premium massage oils"
+
+#: templates/home/index.html:21
+#, fuzzy
+#| msgid "Massage"
+msgid "Massage &"
+msgstr "Massage"
+
+#: templates/home/index.html:21
+msgid "Relaxation"
+msgstr ""
+
+#: templates/home/index.html:23
+msgid ""
+"Indulge in the luxury of professional massage in a private, elegant setting. "
+"Our masseuses care for your body and mind."
+msgstr ""
+
+#: templates/home/index.html:25 templates/services/detail.html:48
+msgid "Book Now"
+msgstr "Book Now"
+
+#: templates/home/index.html:26 templates/home/index.html:42
+#: templates/partials/_footer.html:33 templates/services/detail.html:42
+msgid "Our Massages"
+msgstr "Our Massages"
+
+#: templates/home/index.html:34
+#, fuzzy
+#| msgid "Premium massage oils"
+msgid "Premium massage Prague"
+msgstr "Premium massage oils"
+
+#: templates/home/index.html:43 templates/home/index.html:127
+#: templates/prices/index.html:22
+msgid "Choose Your Massage"
+msgstr "Choose Your Massage"
+
+#: templates/home/index.html:44
+msgid ""
+"We offer a wide range of professional massages for your relaxation and "
+"rejuvenation."
+msgstr ""
+"We offer a wide range of professional massages for your relaxation and "
+"rejuvenation."
+
+#: templates/home/index.html:50 templates/home/index.html:84
+#: templates/home/index.html:133 templates/prices/index.html:32
+msgid "View"
+msgstr ""
+
+#: templates/home/index.html:63 templates/home/index.html:146
+msgid "View full price list"
+msgstr ""
+
+#: templates/home/index.html:72
+msgid "Our Team"
+msgstr "Our Team"
+
+#: templates/home/index.html:73
+msgid "Meet Our Masseuses"
+msgstr "Meet Our Masseuses"
+
+#: templates/home/index.html:75
+#, fuzzy
+#| msgid "All Masseuses"
+msgid "All masseuses →"
+msgstr "All Masseuses"
+
+#: templates/home/index.html:98
+msgid "How It Works"
+msgstr "How It Works"
+
+#: templates/home/index.html:99
+msgid "Your Journey to Relaxation"
+msgstr "Your Journey to Relaxation"
+
+#: templates/home/index.html:104 templates/partials/_cta_banner.html:8
+#: templates/services/detail.html:112
+msgid "Book Online"
+msgstr "Book Online"
+
+#: templates/home/index.html:105
+msgid ""
+"Choose your massage, masseuse and time — anytime, anywhere through our "
+"system."
+msgstr ""
+"Choose your massage, masseuse and time — anytime, anywhere through our "
+"system."
+
+#: templates/home/index.html:108
+msgid "Welcome"
+msgstr "Welcome"
+
+#: templates/home/index.html:109
+msgid ""
+"On arrival we welcome you with tea and briefly discuss your wishes and needs."
+msgstr ""
+"On arrival we welcome you with tea and briefly discuss your wishes and needs."
+
+#: templates/home/index.html:112
+msgid "Your Massage"
+msgstr "Your Massage"
+
+#: templates/home/index.html:113
+msgid ""
+"Your masseuse cares for you in a private, fragrant space tailored to your "
+"needs."
+msgstr ""
+"Your masseuse cares for you in a private, fragrant space tailored to your "
+"needs."
+
+#: templates/home/index.html:116
+msgid "Unwind"
+msgstr "Unwind"
+
+#: templates/home/index.html:117
+msgid ""
+"After the massage, relax in our lounge with tea — extend your experience."
+msgstr ""
+"After the massage, relax in our lounge with tea — extend your experience."
+
+#: templates/home/index.html:126 templates/partials/_footer.html:26
+#: templates/partials/_nav.html:11 templates/partials/_nav.html:35
+#: templates/prices/index.html:12 templates/prices/index.html:21
+msgid "Prices"
+msgstr "Prices"
+
+#: templates/home/index.html:153 templates/masseurs/detail.html:75
+#: templates/partials/_footer.html:28 templates/services/detail.html:80
+msgid "FAQ"
+msgstr ""
+
+#: templates/masseurs/detail.html:5 templates/masseurs/detail.html:17
+#: templates/masseurs/detail.html:20 templates/reservation/index.html:34
+#: templates/reservation/partials/step_4.html:10
+msgid "Masseuse"
+msgstr "Masseuse"
+
+#: templates/masseurs/detail.html:41
+#, fuzzy
+#| msgid "Meet Our Masseuses"
+msgid "Meet our masseuse"
+msgstr "Meet Our Masseuses"
+
+#: templates/masseurs/detail.html:42
+#, fuzzy
+#| msgid "Experience"
+msgid "Experience and approach"
+msgstr "Experience"
+
+#: templates/masseurs/detail.html:49
+msgid "years experience"
+msgstr "years experience"
+
+#: templates/masseurs/detail.html:54
+msgid "Massages offered"
+msgstr "Massages offered"
+
+#: templates/masseurs/detail.html:59
+msgid "Service list will be added soon."
+msgstr ""
+
+#: templates/masseurs/detail.html:66
+msgid "Book with"
+msgstr "Book with"
+
+#: templates/masseurs/detail.html:68
+#, fuzzy
+#| msgid "All Masseuses"
+msgid "All masseuses"
+msgstr "All Masseuses"
+
+#: templates/masseurs/detail.html:97 templates/services/detail.html:102
+msgid "Related articles"
+msgstr ""
+
+#: templates/masseurs/list.html:4
+msgid "Our Masseuses — Black Elixir Spa"
+msgstr ""
+
+#: templates/masseurs/list.html:5
+msgid ""
+"Certified professionals dedicated to massage and wellbeing. Meet our team."
+msgstr ""
+"Certified professionals dedicated to massage and wellbeing. Meet our team."
+
+#: templates/masseurs/list.html:12 templates/partials/_footer.html:24
+#: templates/partials/_nav.html:9 templates/partials/_nav.html:33
+msgid "Masseuses"
+msgstr "Masseuses"
+
+#: templates/partials/_footer.html:25 templates/partials/_nav.html:10
+#: templates/partials/_nav.html:35
+msgid "Massages"
+msgstr "Massages"
+
+#: templates/home/index.html:63
+msgid "View all massages"
+msgstr "View all massages"
+
+#: templates/massages/index.html:15
+msgid "Choose from six professional massages tailored to your needs."
+msgstr "Choose from six professional massages tailored to your needs."
+
+#: templates/massages/index.html:4
+msgid "Our Massages — Black Elixir Spa"
+msgstr "Our Massages — Black Elixir Spa"
+
+#: templates/massages/index.html:5
+msgid ""
+"Six premium massages for relaxation and recovery. Classic, relax, sports, "
+"lymphatic and aroma massage."
+msgstr ""
+"Six premium massages for relaxation and recovery. Classic, relax, sports, "
+"lymphatic and aroma massage."
+
+#: templates/masseurs/list.html:15
+msgid "Our Masseuses"
+msgstr "Our Masseuses"
+
+#: templates/masseurs/list.html:16
+msgid "Certified professionals dedicated to massage and wellbeing."
+msgstr "Certified professionals dedicated to massage and wellbeing."
+
+#: templates/masseurs/list.html:35
+msgid "View Profile"
+msgstr "View Profile"
+
+#: templates/partials/_cta_banner.html:5
+msgid "Ready to Relax?"
+msgstr "Ready to Relax?"
+
+#: templates/partials/_cta_banner.html:6
+msgid "Book your massage today and invest time in yourself."
+msgstr "Book your massage today and invest time in yourself."
+
+#: templates/partials/_footer.html:21
+msgid "Pages"
+msgstr "Pages"
+
+#: templates/partials/_footer.html:23 templates/partials/_nav.html:8
+#: templates/partials/_nav.html:32
+msgid "Home"
+msgstr "Home"
+
+#: templates/partials/_footer.html:25 templates/partials/_nav.html:10
+#: templates/partials/_nav.html:34 templates/prices/index.html:49
+msgid "Schedule"
+msgstr "Schedule"
+
+#: templates/partials/_footer.html:47
+msgid "Mon–Fri 10–21 · Sat–Sun 10–19"
+msgstr ""
+
+#: templates/partials/_footer.html:53
+msgid "All rights reserved."
+msgstr "All rights reserved."
+
+#: templates/partials/_footer.html:47
+msgid "Salon Rules"
+msgstr "Salon Rules"
+
+#: templates/partials/_footer.html:48
+msgid "Privacy"
+msgstr "Privacy"
+
+#: templates/partials/_footer.html:49
+msgid "About Us"
+msgstr "About Us"
+
+#: templates/prices/index.html:4
+msgid "Massage Prices — Black Elixir Spa"
+msgstr ""
+
+#: templates/prices/index.html:5
+msgid ""
+"Transparent massage prices with no hidden fees. Classic, Thai, aromatherapy "
+"and more."
+msgstr ""
+
+#: templates/prices/index.html:14
+msgid "Massage Prices"
+msgstr "Massage Prices"
+
+#: templates/prices/index.html:15
+msgid "Transparent pricing. All prices in CZK."
+msgstr "Transparent pricing. All prices in CZK."
+
+#: templates/prices/index.html:49
+msgid "future entries"
+msgstr ""
+
+#: templates/prices/index.html:50 templates/schedule/index.html:10
+msgid "Massage Schedule"
+msgstr "Massage Schedule"
+
+#: templates/prices/index.html:51 templates/schedule/index.html:5
+#: templates/schedule/index.html:11
+msgid "Current availability. Click a free slot to book."
+msgstr "Current availability. Click a free slot to book."
+
+#: templates/prices/index.html:53
+#, fuzzy
+#| msgid "Map placeholder"
+msgid "Schedule placeholder"
+msgstr "Map placeholder"
+
+#: templates/reservation/index.html:4
+msgid "Book a Massage — Black Elixir Spa"
+msgstr ""
+
+#: templates/reservation/index.html:5
+msgid "Book your massage online in 5 steps. Choose service, masseuse and time."
+msgstr ""
+
+#: templates/reservation/index.html:17
+msgid "Book a Massage"
+msgstr "Book a Massage"
+
+#: templates/reservation/index.html:18
+msgid "5 easy steps to your relaxation."
+msgstr "5 easy steps to your relaxation."
+
+#: templates/reservation/index.html:29
+msgid "Service"
+msgstr "Service"
+
+#: templates/reservation/index.html:39
+#: templates/reservation/partials/step_4.html:14
+msgid "Time"
+msgstr "Time"
+
+#: templates/reservation/index.html:49
+msgid "Confirm"
+msgstr "Confirm"
+
+#: templates/reservation/index.html:54
+msgid "Select a massage"
+msgstr "Select a massage"
+
+#: templates/reservation/index.html:67
+#: templates/reservation/partials/step_2.html:14
+#: templates/reservation/partials/step_3.html:15
+#: templates/reservation/partials/step_4.html:50
+msgid "Back"
+msgstr "Back"
+
+#: templates/reservation/index.html:69
+#: templates/reservation/partials/step_2.html:15
+#: templates/reservation/partials/step_3.html:16
+msgid "Continue"
+msgstr "Continue"
+
+#: templates/reservation/index.html:75
+msgid "Loading..."
+msgstr "Loading..."
+
+#: templates/reservation/partials/step_2.html:2
+msgid "Select a masseuse"
+msgstr "Select a masseuse"
+
+#: templates/reservation/partials/step_3.html:2
+msgid "Select a time"
+msgstr "Select a time"
+
+#: templates/reservation/partials/step_4.html:2
+msgid "Your Details"
+msgstr "Your Details"
+
+#: templates/reservation/partials/step_4.html:6
+#: templates/services/detail.html:19
+msgid "Massage"
+msgstr "Massage"
+
+#: templates/reservation/partials/step_4.html:18
+msgid "Duration"
+msgstr "Duration"
+
+#: templates/reservation/partials/step_4.html:22
+msgid "Price"
+msgstr "Price"
+
+#: templates/reservation/partials/step_4.html:29
+msgid "Full Name"
+msgstr "Full Name"
+
+#: templates/reservation/partials/step_4.html:43
+msgid "Note (optional)"
+msgstr "Note (optional)"
+
+#: templates/reservation/partials/step_4.html:44
+msgid "Special requests or health concerns?"
+msgstr "Special requests or health concerns?"
+
+#: templates/reservation/partials/step_4.html:52
+msgid "Confirm Booking"
+msgstr "Confirm Booking"
+
+#: templates/reservation/partials/step_5.html:4
+msgid "Booking Confirmed!"
+msgstr "Booking Confirmed!"
+
+#: templates/reservation/partials/step_5.html:5
+msgid ""
+"Thank you! Your booking has been submitted. A confirmation will be sent to "
+"your email."
+msgstr ""
+"Thank you! Your booking has been submitted. A confirmation will be sent to "
+"your email."
+
+#: templates/reservation/partials/step_5.html:9
+msgid "Reservation ID"
+msgstr "Reservation ID"
+
+#: templates/reservation/partials/step_5.html:13
+msgid "Client Name"
+msgstr "Client Name"
+
+#: templates/reservation/partials/step_5.html:26
+msgid "Back to Home"
+msgstr "Back to Home"
+
+#: templates/reservation/partials/step_5.html:27
+msgid "New Booking"
+msgstr "New Booking"
+
+#: templates/schedule/index.html:4
+#, fuzzy
+#| msgid "Massage Schedule"
+msgid "Massage Schedule — Black Elixir Spa"
+msgstr "Massage Schedule"
+
+#: templates/schedule/index.html:20
+msgid "Available"
+msgstr ""
+
+#: templates/schedule/index.html:24
+#, fuzzy
+#| msgid "Booking"
+msgid "Booked"
+msgstr "Booking"
+
+#: templates/schedule/index.html:29
+msgid "All Masseuses"
+msgstr "All Masseuses"
+
+#: templates/schedule/index.html:78
+msgid "Click a free slot to proceed to booking."
+msgstr ""
+
+#: templates/services/detail.html:22
+msgid "Black Elixir Spa Prague"
+msgstr ""
+
+#: templates/services/detail.html:23
+#, fuzzy
+#| msgid "Premium massage and relaxation in the heart of Prague."
+msgid "Professional massage in the centre of Prague"
+msgstr "Premium massage and relaxation in the heart of Prague."
+
+#: templates/services/detail.html:44
+msgid "min"
+msgstr ""
+
+#: templates/services/detail.html:49
+msgid "Full price list"
+msgstr ""
+
+#: templates/services/detail.html:69
+msgid "Masseuses for this massage"
+msgstr ""
+
+#: templates/partials/_disclaimer.html:2
+msgid "Legal disclaimer"
+msgstr "Legal disclaimer"
+
+#: templates/partials/_disclaimer.html:4
+msgid ""
+"Black Elixir salon does not provide any sexual services in any form and "
+"serves only as advertising for individual masseuses. A condition of "
+"advertising is renting space in the massage salon. Entry is permitted to "
+"persons over 18 years of age."
+msgstr ""
+"Black Elixir salon does not provide any sexual services in any form and "
+"serves only as advertising for individual masseuses. A condition of "
+"advertising is renting space in the massage salon. Entry is permitted to "
+"persons over 18 years of age."
+
+#~ msgid "Our Services"
+#~ msgstr "Our Services"
+
+#~ msgid "happy clients"
+#~ msgstr "happy clients"
+
+#~ msgid "masseuses"
+#~ msgstr "masseuses"
+
+#~ msgid ""
+#~ "Each of our masseuses is a certified professional with a passion for "
+#~ "their craft."
+#~ msgstr ""
+#~ "Each of our masseuses is a certified professional with a passion for "
+#~ "their craft."
+
+#~ msgid "What's Included"
+#~ msgstr "What's Included"
+
+#~ msgid "Heated linen"
+#~ msgstr "Heated linen"
+
+#~ msgid "Herbal tea"
+#~ msgstr "Herbal tea"
+
+#~ msgid "Private room"
+#~ msgstr "Private room"
+
+#~ msgid "Post-massage relaxation lounge"
+#~ msgstr "Post-massage relaxation lounge"
+
+#~ msgid "Today"
+#~ msgstr "Today"
+
+#~ msgid "Tomorrow"
+#~ msgstr "Tomorrow"
+
+#~ msgid "Articles"
+#~ msgstr "Articles"

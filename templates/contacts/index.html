@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block seo_title %}{% trans "Contact — Black Elixir Spa" %}{% endblock %}
+{% block meta_description %}{% trans "Find us in the heart of Prague. Wenceslas Square 12. Phone: +420 777 123 456" %}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <h1>{% trans 'Contact' %}</h1>
+    <p>{% trans 'Find us in the heart of Prague. We look forward to your visit.' %}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="nap-block">
+        <div class="nap-item">
+          <div class="nap-icon">{% include "partials/_nap_icon.html" with icon="location" %}</div>
+          <div>
+            <div class="nap-label">{% trans 'Address' %}</div>
+            <div class="nap-value">{% blocktrans trimmed %}Wenceslas Square 12
+Prague 1, 110 00
+Czech Republic{% endblocktrans %}</div>
+          </div>
+        </div>
+        
+        <div class="nap-item">
+          <div class="nap-icon">{% include "partials/_nap_icon.html" with icon="phone" %}</div>
+          <div>
+            <div class="nap-label">{% trans 'Phone' %}</div>
+            <div class="nap-value">+420 777 123 456</div>
+          </div>
+        </div>
+        
+        <div class="nap-item">
+          <div class="nap-icon">{% include "partials/_nap_icon.html" with icon="mail" %}</div>
+          <div>
+            <div class="nap-label">{% trans 'Email' %}</div>
+            <div class="nap-value">info@blackelixir.cz</div>
+          </div>
+        </div>
+        
+        <div class="nap-item">
+          <div class="nap-icon">{% include "partials/_nap_icon.html" with icon="hours" %}</div>
+          <div>
+            <div class="nap-label">{% trans 'Opening Hours' %}</div>
+            <div class="nap-value">{% blocktrans trimmed %}Mon–Fri: 10:00–21:00
+Sat–Sun: 10:00–19:00{% endblocktrans %}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="map-placeholder">
+        <span class="map-placeholder__icon">{% include "partials/_nap_icon.html" with icon="map" %}</span>
+        <span class="map-placeholder__label">{% trans 'Map placeholder' %}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_cta_banner.html' %}
+{% endblock %}

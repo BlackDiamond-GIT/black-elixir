@@ -1,0 +1,41 @@
+{% load i18n %}
+<nav class="nav">
+  <a href="{% url 'pages:home' %}" class="nav__logo" aria-label="Black Elixir Spa">
+    Black <span>Elixir</span>
+  </a>
+
+  <ul class="nav__links">
+    <li><a href="{% url 'pages:home' %}" class="nav__link">{% trans "Home" %}</a></li>
+    <li><a href="{% url 'masseurs:list' %}" class="nav__link">{% trans "Masseuses" %}</a></li>
+    <li><a href="{% url 'pages:massages' %}" class="nav__link">{% trans "Massages" %}</a></li>
+    <li><a href="{% url 'schedule:index' %}" class="nav__link">{% trans "Schedule" %}</a></li>
+    <li><a href="{% url 'pages:prices' %}" class="nav__link">{% trans "Prices" %}</a></li>
+    <li><a href="{% url 'blog:list' %}" class="nav__link">{% trans "Blog" %}</a></li>
+    <li><a href="{% url 'pages:contacts' %}" class="nav__link">{% trans "Contact" %}</a></li>
+  </ul>
+
+  <div class="nav__right">
+    <div class="lang-switcher">
+      {% for lang in languages %}
+      <a href="{{ lang.url }}" class="lang-btn{% if lang.active %} active{% endif %}" lang="{{ lang.code }}">{{ lang.code|upper }}</a>
+      {% endfor %}
+    </div>
+    <a href="{% url 'booking:index' %}" class="btn btn--primary btn--sm nav-res-btn">{% trans "Booking" %}</a>
+    <button type="button" class="nav__hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="{% url 'pages:home' %}" class="mob-link">{% trans "Home" %}</a>
+  <a href="{% url 'masseurs:list' %}" class="mob-link">{% trans "Masseuses" %}</a>
+  <a href="{% url 'pages:massages' %}" class="mob-link">{% trans "Massages" %}</a>
+  <a href="{% url 'schedule:index' %}" class="mob-link">{% trans "Schedule" %}</a>
+  <a href="{% url 'pages:prices' %}" class="mob-link">{% trans "Prices" %}</a>
+  <a href="{% url 'blog:list' %}" class="mob-link">{% trans "Blog" %}</a>
+  <a href="{% url 'pages:contacts' %}" class="mob-link">{% trans "Contact" %}</a>
+  <a href="{% url 'booking:index' %}" class="btn btn--primary" style="margin-top:32px">{% trans "Booking" %}</a>
+</div>

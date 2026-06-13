@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load i18n static seo_tags %}
+
+{% block seo_title %}{% trans "Massage & Relaxation — Black Elixir Spa" %}{% endblock %}
+{% block meta_description %}{% trans "Premium massage and relaxation in the heart of Prague. Classic, Thai, aromatherapy and hot stone massage." %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/misc.css' %}">
+{% endblock %}
+
+{% block content %}
+{% schema_website %}
+
+<section class="hero">
+  <span class="hero__watermark" aria-hidden="true">SPA</span>
+
+  <div class="hero__left reveal vis">
+    <p class="hero__eyebrow">{% trans "Premium Spa Prague" %}</p>
+    <h1 class="hero__title" style="padding-bottom:0.1em">
+      {% trans "Massage &" %}<br><em>{% trans "Relaxation" %}</em>
+    </h1>
+    <p class="hero__subtitle" style="margin-top:var(--sp-3)">{% trans "Indulge in the luxury of professional massage in a private, elegant setting. Our masseuses care for your body and mind." %}</p>
+    <div class="hero__actions">
+      <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans "Book Now" %}</a>
+      <a href="{% url 'pages:massages' %}" class="btn btn--ghost">{% trans "Our Massages" %}</a>
+    </div>
+  </div>
+
+  <div class="hero__right">
+    <img
+      class="hero__img"
+      src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=900&h=1200&q=85"
+      alt="Black Elixir Spa — {% trans 'Premium massage Prague' %}"
+      width="900" height="1200" fetchpriority="high" loading="eager"
+    >
+  </div>
+</section>
+
+<section id="services" class="section section--alt">
+  <div class="container">
+    <p class="s-eyebrow reveal vis">{% trans "Our Massages" %}</p>
+    <h2 class="s-title reveal vis">{% trans "Choose Your Massage" %}</h2>
+    <p class="s-desc reveal vis">{% trans "We offer a wide range of professional massages for your relaxation and rejuvenation." %}</p>
+
+    <div class="svc-grid">
+      {% for item in services_preview %}
+      <a href="{% url 'services:detail' item.obj.slug %}" class="svc-square reveal d{{ forloop.counter }}" title="{{ item.name }}">
+        <img src="{{ item.image }}" alt="{{ item.name }} — Black Elixir Spa Praha" loading="lazy" width="600" height="600">
+        <span class="svc-square__hint">{% trans "View" %}</span>
+        <div class="svc-square__overlay">
+          <p class="svc-square__caption">{{ item.caption }}</p>
+          <div class="svc-square__meta">
+            <span class="svc-square__dur">{{ item.obj.duration_minutes }} min</span>
+            <span class="svc-square__price">{{ item.obj.base_price|price_czk }} Kč</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div style="text-align:center;margin-top:var(--sp-6)">
+      <a href="{% url 'pages:massages' %}" class="btn btn--ghost">{% trans "View all massages" %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:var(--sp-8)">
+      <div>
+        <p class="s-eyebrow reveal vis">{% trans "Our Team" %}</p>
+        <h2 class="s-title reveal vis">{% trans "Meet Our Masseuses" %}</h2>
+      </div>
+      <a href="{% url 'masseurs:list' %}" class="btn btn--ghost btn--sm" style="flex-shrink:0">{% trans "All masseuses →" %}</a>
+    </div>
+
+    <div class="grid-4">
+      {% for item in masseuses_preview %}
+      <a href="{% url 'masseurs:detail' item.obj.slug %}" class="card card--m reveal d{{ forloop.counter }}">
+        <div class="mass-photo-wrap">
+          <img src="{{ item.image }}" alt="{{ item.obj.photo_alt }}" loading="lazy" width="500" height="667">
+          <div class="mass-photo-hint">
+            <span class="mass-photo-hint-text">{% trans "View" %}</span>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="card--m card__name">{{ item.obj.name }} {{ item.surname }}</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--surf">
+  <div class="container">
+    <p class="s-eyebrow reveal vis">{% trans "How It Works" %}</p>
+    <h2 class="s-title reveal vis">{% trans "Your Journey to Relaxation" %}</h2>
+
+    <div class="proc-scroll-wrap reveal vis">
+      <div class="proc-editorial">
+        <div class="proc-ed-item">
+          <h3 class="proc-ed-title">{% trans "Book Online" %}</h3>
+          <p class="proc-ed-text">{% trans "Choose your massage, masseuse and time — anytime, anywhere through our system." %}</p>
+        </div>
+        <div class="proc-ed-item">
+          <h3 class="proc-ed-title">{% trans "Welcome" %}</h3>
+          <p class="proc-ed-text">{% trans "On arrival we welcome you with tea and briefly discuss your wishes and needs." %}</p>
+        </div>
+        <div class="proc-ed-item">
+          <h3 class="proc-ed-title">{% trans "Your Massage" %}</h3>
+          <p class="proc-ed-text">{% trans "Your masseuse cares for you in a private, fragrant space tailored to your needs." %}</p>
+        </div>
+        <div class="proc-ed-item">
+          <h3 class="proc-ed-title">{% trans "Unwind" %}</h3>
+          <p class="proc-ed-text">{% trans "After the massage, relax in our lounge with tea — extend your experience." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section home-faq">
+  <div class="container">
+    <p class="s-eyebrow reveal vis">{% trans "FAQ" %}</p>
+
+    <div class="home-faq__body">
+      <h2 class="s-title reveal vis">{% trans "Frequently Asked Questions" %}</h2>
+
+      <div class="faq-list-wrap">
+        <div class="faq-list">
+          {% for faq in faqs %}
+          <div class="faq-item">
+            <button type="button" class="faq-q">
+              <span>{{ faq.q }}</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include 'partials/_cta_banner.html' %}
+{% endblock %}

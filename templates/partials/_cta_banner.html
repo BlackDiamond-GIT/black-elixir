@@ -1,0 +1,11 @@
+{% load i18n %}
+<section class="cta-section">
+  <div class="container--xs">
+    <p class="s-eyebrow cta-section__eyebrow">Black Elixir</p>
+    <h2 class="s-title">{% trans "Ready to Relax?" %}</h2>
+    <p class="s-desc">{% trans "Book your massage today and invest time in yourself." %}</p>
+    <div class="btn-wrap">
+      <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans "Book Online" %}</a>
+    </div>
+  </div>
+</section>

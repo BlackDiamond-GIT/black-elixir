@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load i18n static seo_tags %}
+
+{% block seo_title %}{% trans "Blog — Black Elixir Spa" %}{% endblock %}
+{% block meta_description %}{% trans "Tips and guides for relaxation and wellness." %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/misc.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <h1>{% trans 'Blog' %}</h1>
+    <p>{% trans 'Tips and guides for relaxation and wellness.' %}</p>
+  </div>
+</header>
+
+<section class="section section--blog">
+  <div class="container container--blog">
+    <div class="blog-grid">
+      {% for post in posts %}
+      <article class="blog-card reveal d{{ forloop.counter }}">
+        <a href="{% url 'blog:detail' post.slug %}" class="blog-card__img-wrap">
+          {% if post.cover_image %}
+          <img src="{{ post.cover_image }}" alt="{{ post.image_alt|default:post.title }}" width="480" height="300" loading="lazy">
+          {% endif %}
+          <span class="blog-card__hint">{% trans 'Read' %}</span>
+        </a>
+        <div class="blog-card__body">
+          <time class="blog-card__date" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"d. F Y" }}</time>
+          <h2 class="blog-card__title">
+            <a href="{% url 'blog:detail' post.slug %}">{{ post.title }}</a>
+          </h2>
+          <p class="blog-card__excerpt">{{ post.excerpt|truncatewords:16 }}</p>
+          <a href="{% url 'blog:detail' post.slug %}" class="blog-card__more btn btn--ghost btn--sm">
+            {% trans 'Read More' %}
+          </a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

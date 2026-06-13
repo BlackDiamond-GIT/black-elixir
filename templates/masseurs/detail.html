@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load i18n static seo_tags i18n_tags %}
+
+{% block seo_title %}{{ masseuse.name }} — {% trans "Masseuse" %} | Black Elixir Spa{% endblock %}
+{% block meta_description %}{{ masseuse_bio|truncatewords:25 }}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/home.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/detail-pages.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    {% breadcrumbs breadcrumb_items %}
+    <h1>{{ masseuse.name }} — {% trans 'Masseuse' %}</h1>
+    <p>{{ masseuse_spec }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container--sm">
+    <div class="masseuse-detail__layout reveal vis">
+      <div class="masseuse-detail__photo">
+        {% if masseuse_image %}
+        <img
+          src="{{ masseuse_image }}"
+          alt="{{ masseuse.photo_alt|default:masseuse.name }}"
+          width="500"
+          height="667"
+          loading="lazy"
+        >
+        {% endif %}
+      </div>
+
+      <div class="masseuse-detail__body">
+        <p class="s-eyebrow">{% trans 'Meet our masseuse' %}</p>
+        <h2>{% trans 'Experience and approach' %}</h2>
+        <p class="detail-prose">{{ masseuse_bio }}</p>
+
+        <div class="detail-related" style="margin-top:0;padding-top:0;border-top:0">
+          <h2 class="s-title">{% trans 'Massages offered' %}</h2>
+          <div class="detail-links">
+            {% for service in related_services %}
+              <a href="{% url 'services:detail' service.slug %}">{{ service|localized:"name" }}</a>
+            {% empty %}
+              <span>{% trans 'Service list will be added soon.' %}</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <a href="{% url 'booking:index' %}" class="btn btn--primary">
+            {% trans 'Book with' %} {{ masseuse.name }}
+          </a>
+          <a href="{% url 'masseurs:list' %}" class="btn btn--ghost">{% trans 'All masseuses' %}</a>
+        </div>
+      </div>
+    </div>
+
+    {% if faqs %}
+    <div class="detail-related reveal vis">
+      <p class="s-eyebrow">{% trans 'FAQ' %}</p>
+      <h2 class="s-title">{% trans 'Frequently Asked Questions' %}</h2>
+      <div class="faq-list-wrap">
+        <div class="faq-list">
+          {% for faq in faqs %}
+          <div class="faq-item">
+            <button type="button" class="faq-q">
+              <span>{{ faq.q }}</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if related_posts %}
+    <div class="detail-related reveal vis">
+      <h2 class="s-title">{% trans 'Related articles' %}</h2>
+      <ul>
+        {% for post in related_posts %}
+          <li><a href="{% url 'blog:detail' post.slug %}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema_person masseuse %}
+{% schema_faq faqs %}
+{% endblock %}

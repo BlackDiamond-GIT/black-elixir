@@ -1,0 +1,16 @@
+{% load i18n %}
+<h3 style="margin-bottom: 1rem;">{% trans 'Select a masseuse' %}</h3>
+<input type="hidden" name="service_id" value="{{ service.id }}">
+<div class="option-grid">
+  {% for masseuse in masseuses %}
+  <div class="opt-card" data-masseuse-id="{{ masseuse.obj.id }}" hx-post="{% url 'booking:step' '2' %}" 
+       hx-vals='{"service_id":"{{ service.id }}", "masseuse_id":"{{ masseuse.obj.id }}"}' hx-target="#booking-content" hx-swap="innerHTML">
+    <div class="opt-card__name">{{ masseuse.name }}</div>
+    <div class="opt-card__detail">{{ masseuse.spec }}</div>
+  </div>
+  {% endfor %}
+</div>
+<div style="display: flex; gap: 1rem; margin-top: 2rem;">
+  <button type="button" class="btn btn--ghost" style="flex: 1;" hx-post="{% url 'booking:step' '1' %}" hx-target="#booking-content" hx-swap="innerHTML">{% trans 'Back' %}</button>
+  <button type="button" class="btn btn--primary" style="flex: 1;" disabled>{% trans 'Continue' %}</button>
+</div>

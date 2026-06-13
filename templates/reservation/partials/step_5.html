@@ -1,0 +1,28 @@
+{% load i18n %}
+<div class="confirm-box">
+  <div class="confirm-icon">✓</div>
+  <h2>{% trans 'Booking Confirmed!' %}</h2>
+  <p>{% trans 'Thank you! Your booking has been submitted. A confirmation will be sent to your email.' %}</p>
+  
+  <div class="booking-summary" style="margin: 2rem 0;">
+    <div class="summary-row">
+      <span class="summary-label">{% trans 'Reservation ID' %}</span>
+      <span class="summary-val">#{{ reservation.id }}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">{% trans 'Client Name' %}</span>
+      <span class="summary-val">{{ reservation.client_name }}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">{% trans 'Email' %}</span>
+      <span class="summary-val">{{ reservation.client_email }}</span>
+    </div>
+    <div class="summary-row">
+      <span class="summary-label">{% trans 'Phone' %}</span>
+      <span class="summary-val">{{ reservation.client_phone }}</span>
+    </div>
+  </div>
+  
+  <a href="{% url 'pages:home' %}" class="btn btn--primary">{% trans 'Back to Home' %}</a>
+  <a href="{% url 'booking:index' %}" class="btn btn--ghost" style="margin-left: 0.5rem;">{% trans 'New Booking' %}</a>
+</div>

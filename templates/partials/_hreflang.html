@@ -1,0 +1,3 @@
+{% for hreflang in hreflangs %}
+  <link rel="alternate" hreflang="{{ hreflang.code }}" href="{{ hreflang.url }}">
+{% endfor %}

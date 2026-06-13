@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n static seo_tags %}
+
+{% block seo_title %}{{ page.title }} — Black Elixir Spa{% endblock %}
+{% block meta_description %}{{ page.intro }}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/detail-pages.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/legal.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    {% breadcrumbs breadcrumb_items %}
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.intro }}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container--sm">
+    <div class="legal-prose reveal vis">
+      {% for section in page.sections %}
+      <h2>{{ section.heading }}</h2>
+      {% for paragraph in section.paragraphs %}
+      <p>{{ paragraph }}</p>
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

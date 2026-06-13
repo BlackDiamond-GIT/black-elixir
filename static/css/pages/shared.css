@@ -1,0 +1,93 @@
+/* ============================================================
+   PAGE HEADER (all inner pages)
+   ============================================================ */
+.page-header {
+  padding: calc(var(--nav-h) + var(--sp-8)) var(--sp-4) var(--sp-8);
+  background: var(--bg-2); border-bottom: 1px solid var(--border);
+}
+.breadcrumbs {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 0.75rem; color: var(--text-muted); margin-bottom: var(--sp-3);
+}
+.breadcrumbs button {
+  background: none; border: none; color: var(--text-muted);
+  cursor: pointer; font-size: 0.75rem; font-family: var(--f-body);
+  transition: color var(--t);
+}
+.breadcrumbs a {
+  color: var(--text-muted); text-decoration: none;
+  transition: color var(--t);
+}
+.breadcrumbs button:hover, .breadcrumbs a:hover { color: var(--text); }
+.breadcrumbs__sep { opacity: 0.4; }
+
+.page-header h1 {
+  margin-bottom: var(--sp-3);
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.page-header p {
+  margin-top: 0;
+  color: var(--text-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .page-header {
+    padding: calc(var(--nav-h) + var(--sp-6)) max(var(--sp-4), env(safe-area-inset-left)) var(--sp-6);
+    padding-right: max(var(--sp-4), env(safe-area-inset-right));
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.65rem, 7.2vw, 2.35rem);
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .page-header p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-header { padding: calc(var(--nav-h) + var(--sp-8)) var(--sp-8) var(--sp-8); }
+}
+
+/* ============================================================
+   CTA SECTION (all pages)
+   ============================================================ */
+.cta-section {
+  position: relative;
+  text-align: center; padding: var(--sp-12) var(--sp-4);
+  background: linear-gradient(135deg, var(--bg-2) 0%, var(--surface) 100%);
+}
+.cta-section .container--xs {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+}
+.cta-section__eyebrow { justify-content: center; }
+.cta-section h2,
+.cta-section .s-title {
+  text-align: center;
+  margin-bottom: 0;
+  max-width: 100%;
+}
+.cta-section .s-desc {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 48ch;
+}
+.cta-section .btn-wrap {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,11 @@
+<script type="application/ld+json">{{ schema|safe }}</script>
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  {% for bc in breadcrumbs %}
+    {% if bc.is_last %}
+      <span>{{ bc.name }}</span>
+    {% else %}
+      <a href="{{ bc.url }}">{{ bc.name }}</a>
+      <span class="breadcrumbs__sep">/</span>
+    {% endif %}
+  {% endfor %}
+</nav>

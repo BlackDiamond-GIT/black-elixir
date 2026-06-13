@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block seo_title %}{% trans "Massage Schedule — Black Elixir Spa" %}{% endblock %}
+{% block meta_description %}{% trans "Current availability. Click a free slot to book." %}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    <h1>{% trans 'Massage Schedule' %}</h1>
+    <p>{% trans 'Current availability. Click a free slot to book.' %}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="schedule-legend">
+      <div class="schedule-legend__item">
+        <span class="schedule-legend__swatch schedule-legend__swatch--avail"></span>
+        <span>{% trans 'Available' %}</span>
+      </div>
+      <div class="schedule-legend__item">
+        <span class="schedule-legend__swatch schedule-legend__swatch--booked"></span>
+        <span>{% trans 'Booked' %}</span>
+      </div>
+    </div>
+
+    <div class="filter-bar" id="schedule-filter">
+      <button type="button" class="filter-btn active" data-filter="all">{% trans 'All Masseuses' %}</button>
+      {% for masseuse in masseuses %}
+      <button type="button" class="filter-btn" data-filter="{{ masseuse.id }}">{{ masseuse.name }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="schedule-wrap">
+      <table class="sched-table">
+        <thead>
+          <tr>
+            <th style="width: 72px;"></th>
+            {% for day in days_short %}
+            <th class="{% if forloop.counter0 == today_idx %}today-col{% endif %}">
+              {{ day }}
+              {% if forloop.counter0 == today_idx %}
+              <span class="sched-table__today-dot" aria-hidden="true"></span>
+              {% endif %}
+            </th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td class="time-cell">{{ row.time }}</td>
+            {% for cell in row.cells %}
+            <td class="day-cell{% if cell.is_today %} day-cell--today{% endif %}">
+              {% for slot in cell.slots %}
+              {% if slot.is_booked %}
+              <div class="slot-chip booked" data-masseuse="{{ slot.masseuse_id }}">
+                <div class="slot-chip-name">{{ slot.masseuse_name }}</div>
+                <div class="slot-chip-svc">{{ slot.service_name }}</div>
+              </div>
+              {% else %}
+              <a href="{% url 'booking:index' %}" class="slot-chip" data-masseuse="{{ slot.masseuse_id }}">
+                <div class="slot-chip-name">{{ slot.masseuse_name }}</div>
+                <div class="slot-chip-svc">{{ slot.service_name }}</div>
+              </a>
+              {% endif %}
+              {% endfor %}
+            </td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="schedule-hint">
+      {% trans 'Click a free slot to proceed to booking.' %}
+    </p>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+  var bar = document.getElementById('schedule-filter');
+  if (!bar) return;
+
+  bar.addEventListener('click', function (event) {
+    var btn = event.target.closest('[data-filter]');
+    if (!btn) return;
+
+    var filter = btn.getAttribute('data-filter');
+    bar.querySelectorAll('.filter-btn').forEach(function (el) {
+      el.classList.toggle('active', el === btn);
+    });
+
+    document.querySelectorAll('.slot-chip').forEach(function (chip) {
+      var masseuseId = chip.getAttribute('data-masseuse');
+      var show = filter === 'all' || masseuseId === filter;
+      chip.style.display = show ? '' : 'none';
+    });
+  });
+})();
+</script>
+{% endblock %}

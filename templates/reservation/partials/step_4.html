@@ -1,0 +1,53 @@
+{% load i18n %}
+<h3 style="margin-bottom: 1rem;">{% trans 'Your Details' %}</h3>
+<input type="hidden" name="slot_id" value="{{ slot.id }}">
+<div class="booking-summary">
+  <div class="summary-row">
+    <span class="summary-label">{% trans 'Massage' %}</span>
+    <span class="summary-val">{{ service_name }}</span>
+  </div>
+  <div class="summary-row">
+    <span class="summary-label">{% trans 'Masseuse' %}</span>
+    <span class="summary-val">{{ slot.masseuse.name }}</span>
+  </div>
+  <div class="summary-row">
+    <span class="summary-label">{% trans 'Time' %}</span>
+    <span class="summary-val">{{ slot.start_time|date:"d.m.Y" }} {{ slot.start_time|time:"H:i" }}</span>
+  </div>
+  <div class="summary-row">
+    <span class="summary-label">{% trans 'Duration' %}</span>
+    <span class="summary-val">{{ slot.service.duration_minutes }} min</span>
+  </div>
+  <div class="summary-row">
+    <span class="summary-label">{% trans 'Price' %}</span>
+    <span class="summary-val">{{ slot.service.base_price }} Kč</span>
+  </div>
+</div>
+
+<div style="display: grid; gap: 1rem;">
+  <div class="form-group">
+    <label class="form-label">{% trans 'Full Name' %}</label>
+    <input type="text" class="form-input" name="client_name" required>
+  </div>
+  <div class="form-2col">
+    <div class="form-group">
+      <label class="form-label">{% trans 'Email' %}</label>
+      <input type="email" class="form-input" name="client_email" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">{% trans 'Phone' %}</label>
+      <input type="tel" class="form-input" name="client_phone" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label">{% trans 'Note (optional)' %}</label>
+    <textarea class="form-textarea" name="message" placeholder="{% trans 'Special requests or health concerns?' %}"></textarea>
+  </div>
+</div>
+
+<div style="display: flex; gap: 1rem; margin-top: 2rem;">
+  <button type="button" class="btn btn--ghost" style="flex: 1;" hx-post="{% url 'booking:step' '3' %}" 
+          hx-target="#booking-content" hx-swap="innerHTML">{% trans 'Back' %}</button>
+  <button type="button" class="btn btn--primary" style="flex: 1;" hx-post="{% url 'booking:step' '4' %}" 
+          hx-target="#booking-content" hx-swap="innerHTML" onclick="this.form.submit()">{% trans 'Confirm Booking' %}</button>
+</div>

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load i18n static seo_tags %}
+
+{% block seo_title %}{{ service_name }} — Black Elixir Spa{% endblock %}
+{% block meta_description %}{{ service_description|truncatewords:25 }}{% endblock %}
+{% block og_title %}{{ service_name }} — Black Elixir Spa{% endblock %}
+{% block og_description %}{{ service_description|truncatewords:25 }}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/misc.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/detail-pages.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    {% breadcrumbs breadcrumb_items %}
+    <h1>{{ service_name }} — {% trans 'Black Elixir Spa Prague' %}</h1>
+    <p>{% trans 'Professional massage in the centre of Prague' %}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container--sm">
+    <div class="service-detail">
+      {% if service_image %}
+      <div class="detail-visual reveal vis">
+        <img
+          src="{{ service_image }}"
+          alt="{{ service_name }} — Black Elixir Spa Praha"
+          class="detail-visual__img"
+          width="800"
+          height="600"
+          loading="lazy"
+        >
+      </div>
+      {% endif %}
+
+      <div class="detail-meta-bar reveal vis">
+        <p class="detail-label">{% trans 'Our Massages' %}</p>
+        <div class="detail-meta">
+          <span class="detail-meta__item">{{ service.duration_minutes }} {% trans 'min' %}</span>
+          <span class="detail-meta__item">{{ service.base_price|price_czk }} Kč</span>
+        </div>
+        <div class="detail-actions detail-actions--hero">
+          <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans 'Book Now' %}</a>
+          <a href="{% url 'pages:prices' %}" class="btn btn--ghost">{% trans 'Full price list' %}</a>
+        </div>
+      </div>
+
+      <div class="detail-content reveal vis">
+        {% if content_sections %}
+        <div class="detail-sections-wrap">
+          <div class="detail-sections">
+            {% for block in content_sections %}
+            <article class="detail-section-card">
+              <h2 class="detail-section-card__title">{{ block.heading }}</h2>
+              {% for paragraph in block.paragraphs %}
+                <p>{{ paragraph }}</p>
+              {% endfor %}
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if masseuses %}
+    <div class="detail-related reveal vis">
+      <h2 class="detail-related__title">{% trans 'Masseuses for this massage' %}</h2>
+      <div class="detail-links">
+        {% for masseuse in masseuses %}
+          <a href="{% url 'masseurs:detail' masseuse.slug %}">{{ masseuse.name }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if faqs %}
+    <div class="detail-related reveal vis">
+      <p class="detail-label detail-label--related">{% trans 'FAQ' %}</p>
+      <h2 class="detail-related__title">{% trans 'Frequently Asked Questions' %}</h2>
+      <div class="faq-list-wrap">
+        <div class="faq-list">
+          {% for faq in faqs %}
+          <div class="faq-item">
+            <button type="button" class="faq-q">
+              <span>{{ faq.q }}</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">{{ faq.a }}</div></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if related_posts %}
+    <div class="detail-related reveal vis">
+      <h2 class="detail-related__title">{% trans 'Related articles' %}</h2>
+      <ul>
+        {% for post in related_posts %}
+          <li><a href="{% url 'blog:detail' post.slug %}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="detail-actions reveal vis">
+      <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans 'Book Online' %}</a>
+      <a href="{% url 'pages:contacts' %}" class="btn btn--ghost">{% trans 'Contact' %}</a>
+    </div>
+  </div>
+</section>
+
+{% schema_service service %}
+{% schema_faq faqs %}
+{% endblock %}

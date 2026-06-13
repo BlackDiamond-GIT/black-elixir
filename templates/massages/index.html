@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n static seo_tags %}
+
+{% block seo_title %}{% trans "Our Massages — Black Elixir Spa" %}{% endblock %}
+{% block meta_description %}{% trans "Six premium massages for relaxation and recovery. Classic, relax, sports, lymphatic and aroma massage." %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/misc.css' %}">
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <div class="container">
+    {% breadcrumbs breadcrumb_items %}
+    <h1>{% trans 'Our Massages' %}</h1>
+    <p>{% trans 'Choose from six professional massages tailored to your needs.' %}</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <p class="s-eyebrow">{% trans 'Massages' %}</p>
+    <h2 class="s-title price-grid__title">{% trans 'Choose Your Massage' %}</h2>
+
+    <div class="price-grid">
+      {% for item in services_grid %}
+      <a href="{% url 'services:detail' item.obj.slug %}" class="price-square" title="{{ item.name }}">
+        {% if item.image %}
+        <img src="{{ item.image }}" alt="{{ item.name }} — Black Elixir Spa Praha" loading="lazy" width="600" height="600">
+        {% else %}
+        <div class="price-square__ph" aria-hidden="true">✦</div>
+        {% endif %}
+        <span class="price-square__hint">{% trans 'View' %}</span>
+        <div class="price-square__overlay">
+          <p class="price-square__name">{{ item.name }}</p>
+          <p class="price-square__caption">{{ item.caption }}</p>
+          <div class="price-square__meta">
+            <span class="price-square__dur">{{ item.obj.duration_minutes }} min</span>
+            <span class="price-square__price">{{ item.obj.base_price|price_czk }} Kč</span>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

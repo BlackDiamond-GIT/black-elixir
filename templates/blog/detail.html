@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load i18n seo_tags %}
+
+{% block seo_title %}{{ post_title }} — {% trans "Black Elixir Spa Blog" %}{% endblock %}
+{% block meta_description %}{{ post_excerpt }}{% endblock %}
+
+{% block content %}
+{% schema_article post %}
+
+<header class="page-header">
+  <h1>{{ post_title }}</h1>
+  <div style="display:flex;gap:2rem;margin-top:1rem;flex-wrap:wrap">
+    <time datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:"d.m.Y" }}</time>
+    <time datetime="{{ post.updated_at|date:'c' }}" style="font-size:0.9rem;color:var(--text-muted)">{% trans "Updated" %}: {{ post.updated_at|date:"d.m.Y" }}</time>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container container--sm">
+    <article>
+      {% if post_cover_image %}
+      <img src="{{ post_cover_image }}" alt="{{ post.image_alt|default:post_title }}" width="800" height="450" style="width: 100%; margin-bottom: 2rem; border-radius: var(--r-md);">
+      {% endif %}
+      
+      <div style="margin-top:2rem;padding:2rem;background:var(--bg-alt);border-radius:var(--r-md)">
+        <p style="font-size:0.9rem;color:var(--text-muted)">{% trans "Published by" %}</p>
+        <p style="font-weight:500;margin-bottom:0.5rem">Black Elixir Spa</p>
+        <p style="font-size:0.9rem;color:var(--text-muted)">{% trans "A team of professional massage and wellness experts with over 12 years of experience." %}</p>
+      </div>
+      
+      <div style="font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-top:2rem">
+        {{ post_content|linebreaks }}
+      </div>
+      
+      <section style="margin-top:3rem;padding-top:3rem;border-top:1px solid var(--border)">
+        <h3>{% trans "Related services" %}</h3>
+        <ul style="margin-top:1rem;list-style:none;padding:0">
+          <li style="margin-bottom:0.75rem"><a href="{% url 'pages:prices' %}">{% trans "View our full massage catalogue" %}</a></li>
+          <li style="margin-bottom:0.75rem"><a href="{% url 'masseurs:list' %}">{% trans "Meet our masseuses" %}</a></li>
+          <li><a href="{% url 'pages:contacts' %}">{% trans "Book a session" %}</a></li>
+        </ul>
+      </section>
+      
+      <a href="{% url 'blog:list' %}" class="btn btn--ghost" style="margin-top: 2rem;">← {% trans 'Back to Blog' %}</a>
+    </article>
+  </div>
+</section>
+{% endblock %}

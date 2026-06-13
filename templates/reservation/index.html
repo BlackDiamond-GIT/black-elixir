@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block seo_title %}{% trans "Book a Massage — Black Elixir Spa" %}{% endblock %}
+{% block meta_description %}{% trans "Book your massage online in 5 steps. Choose service, masseuse and time." %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/reservation.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/booking.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<header class="page-header">
+  <h1>{% trans 'Book a Massage' %}</h1>
+  <p>{% trans '5 easy steps to your relaxation.' %}</p>
+</header>
+
+<section class="section">
+  <div class="container container--xs">
+    <form id="booking-form">
+      {% csrf_token %}
+      
+      <div class="booking-steps">
+        <div class="step-pill">
+          <div class="step-dot active">1</div>
+          <div class="step-label active">{% trans 'Service' %}</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-pill">
+          <div class="step-dot">2</div>
+          <div class="step-label">{% trans 'Masseuse' %}</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-pill">
+          <div class="step-dot">3</div>
+          <div class="step-label">{% trans 'Time' %}</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-pill">
+          <div class="step-dot">4</div>
+          <div class="step-label">{% trans 'Contact' %}</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-pill">
+          <div class="step-dot">5</div>
+          <div class="step-label">{% trans 'Confirm' %}</div>
+        </div>
+      </div>
+      
+      <div class="booking-panel">
+        <h3 style="margin-bottom: 1rem;">{% trans 'Select a massage' %}</h3>
+        <div class="option-grid" id="booking-content">
+          {% for service in services %}
+          <div class="opt-card" data-service-id="{{ service.obj.id }}" hx-post="{% url 'booking:step' '1' %}" 
+               hx-vals='{"service_id":"{{ service.obj.id }}"}' hx-target="#booking-content" hx-swap="innerHTML">
+            <div class="opt-card__name">{{ service.name }}</div>
+            <div class="opt-card__detail">{{ service.obj.duration_minutes }} min</div>
+            <div class="opt-card__price">{{ service.obj.base_price }} Kč</div>
+          </div>
+          {% endfor %}
+        </div>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+          <button type="button" class="btn btn--ghost" style="flex: 1;" onclick="window.history.back()">{% trans 'Back' %}</button>
+          <button type="button" class="btn btn--primary" style="flex: 1;" hx-post="{% url 'booking:step' '1' %}" 
+                  hx-target="#booking-content" hx-swap="innerHTML" disabled id="next-btn">{% trans 'Continue' %}</button>
+        </div>
+      </div>
+    </form>
+    
+    <div class="htmx-indicator" style="display: none; text-align: center; padding: 1rem;">
+      ⏳ {% trans 'Loading...' %}
+    </div>
+  </div>
+</section>
+{% endblock %}
