@@ -1,9 +1,33 @@
-"""Booking models: click tracking and WhatsApp templates."""
+"""Booking models: reservations, click tracking and WhatsApp templates."""
 
 from __future__ import annotations
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from apps.schedule.models import TimeSlot
+
+
+class Reservation(models.Model):
+    slot = models.OneToOneField(
+        TimeSlot,
+        on_delete=models.CASCADE,
+        related_name='reservation',
+    )
+    client_name = models.CharField(max_length=200)
+    client_email = models.EmailField()
+    client_phone = models.CharField(max_length=20)
+    message = models.TextField(blank=True, default='')
+    confirmed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = _('Reservation')
+        verbose_name_plural = _('Reservations')
+
+    def __str__(self) -> str:
+        return f'Reservation for {self.client_name} on {self.slot.start_time}'
 
 
 class WhatsAppTemplate(models.Model):
