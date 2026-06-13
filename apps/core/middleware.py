@@ -13,12 +13,13 @@ class AdminLocaleMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.path.startswith('/admin/'):
-            lang = request.COOKIES.get(_ADMIN_LANG_COOKIE, 'uk')
-            if lang not in _ALLOWED_ADMIN_LANGS:
-                lang = 'uk'
-            with translation.override(lang):
-                response = self.get_response(request)
-                translation.deactivate()
-                return response
         return self.get_response(request)
+
+    def process_request(self, request):
+        if not request.path.startswith('/admin/'):
+            return
+        lang = request.COOKIES.get(_ADMIN_LANG_COOKIE, 'uk')
+        if lang not in _ALLOWED_ADMIN_LANGS:
+            lang = 'uk'
+        translation.activate(lang)
+        request.LANGUAGE_CODE = lang
