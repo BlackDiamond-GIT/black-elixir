@@ -19,6 +19,12 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME and RENDER_EXTERNAL_HOSTNAME not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
+SITE_DOMAIN = config('SITE_DOMAIN', default='').strip()
+if SITE_DOMAIN:
+    for host in (SITE_DOMAIN, f'www.{SITE_DOMAIN}'):
+        if host not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(host)
+
 INSTALLED_APPS = [
     'unfold',
     'unfold.contrib.filters',
@@ -172,6 +178,10 @@ if RENDER_EXTERNAL_HOSTNAME:
     render_origin = f'https://{RENDER_EXTERNAL_HOSTNAME}'
     if render_origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(render_origin)
+if SITE_DOMAIN:
+    for origin in (f'https://{SITE_DOMAIN}', f'https://www.{SITE_DOMAIN}'):
+        if origin not in CSRF_TRUSTED_ORIGINS:
+            CSRF_TRUSTED_ORIGINS.append(origin)
 
 if DEBUG:
     SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=False, cast=bool)
