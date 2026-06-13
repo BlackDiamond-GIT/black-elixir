@@ -118,7 +118,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_BACKEND = 'whitenoise.storage.CompressedStaticFilesStorage'
-STATICFILES_STORAGE = STATICFILES_BACKEND
 
 CLOUDINARY_URL = config('CLOUDINARY_URL', default='')
 CLOUDINARY_CLOUD_NAME = config('CLOUDINARY_CLOUD_NAME', default='')
@@ -126,7 +125,7 @@ USE_CLOUDINARY = bool(CLOUDINARY_URL or CLOUDINARY_CLOUD_NAME)
 
 if USE_CLOUDINARY:
     static_index = INSTALLED_APPS.index('django.contrib.staticfiles')
-    INSTALLED_APPS.insert(static_index, 'cloudinary_storage')
+    INSTALLED_APPS.insert(static_index + 1, 'cloudinary_storage')
     INSTALLED_APPS.insert(static_index + 2, 'cloudinary')
 
     if CLOUDINARY_CLOUD_NAME:
@@ -153,6 +152,8 @@ else:
             'BACKEND': STATICFILES_BACKEND,
         },
     }
+
+STATICFILES_STORAGE = STORAGES['staticfiles']['BACKEND']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
