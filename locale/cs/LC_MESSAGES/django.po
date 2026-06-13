@@ -184,17 +184,20 @@ msgstr ""
 "Prémiová masáž a relaxace v srdci Prahy. Klasická, thajská, "
 "aromaterapeutická masáž a masáž horkými kameny."
 
-#: templates/home/index.html:19
-#| msgid "Premium massage oils"
-msgid "Premium Spa Prague"
-msgstr "Prémiová Spa Praha"
+#: templates/home/index.html:17
+msgid "Premium Spa"
+msgstr "Prémiové spa"
 
-#: templates/home/index.html:21
+#: templates/home/index.html:18
+msgid "Premium"
+msgstr "Prémiová"
+
+#: templates/home/index.html:19
 #| msgid "Massage"
 msgid "Massage &"
 msgstr "Masáže a"
 
-#: templates/home/index.html:21
+#: templates/home/index.html:19
 msgid "Relaxation"
 msgstr "relaxace"
 

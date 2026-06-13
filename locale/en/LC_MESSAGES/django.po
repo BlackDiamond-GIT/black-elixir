@@ -170,9 +170,13 @@ msgid ""
 "aromatherapy and hot stone massage."
 msgstr "Premium massage and relaxation in the heart of Prague."
 
-#: templates/home/index.html:19
-msgid "Premium Spa Prague"
-msgstr "Premium Spa Prague"
+#: templates/home/index.html:17
+msgid "Premium Spa"
+msgstr "Premium Spa"
+
+#: templates/home/index.html:18
+msgid "Premium"
+msgstr "Premium"
 
 #: templates/home/index.html:21
 msgid "Massage &"

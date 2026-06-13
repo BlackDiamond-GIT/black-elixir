@@ -177,17 +177,20 @@ msgstr ""
 "Премиальный массаж и релаксация в сердце Праги. Классический, тайский, "
 "ароматерапевтический и массаж горячими камнями."
 
-#: templates/home/index.html:19
-#| msgid "Premium massage oils"
-msgid "Premium Spa Prague"
-msgstr "Премиум Спа Прага"
+#: templates/home/index.html:17
+msgid "Premium Spa"
+msgstr "Премиум спа"
 
-#: templates/home/index.html:21
+#: templates/home/index.html:18
+msgid "Premium"
+msgstr "Премиум"
+
+#: templates/home/index.html:19
 #| msgid "Massage"
 msgid "Massage &"
 msgstr "Массаж и"
 
-#: templates/home/index.html:21
+#: templates/home/index.html:19
 msgid "Relaxation"
 msgstr "релаксация"
 
