@@ -2,15 +2,18 @@ databases:
   - name: black-elixir-db
     databaseName: black_elixir
     user: black_elixir
-    plan: free
+    plan: basic-256mb
+    region: oregon
 
 services:
   - type: web
     name: black-elixir
     runtime: python
-    plan: free
+    plan: starter
+    region: oregon
     buildCommand: "./build.sh"
-    startCommand: "gunicorn black_elixir.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+    preDeployCommand: python manage.py migrate --no-input && python manage.py bootstrap_site
+    startCommand: gunicorn black_elixir.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120
     healthCheckPath: /healthz/
     envVars:
       - key: PYTHON_VERSION
@@ -25,4 +28,12 @@ services:
         value: "False"
       - key: WEB_CONCURRENCY
         value: "2"
+      - key: CLOUDINARY_URL
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
     autoDeploy: true
