@@ -29,7 +29,7 @@ urlpatterns += i18n_patterns(
     path('schedule/', include('apps.schedule.urls')),
     path('reservation/', include('apps.booking.urls')),
     path('blog/', include('apps.blog.urls')),
-    prefix_default_language=False,
+    prefix_default_language=True,
 )
 
 if settings.DEBUG:
