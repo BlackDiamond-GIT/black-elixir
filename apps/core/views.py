@@ -7,6 +7,11 @@ from apps.masseurs.models import Masseuse
 from apps.services.models import MassageType
 from apps.blog.models import Post
 
+
+def healthz(request):
+    return HttpResponse('ok', content_type='text/plain')
+
+
 def robots_txt(request):
     lines = [
         "User-agent: *",

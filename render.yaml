@@ -10,8 +10,8 @@ services:
     runtime: python
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "gunicorn black_elixir.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --threads 2 --timeout 120"
-    healthCheckPath: /cs/
+    startCommand: "gunicorn black_elixir.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --timeout 120"
+    healthCheckPath: /healthz/
     envVars:
       - key: PYTHON_VERSION
         value: 3.13.0

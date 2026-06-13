@@ -113,7 +113,7 @@ LOCALE_PATHS = [BASE_DIR / 'locale']
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -135,10 +135,18 @@ if DEBUG:
     SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=False, cast=bool)
     CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=False, cast=bool)
 else:
-    SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
+    # Render terminates SSL at the edge; redirect breaks internal health checks.
+    on_render = bool(os.environ.get('RENDER'))
+    SECURE_SSL_REDIRECT = config(
+        'SECURE_SSL_REDIRECT',
+        default=False if on_render else True,
+        cast=bool,
+    )
     SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
     CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', default=True, cast=bool)
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_REDIRECT_EXEMPT = [r'^healthz/$']
 
 CSRF_COOKIE_HTTPONLY = True
 
