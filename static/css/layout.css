@@ -79,14 +79,82 @@
   background: var(--text); transition: all var(--t);
   transform-origin: center;
 }
+.nav__hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4.5px, 4.5px);
+}
+.nav__hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.nav__hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4.5px, -4.5px);
+}
 .mobile-menu {
-  position: fixed; inset: 0; z-index: 99;
+  position: fixed; inset: 0; z-index: 120;
   background: rgba(10,10,10,0.98);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: var(--sp-3);
   opacity: 0; pointer-events: none; transition: opacity 280ms ease;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 .mobile-menu.open { opacity: 1; pointer-events: auto; }
+.mobile-menu__close {
+  position: absolute;
+  top: max(var(--sp-3), env(safe-area-inset-top, 0px));
+  right: max(var(--sp-3), env(safe-area-inset-right, 0px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.mobile-menu__close-icon,
+.mobile-menu__close-icon::before {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+  transition: background var(--t);
+}
+.mobile-menu__close-icon {
+  position: relative;
+  transform: rotate(45deg);
+}
+.mobile-menu__close-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+.mobile-menu__close:hover .mobile-menu__close-icon,
+.mobile-menu__close:hover .mobile-menu__close-icon::before,
+.mobile-menu__close:focus-visible .mobile-menu__close-icon,
+.mobile-menu__close:focus-visible .mobile-menu__close-icon::before {
+  background: var(--accent);
+}
+.mobile-menu__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  width: 100%;
+  max-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 88px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: var(--sp-4) var(--sp-4) var(--sp-6);
+}
+.mobile-menu__cta {
+  margin-top: var(--sp-4);
+}
 .mobile-menu .mob-link {
   font-family: var(--f-head); font-size: 2.2rem; color: var(--text-muted);
   background: none; border: none; cursor: pointer;

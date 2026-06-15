@@ -44,6 +44,18 @@
     z-index: 110;
     padding-top: env(safe-area-inset-top, 0px);
     min-height: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+    transition: opacity 280ms ease, visibility 280ms ease;
+  }
+
+  body.menu-open .nav {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+    touch-action: none;
   }
 
   .nav__wa {

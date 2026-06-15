@@ -38,7 +38,11 @@
   </div>
 </nav>
 
-<div class="mobile-menu">
+<div class="mobile-menu" aria-hidden="true">
+  <button type="button" class="mobile-menu__close" aria-label="{% trans 'Close menu' %}">
+    <span class="mobile-menu__close-icon" aria-hidden="true"></span>
+  </button>
+  <div class="mobile-menu__links">
   <a href="{% url 'pages:home' %}" class="mob-link">{% trans "Home" %}</a>
   <a href="{% url 'masseurs:list' %}" class="mob-link">{% trans "Masseuses" %}</a>
   <a href="{% url 'pages:massages' %}" class="mob-link">{% trans "Massages" %}</a>
@@ -46,5 +50,6 @@
   <a href="{% url 'pages:prices' %}" class="mob-link">{% trans "Prices" %}</a>
   <a href="{% url 'blog:list' %}" class="mob-link">{% trans "Blog" %}</a>
   <a href="{% url 'pages:contacts' %}" class="mob-link">{% trans "Contact" %}</a>
-  <a href="{% url 'booking:index' %}" class="btn btn--primary" style="margin-top:32px">{% trans "Booking" %}</a>
+  <a href="{% url 'booking:index' %}" class="btn btn--primary mobile-menu__cta">{% trans "Booking" %}</a>
+  </div>
 </div>

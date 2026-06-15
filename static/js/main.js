@@ -6,11 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobileMenu = document.querySelector('.mobile-menu');
   const mobileBar = document.querySelector('.mobile-bar');
 
+  const menuCloseBtn = document.querySelector('.mobile-menu__close');
+
   const setMobileMenuOpen = (open) => {
     if (!mobileMenu || !hamburger) return;
     mobileMenu.classList.toggle('open', open);
     hamburger.classList.toggle('active', open);
     document.body.classList.toggle('menu-open', open);
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
     if (mobileBar) {
       mobileBar.classList.toggle('is-hidden', open);
     }
@@ -21,14 +26,18 @@ document.addEventListener('DOMContentLoaded', function() {
       setMobileMenuOpen(!mobileMenu.classList.contains('open'));
     });
 
-    document.querySelectorAll('.nav__link, .mob-link').forEach(link => {
+    menuCloseBtn?.addEventListener('click', () => {
+      setMobileMenuOpen(false);
+    });
+
+    document.querySelectorAll('.nav__link, .mob-link, .mobile-menu__cta').forEach(link => {
       link.addEventListener('click', () => {
         setMobileMenuOpen(false);
       });
     });
 
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
         setMobileMenuOpen(false);
       }
     });
