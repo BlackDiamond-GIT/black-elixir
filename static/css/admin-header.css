@@ -1,3 +1,70 @@
+/* ── Dusty rose primary buttons ────────────────────────────────────────── */
+
+:root {
+  --be-admin-btn: #CCAEAE;
+  --be-admin-btn-hover: #C0A0A0;
+  --be-admin-btn-active: #B49898;
+  --be-admin-btn-text: #1A1414;
+  --be-admin-link: #D4BABA;
+  --be-admin-link-hover: #E0C6C6;
+}
+
+.bg-primary-600,
+.dark .dark\:bg-primary-500 {
+  background-color: var(--be-admin-btn);
+  border-color: var(--be-admin-btn);
+  color: var(--be-admin-btn-text);
+}
+
+.bg-primary-600:hover,
+.bg-primary-600:focus-visible,
+.dark .dark\:bg-primary-500:hover,
+.dark .dark\:bg-primary-500:focus-visible {
+  background-color: var(--be-admin-btn-hover);
+  border-color: var(--be-admin-btn-hover);
+  color: var(--be-admin-btn-text);
+}
+
+.bg-primary-600:active,
+.dark .dark\:bg-primary-500:active {
+  background-color: var(--be-admin-btn-active);
+  border-color: var(--be-admin-btn-active);
+}
+
+.bg-primary-600.text-white,
+a.bg-primary-600,
+button.bg-primary-600,
+.addlink.bg-primary-600 {
+  color: var(--be-admin-btn-text);
+}
+
+.text-primary-600,
+.dark .dark\:text-primary-500,
+.dark .dark\:hover\:text-primary-500:hover,
+.hover\:text-primary-600:hover {
+  color: var(--be-admin-link);
+}
+
+.hover\:text-primary-600:hover,
+.dark .dark\:hover\:text-primary-500:hover {
+  color: var(--be-admin-link-hover);
+}
+
+.border-primary-600,
+.dark .dark\:border-primary-500 {
+  border-color: var(--be-admin-btn);
+}
+
+.checked\:bg-primary-600:checked,
+.dark .dark\:checked\:bg-primary-600:checked {
+  background-color: var(--be-admin-btn);
+}
+
+.group-\[\.active\]\:bg-primary-600.group-\[\.active\] {
+  background-color: var(--be-admin-btn);
+  color: var(--be-admin-btn-text);
+}
+
 /* ── Header user links ─────────────────────────────────────────────────── */
 
 .be-admin-userlinks {

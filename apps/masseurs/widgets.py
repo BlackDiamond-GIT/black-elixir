@@ -6,8 +6,8 @@ from django import forms
 from django.urls import reverse
 from django.utils.html import format_html, mark_safe
 
-_ROSE = '#D4A5A5'
-_ROSE_DARK = '#B88888'
+_ROSE = '#CCAEAE'
+_ROSE_DARK = '#C0A0A0'
 
 _BTN_STYLE = (
     f'background:{_ROSE};color:#0A0A0A;border:none;border-radius:6px;'

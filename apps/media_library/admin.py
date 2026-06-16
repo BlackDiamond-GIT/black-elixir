@@ -12,8 +12,8 @@ from apps.core.elixir_admin import ElixirModelAdmin
 
 from .models import CloudinaryImage
 
-_ROSE = '#D4A5A5'
-_ROSE_DARK = '#B88888'
+_ROSE = '#CCAEAE'
+_ROSE_DARK = '#C0A0A0'
 
 
 @admin.register(CloudinaryImage)

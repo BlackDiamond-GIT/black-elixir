@@ -1,14 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="BE">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Black Elixir Spa">
   <rect width="32" height="32" rx="6" fill="#0A0A0A"/>
-  <text
-    x="16"
-    y="22.5"
-    text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="19"
-    font-weight="700"
-    letter-spacing="-0.5"
-  >
-    <tspan fill="#F0EDE8">B</tspan><tspan fill="#D4A5A5">E</tspan>
-  </text>
+  <g transform="translate(16 16.5)">
+    <g fill="#9E7070" opacity="0.9">
+      <path d="M0 -8.2 C2.1 -6.4 3.1 -2.6 2.4 1.2 C1.7 3.6 0 5.2 0 5.2 C0 5.2 -1.7 3.6 -2.4 1.2 C-3.1 -2.6 -2.1 -6.4 0 -8.2Z" transform="rotate(144)"/>
+      <path d="M0 -8.2 C2.1 -6.4 3.1 -2.6 2.4 1.2 C1.7 3.6 0 5.2 0 5.2 C0 5.2 -1.7 3.6 -2.4 1.2 C-3.1 -2.6 -2.1 -6.4 0 -8.2Z" transform="rotate(216)"/>
+    </g>
+    <g fill="#D4A5A5">
+      <path d="M0 -8.2 C2.1 -6.4 3.1 -2.6 2.4 1.2 C1.7 3.6 0 5.2 0 5.2 C0 5.2 -1.7 3.6 -2.4 1.2 C-3.1 -2.6 -2.1 -6.4 0 -8.2Z" transform="rotate(0)"/>
+      <path d="M0 -8.2 C2.1 -6.4 3.1 -2.6 2.4 1.2 C1.7 3.6 0 5.2 0 5.2 C0 5.2 -1.7 3.6 -2.4 1.2 C-3.1 -2.6 -2.1 -6.4 0 -8.2Z" transform="rotate(72)"/>
+      <path d="M0 -8.2 C2.1 -6.4 3.1 -2.6 2.4 1.2 C1.7 3.6 0 5.2 0 5.2 C0 5.2 -1.7 3.6 -2.4 1.2 C-3.1 -2.6 -2.1 -6.4 0 -8.2Z" transform="rotate(288)"/>
+    </g>
+    <circle r="2.3" fill="#C9A98A"/>
+    <circle r="0.9" fill="#F0EDE8" opacity="0.55"/>
+  </g>
 </svg>
