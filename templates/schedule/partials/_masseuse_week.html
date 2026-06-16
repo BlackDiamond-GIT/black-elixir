@@ -29,12 +29,14 @@
         {% else %}
         {% for entry in day.entries %}
         <div class="schedule-shift{% if entry.is_booked %} schedule-shift--booked{% elif entry.is_night %} schedule-shift--night{% endif %}{% if entry.is_continuation %} schedule-shift--continuation{% endif %}">
-          <div class="schedule-shift__time">{{ entry.time_range }}</div>
-          <div class="schedule-shift__meta">
-            <span class="slot-chip-shift slot-chip-shift--{{ entry.shift_type }}">{{ entry.shift_label }}</span>
-            {% if entry.is_continuation %}
-            <span class="schedule-shift__continuation">{{ entry.continuation_label }}</span>
-            {% endif %}
+          <div class="schedule-shift__head">
+            <div class="schedule-shift__time">{{ entry.time_range }}</div>
+            <div class="schedule-shift__meta">
+              <span class="slot-chip-shift slot-chip-shift--{{ entry.shift_type }}">{{ entry.shift_label }}</span>
+              {% if entry.is_continuation %}
+              <span class="schedule-shift__continuation">{{ entry.continuation_label }}</span>
+              {% endif %}
+            </div>
           </div>
           {% if entry.is_booked %}
           <span class="schedule-shift__status">{% trans 'Booked' %}</span>

@@ -62,6 +62,18 @@
             {% endfor %}
           </div>
         </div>
+        {% elif description_sections %}
+        <div class="detail-sections-wrap">
+          <div class="detail-sections detail-sections--fallback">
+            {% for block in description_sections %}
+              {% if block.type == 'intro' or block.type == 'paragraph' %}
+              <article class="detail-section-card">
+                <p>{{ block.content }}</p>
+              </article>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
         {% endif %}
       </div>
     </div>

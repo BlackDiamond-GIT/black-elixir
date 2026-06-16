@@ -697,7 +697,7 @@ msgstr "Профиль массажистки"
 
 #: templates/schedule/partials/_masseuse_week.html:43
 msgid "Book"
-msgstr "Забронировать"
+msgstr "Запись"
 
 #: templates/schedule/partials/_week_section.html:16
 msgid "Night shift"

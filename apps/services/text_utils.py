@@ -5,6 +5,8 @@ HEADING_MAX_WORDS = 10
 def _is_heading(block):
     if block.startswith('## '):
         return True
+    if block.endswith(':'):
+        return True
     if len(block) > HEADING_MAX_LEN:
         return False
     if block.endswith('?'):
