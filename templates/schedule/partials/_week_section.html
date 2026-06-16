@@ -1,0 +1,42 @@
+{% load i18n %}
+<section class="schedule-week" aria-labelledby="schedule-week-title">
+  <h2 id="schedule-week-title" class="schedule-week__title">{% trans 'Weekly schedule' %}</h2>
+
+  <div class="schedule-legend">
+    <div class="schedule-legend__item">
+      <span class="schedule-legend__swatch schedule-legend__swatch--avail"></span>
+      <span>{% trans 'Available' %}</span>
+    </div>
+    <div class="schedule-legend__item">
+      <span class="schedule-legend__swatch schedule-legend__swatch--booked"></span>
+      <span>{% trans 'Booked' %}</span>
+    </div>
+    <div class="schedule-legend__item">
+      <span class="schedule-legend__swatch schedule-legend__swatch--night"></span>
+      <span>{% trans 'Night shift' %}</span>
+    </div>
+  </div>
+
+  <div class="schedule-tabs" role="tablist" data-schedule-tabs>
+    {% for card in masseuse_cards %}
+    <button type="button"
+            class="schedule-tabs__btn{% if forloop.first %} active{% endif %}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-controls="schedule-masseuse-{{ card.masseuse_id }}"
+            data-schedule-tab="{{ card.masseuse_id }}">
+      {{ card.name }}
+    </button>
+    {% endfor %}
+  </div>
+
+  <div class="schedule-week__cards">
+    {% for card in masseuse_cards %}
+    {% include 'schedule/partials/_masseuse_week.html' with card=card is_active=forloop.first %}
+    {% endfor %}
+  </div>
+
+  <p class="schedule-hint">
+    {% trans 'Click a free slot to proceed to booking.' %}
+  </p>
+</section>

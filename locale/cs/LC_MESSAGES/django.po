@@ -487,10 +487,9 @@ msgstr "budoucí záznamy"
 msgid "Massage Schedule"
 msgstr "Rozvrh masáží"
 
-#: templates/prices/index.html:51 templates/schedule/index.html:5
-#: templates/schedule/index.html:11
-msgid "Current availability. Click a free slot to book."
-msgstr "Aktuální dostupnost. Klikněte na volný slot pro rezervaci."
+#: templates/schedule/index.html:5 templates/schedule/index.html:15
+msgid "Choose a masseuse and browse weekly shifts. Book a free slot in one click."
+msgstr "Vyberte masérku a prohlédněte si její týdenní směny. Volné termíny rezervujte jedním kliknutím."
 
 #: templates/prices/index.html:53
 #| msgid "Map placeholder"
@@ -675,6 +674,38 @@ msgstr ""
 "Salon Black Elixir neposkytuje žádné sexuální služby v jakékoli podobě a "
 "slouží pouze jako reklama pro jednotlivé masérky. Podmínkou inzerce je "
 "pronájem prostoru v masážním salónu. Vstup je povolen osobám starším 18 let."
+
+#: templates/schedule/partials/_on_shift.html:4
+msgid "Currently on shift"
+msgstr "Právě na směně"
+
+#: templates/schedule/partials/_on_shift.html:18
+msgid "No masseuse on shift right now."
+msgstr "Momentálně není nikdo na směně."
+
+#: templates/schedule/partials/_week_section.html:3
+msgid "Weekly schedule"
+msgstr "Týdenní rozvrh"
+
+#: templates/schedule/partials/_masseuse_week.html:22
+msgid "Today"
+msgstr "Dnes"
+
+#: templates/schedule/partials/_masseuse_week.html:28
+msgid "Free"
+msgstr "Volno"
+
+#: templates/schedule/partials/_masseuse_week.html:12
+msgid "Masseuse profile"
+msgstr "Profil masérky"
+
+#: templates/schedule/partials/_masseuse_week.html:43
+msgid "Book"
+msgstr "Rezervovat"
+
+#: templates/schedule/partials/_week_section.html:16
+msgid "Night shift"
+msgstr "Noční směna"
 
 #~ msgid "Our Services"
 #~ msgstr "Naše masáže"

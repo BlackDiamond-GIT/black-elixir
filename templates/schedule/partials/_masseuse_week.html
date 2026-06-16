@@ -1,0 +1,53 @@
+{% load i18n %}
+<article class="schedule-masseuse{% if not is_active %} schedule-masseuse--hidden{% endif %}"
+         data-schedule-card
+         data-masseuse-id="{{ card.masseuse_id }}"
+         id="schedule-masseuse-{{ card.masseuse_id }}">
+  <header class="schedule-masseuse__head">
+    <div class="schedule-masseuse__info">
+      <h3 class="schedule-masseuse__name">{{ card.name }}</h3>
+      <p class="schedule-masseuse__spec">{{ card.spec }}</p>
+    </div>
+    <a href="{% url 'masseurs:detail' card.slug %}" class="schedule-masseuse__profile">
+      {% trans 'Masseuse profile' %}
+    </a>
+  </header>
+
+  <div class="schedule-masseuse__days">
+    {% for day in card.days %}
+    <div class="schedule-day{% if day.is_free %} schedule-day--free{% endif %}{% if forloop.counter0 == today_idx %} schedule-day--today{% endif %}">
+      <div class="schedule-day__label">
+        {{ day.label }}
+        {% if forloop.counter0 == today_idx %}
+        <span class="schedule-day__today">{% trans 'Today' %}</span>
+        {% endif %}
+      </div>
+
+      <div class="schedule-day__body">
+        {% if day.is_free %}
+        <p class="schedule-day__free">{% trans 'Free' %}</p>
+        {% else %}
+        {% for entry in day.entries %}
+        <div class="schedule-shift{% if entry.is_booked %} schedule-shift--booked{% elif entry.is_night %} schedule-shift--night{% endif %}{% if entry.is_continuation %} schedule-shift--continuation{% endif %}">
+          <div class="schedule-shift__time">{{ entry.time_range }}</div>
+          <div class="schedule-shift__meta">
+            <span class="slot-chip-shift slot-chip-shift--{{ entry.shift_type }}">{{ entry.shift_label }}</span>
+            {% if entry.is_continuation %}
+            <span class="schedule-shift__continuation">{{ entry.continuation_label }}</span>
+            {% endif %}
+          </div>
+          {% if entry.is_booked %}
+          <span class="schedule-shift__status">{% trans 'Booked' %}</span>
+          {% else %}
+          <a href="{% url 'booking:index' %}" class="btn btn--ghost btn--sm schedule-shift__reserve">
+            {% trans 'Book' %}
+          </a>
+          {% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</article>

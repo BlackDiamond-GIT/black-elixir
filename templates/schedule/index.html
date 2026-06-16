@@ -1,75 +1,32 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block seo_title %}{% trans "Massage Schedule — Black Elixir Spa" %}{% endblock %}
-{% block meta_description %}{% trans "Current availability. Click a free slot to book." %}{% endblock %}
+{% block meta_description %}{% trans "Choose a masseuse and browse weekly shifts. Book a free slot in one click." %}{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/pages/schedule.css' %}">
+{% endblock %}
 
 {% block content %}
 <header class="page-header">
   <div class="container">
     <h1>{% trans 'Massage Schedule' %}</h1>
-    <p>{% trans 'Current availability. Click a free slot to book.' %}</p>
+    <p>{% trans 'Choose a masseuse and browse weekly shifts. Book a free slot in one click.' %}</p>
+    {% if salon_address %}
+    <p class="schedule-address">{{ salon_address }}</p>
+    {% endif %}
   </div>
 </header>
 
 <section class="section">
   <div class="container">
-    <div class="schedule-legend">
-      <div class="schedule-legend__item">
-        <span class="schedule-legend__swatch schedule-legend__swatch--avail"></span>
-        <span>{% trans 'Available' %}</span>
-      </div>
-      <div class="schedule-legend__item">
-        <span class="schedule-legend__swatch schedule-legend__swatch--booked"></span>
-        <span>{% trans 'Booked' %}</span>
-      </div>
-      <div class="schedule-legend__item">
-        <span class="slot-chip-shift slot-chip-shift--day"></span>
-        <span>{% trans 'Day shift' %}</span>
-      </div>
-      <div class="schedule-legend__item">
-        <span class="slot-chip-shift slot-chip-shift--night"></span>
-        <span>{% trans 'Night shift' %}</span>
-      </div>
-    </div>
-
-    <div class="filter-bar" id="schedule-filter">
-      <button type="button" class="filter-btn active" data-filter="all">{% trans 'All Masseuses' %}</button>
-      {% for masseuse in masseuses %}
-      <button type="button" class="filter-btn" data-filter="{{ masseuse.id }}">{{ masseuse.name }}</button>
-      {% endfor %}
-    </div>
-
-    {% include 'schedule/partials/_grid.html' %}
-
-    <p class="schedule-hint">
-      {% trans 'Click a free slot to proceed to booking.' %}
-    </p>
+    {% include 'schedule/partials/_on_shift.html' %}
+    {% include 'schedule/partials/_week_section.html' %}
   </div>
 </section>
 {% endblock %}
 
 {% block extra_js %}
-<script>
-(function () {
-  var bar = document.getElementById('schedule-filter');
-  if (!bar) return;
-
-  bar.addEventListener('click', function (event) {
-    var btn = event.target.closest('[data-filter]');
-    if (!btn) return;
-
-    var filter = btn.getAttribute('data-filter');
-    bar.querySelectorAll('.filter-btn').forEach(function (el) {
-      el.classList.toggle('active', el === btn);
-    });
-
-    document.querySelectorAll('.slot-chip').forEach(function (chip) {
-      var masseuseId = chip.getAttribute('data-masseuse');
-      var show = filter === 'all' || masseuseId === filter;
-      chip.style.display = show ? '' : 'none';
-    });
-  });
-})();
-</script>
+<script src="{% static 'js/schedule.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% load i18n %}
+<section class="schedule-on-shift" aria-labelledby="schedule-on-shift-title">
+  <div class="schedule-on-shift__head">
+    <h2 id="schedule-on-shift-title" class="schedule-on-shift__title">{% trans 'Currently on shift' %}</h2>
+    <time class="schedule-on-shift__clock" datetime="{{ now_iso }}" data-schedule-clock></time>
+  </div>
+  {% if on_shift %}
+  <ul class="schedule-on-shift__list">
+    {% for item in on_shift %}
+    <li class="schedule-on-shift__item">
+      <span class="schedule-on-shift__name">{{ item.name }}</span>
+      <span class="schedule-on-shift__time">{{ item.time_range }}</span>
+      <span class="slot-chip-shift slot-chip-shift--{{ item.shift_type }}">{{ item.shift_label }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="schedule-on-shift__empty">{% trans 'No masseuse on shift right now.' %}</p>
+  {% endif %}
+</section>

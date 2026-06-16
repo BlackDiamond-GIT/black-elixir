@@ -6,6 +6,7 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/pages/misc.css' %}">
+  <link rel="stylesheet" href="{% static 'css/pages/schedule.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -45,19 +46,20 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section section--schedule-embed">
   <div class="container">
     <span class="price-ph-label price-ph-label--section">{% trans 'Schedule' %}</span>
-    <h2 class="s-title">{% trans 'Massage Schedule' %}</h2>
-    <p class="s-desc" style="margin-bottom:var(--sp-6)">{% trans 'Current availability. Click a free slot to book.' %}</p>
-
-    {% include 'schedule/partials/_grid.html' %}
-
-    <p class="schedule-hint">
-      {% trans 'Click a free slot to proceed to booking.' %}
-    </p>
+    {% if salon_address %}
+    <p class="schedule-address">{{ salon_address }}</p>
+    {% endif %}
+    {% include 'schedule/partials/_on_shift.html' %}
+    {% include 'schedule/partials/_week_section.html' %}
   </div>
 </section>
 
 {% include 'partials/_cta_banner.html' %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/schedule.js' %}"></script>
 {% endblock %}

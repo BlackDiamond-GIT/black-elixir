@@ -43,6 +43,6 @@ LOCATION_CATALOG = [
 ]
 
 SHIFT_LABELS = {
-    'day': {'cs': 'Den', 'en': 'Day', 'ru': 'День'},
-    'night': {'cs': 'Noc', 'en': 'Night', 'ru': 'Ночь'},
+    'day': {'cs': 'Den', 'en': 'Day', 'ru': 'День', 'uk': 'День'},
+    'night': {'cs': 'Noc', 'en': 'Night', 'ru': 'Ночь', 'uk': 'Ніч'},
 }

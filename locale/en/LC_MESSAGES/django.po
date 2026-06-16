@@ -480,10 +480,9 @@ msgstr "future entries"
 msgid "Massage Schedule"
 msgstr "Massage Schedule — Black Elixir Spa"
 
-#: templates/prices/index.html:51 templates/schedule/index.html:5
-#: templates/schedule/index.html:11
-msgid "Current availability. Click a free slot to book."
-msgstr "Current availability. Click a free slot to book."
+#: templates/schedule/index.html:5 templates/schedule/index.html:15
+msgid "Choose a masseuse and browse weekly shifts. Book a free slot in one click."
+msgstr "Choose a masseuse and browse weekly shifts. Book a free slot in one click."
 
 #: templates/prices/index.html:53
 msgid "Schedule placeholder"
@@ -667,6 +666,38 @@ msgstr ""
 "serves only as advertising for individual masseuses. A condition of "
 "advertising is renting space in the massage salon. Entry is permitted to "
 "persons over 18 years of age."
+
+#: templates/schedule/partials/_on_shift.html:4
+msgid "Currently on shift"
+msgstr "Currently on shift"
+
+#: templates/schedule/partials/_on_shift.html:18
+msgid "No masseuse on shift right now."
+msgstr "No masseuse on shift right now."
+
+#: templates/schedule/partials/_week_section.html:3
+msgid "Weekly schedule"
+msgstr "Weekly schedule"
+
+#: templates/schedule/partials/_masseuse_week.html:22
+msgid "Today"
+msgstr "Today"
+
+#: templates/schedule/partials/_masseuse_week.html:28
+msgid "Free"
+msgstr "Free"
+
+#: templates/schedule/partials/_masseuse_week.html:12
+msgid "Masseuse profile"
+msgstr "Masseuse profile"
+
+#: templates/schedule/partials/_masseuse_week.html:43
+msgid "Book"
+msgstr "Book"
+
+#: templates/schedule/partials/_week_section.html:16
+msgid "Night shift"
+msgstr "Night shift"
 
 #~ msgid "Our Services"
 #~ msgstr "Our Services"

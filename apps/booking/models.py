@@ -37,7 +37,7 @@ class WhatsAppTemplate(models.Model):
     SERVICE_CHOICES = [
         ('general', _('General / No service')),
         ('klasicka-masaz', _('Classic Massage')),
-        ('cbd-relaxacni-masaz', _('Relax Massage')),
+        ('cbd-relaxacni-masaz', _('Deep Tissue Massage')),
         ('aromaterapeuticka-masaz', _('Aromatherapy Massage')),
         ('sportovni-masaz', _('Sports Massage')),
         ('tehotenska-masaz', _('Prenatal Massage')),

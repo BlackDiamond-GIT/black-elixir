@@ -482,10 +482,9 @@ msgstr "будущие записи"
 msgid "Massage Schedule"
 msgstr "Расписание массажей"
 
-#: templates/prices/index.html:51 templates/schedule/index.html:5
-#: templates/schedule/index.html:11
-msgid "Current availability. Click a free slot to book."
-msgstr "Текущая доступность. Нажмите на свободный слот для бронирования."
+#: templates/schedule/index.html:5 templates/schedule/index.html:15
+msgid "Choose a masseuse and browse weekly shifts. Book a free slot in one click."
+msgstr "Выберите массажистку и просмотрите её недельные смены. Забронируйте свободный слот в один клик."
 
 #: templates/prices/index.html:53
 #| msgid "Map placeholder"
@@ -671,6 +670,38 @@ msgstr ""
 "служит только как реклама для отдельных массажисток. Условием размещения "
 "рекламы является аренда пространства в массажном салоне. Вход разрешён "
 "лицам старше 18 лет."
+
+#: templates/schedule/partials/_on_shift.html:4
+msgid "Currently on shift"
+msgstr "Сейчас на смене"
+
+#: templates/schedule/partials/_on_shift.html:18
+msgid "No masseuse on shift right now."
+msgstr "Сейчас никого нет на смене."
+
+#: templates/schedule/partials/_week_section.html:3
+msgid "Weekly schedule"
+msgstr "Недельное расписание"
+
+#: templates/schedule/partials/_masseuse_week.html:22
+msgid "Today"
+msgstr "Сегодня"
+
+#: templates/schedule/partials/_masseuse_week.html:28
+msgid "Free"
+msgstr "Свободно"
+
+#: templates/schedule/partials/_masseuse_week.html:12
+msgid "Masseuse profile"
+msgstr "Профиль массажистки"
+
+#: templates/schedule/partials/_masseuse_week.html:43
+msgid "Book"
+msgstr "Забронировать"
+
+#: templates/schedule/partials/_week_section.html:16
+msgid "Night shift"
+msgstr "Ночная смена"
 
 #~ msgid "Our Services"
 #~ msgstr "Наши услуги"

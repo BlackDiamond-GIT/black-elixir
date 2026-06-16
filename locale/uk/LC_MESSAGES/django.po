@@ -1278,8 +1278,8 @@ msgstr "Сторінка FAQ"
 msgid "Classic Massage"
 msgstr "Класичний масаж"
 
-msgid "Relax Massage"
-msgstr "Релакс-масаж"
+msgid "Deep Tissue Massage"
+msgstr "Глибокотканинний масаж"
 
 msgid "Aromatherapy Massage"
 msgstr "Ароматерапевтичний масаж"
@@ -1419,3 +1419,39 @@ msgstr "Правила салону"
 
 msgid "Privacy"
 msgstr "Конфіденційність"
+
+#: templates/schedule/index.html:5 templates/schedule/index.html:15
+msgid "Choose a masseuse and browse weekly shifts. Book a free slot in one click."
+msgstr "Оберіть масажистку та перегляньте її тижневі зміни. Забронюйте вільний слот одним кліком."
+
+#: templates/schedule/partials/_on_shift.html:4
+msgid "Currently on shift"
+msgstr "Зараз на зміні"
+
+#: templates/schedule/partials/_on_shift.html:18
+msgid "No masseuse on shift right now."
+msgstr "Зараз нікого немає на зміні."
+
+#: templates/schedule/partials/_masseuse_week.html:12
+msgid "Masseuse profile"
+msgstr "Профіль масажистки"
+
+#: templates/schedule/partials/_masseuse_week.html:28
+msgid "Free"
+msgstr "Вільно"
+
+#: templates/schedule/partials/_masseuse_week.html:43
+msgid "Book"
+msgstr "Забронювати"
+
+#: templates/schedule/partials/_week_section.html:16
+msgid "Night shift"
+msgstr "Нічна зміна"
+
+#: templates/schedule/partials/_week_section.html:40
+msgid "Click a free slot to proceed to booking."
+msgstr "Натисніть вільний слот, щоб перейти до бронювання."
+
+#: templates/schedule/index.html:20
+msgid "Available"
+msgstr "Вільно"
