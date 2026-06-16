@@ -71,4 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
   }, { threshold: 0.1 });
   
   revealElements.forEach(el => observer.observe(el));
+
+  document.querySelectorAll('[data-currency-switcher]').forEach(function (bar) {
+    bar.addEventListener('click', function (event) {
+      var btn = event.target.closest('[data-currency]');
+      if (!btn) return;
+      var code = btn.getAttribute('data-currency');
+      document.cookie = 'currency=' + encodeURIComponent(code) + ';path=/;max-age=31536000;SameSite=Lax';
+      window.location.reload();
+    });
+  });
 });

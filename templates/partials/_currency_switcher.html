@@ -1,0 +1,8 @@
+{% load i18n %}
+<div class="currency-switcher" data-currency-switcher>
+  {% for code in currency_options %}
+  <button type="button"
+          class="currency-btn{% if code == currency_code %} active{% endif %}"
+          data-currency="{{ code }}">{{ code }}</button>
+  {% endfor %}
+</div>

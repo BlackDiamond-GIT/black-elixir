@@ -4,8 +4,9 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 
 from apps.masseurs.models import Masseuse
-from apps.schedule.models import TimeSlot
-from apps.schedule.weekly_schedule import WEEKLY_SHIFTS
+from apps.schedule.models import TimeSlot, WorkLocation
+from apps.schedule.shift_utils import expand_shift_times
+from apps.schedule.weekly_schedule import DEFAULT_LOCATION, WEEKLY_SHIFTS
 
 
 def _week_start(reference=None):
@@ -45,6 +46,7 @@ class Command(BaseCommand):
         masseuse_by_slug = {
             m.slug: m for m in Masseuse.objects.filter(is_active=True).prefetch_related('services')
         }
+        location_by_slug = {loc.slug: loc for loc in WorkLocation.objects.filter(is_active=True)}
         created = 0
 
         for week_offset in range(weeks):
@@ -60,19 +62,27 @@ class Command(BaseCommand):
                 if not services:
                     continue
 
-                for weekday, time_str in day_shifts.items():
-                    start_time = _shift_datetime(start, weekday, time_str)
-                    if start_time < now:
-                        continue
+                for weekday, shift in day_shifts.items():
+                    location = location_by_slug.get(shift.get('location', DEFAULT_LOCATION))
+                    shift_type = shift.get('shift', TimeSlot.SHIFT_DAY)
 
-                    for service in services:
-                        _, was_created = TimeSlot.objects.get_or_create(
-                            masseuse=masseuse,
-                            service=service,
-                            start_time=start_time,
-                            defaults={'is_booked': False},
-                        )
-                        if was_created:
-                            created += 1
+                    for time_str in expand_shift_times(shift['start'], shift['end']):
+                        start_time = _shift_datetime(start, weekday, time_str)
+                        if start_time < now:
+                            continue
+
+                        for service in services:
+                            _, was_created = TimeSlot.objects.get_or_create(
+                                masseuse=masseuse,
+                                service=service,
+                                start_time=start_time,
+                                defaults={
+                                    'is_booked': False,
+                                    'location': location,
+                                    'shift_type': shift_type,
+                                },
+                            )
+                            if was_created:
+                                created += 1
 
         self.stdout.write(self.style.SUCCESS(f'Created {created} schedule slots'))

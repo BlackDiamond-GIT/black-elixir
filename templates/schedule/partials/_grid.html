@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n seo_tags %}
 <div class="schedule-wrap">
   <table class="sched-table">
     <thead>
@@ -16,19 +16,36 @@
     </thead>
     <tbody>
       {% for row in rows %}
-      <tr>
-        <td class="time-cell">{{ row.time }}</td>
+      <tr class="{% if row.is_night_row %}sched-table__row--night{% endif %}">
+        <td class="time-cell{% if row.is_night_row %} time-cell--night{% endif %}">
+          {{ row.time }}
+          {% if row.is_night_row %}
+          <span class="time-cell__night-badge">{% trans 'Night' %}</span>
+          {% endif %}
+        </td>
         {% for cell in row.cells %}
         <td class="day-cell{% if cell.is_today %} day-cell--today{% endif %}">
           {% for slot in cell.slots %}
           {% if slot.is_booked %}
           <div class="slot-chip booked" data-masseuse="{{ slot.masseuse_id }}">
             <div class="slot-chip-name">{{ slot.masseuse_name }}</div>
+            <div class="slot-chip-meta">
+              <span class="slot-chip-shift slot-chip-shift--{{ slot.shift_type }}">{{ slot.shift_label }}</span>
+              {% if slot.location_name %}
+              <span class="slot-chip-loc" title="{{ slot.location_address }}">{{ slot.location_name }}</span>
+              {% endif %}
+            </div>
             <div class="slot-chip-svc">{{ slot.service_name }}</div>
           </div>
           {% else %}
           <a href="{% url 'booking:index' %}" class="slot-chip" data-masseuse="{{ slot.masseuse_id }}">
             <div class="slot-chip-name">{{ slot.masseuse_name }}</div>
+            <div class="slot-chip-meta">
+              <span class="slot-chip-shift slot-chip-shift--{{ slot.shift_type }}">{{ slot.shift_label }}</span>
+              {% if slot.location_name %}
+              <span class="slot-chip-loc" title="{{ slot.location_address }}">{{ slot.location_name }}</span>
+              {% endif %}
+            </div>
             <div class="slot-chip-svc">{{ slot.service_name }}</div>
           </a>
           {% endif %}

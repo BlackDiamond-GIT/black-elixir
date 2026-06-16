@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n seo_tags %}
 <h3 style="margin-bottom: 1rem;">{% trans 'Your Details' %}</h3>
 <input type="hidden" name="slot_id" value="{{ slot.id }}">
 <div class="booking-summary">
@@ -20,7 +20,7 @@
   </div>
   <div class="summary-row">
     <span class="summary-label">{% trans 'Price' %}</span>
-    <span class="summary-val">{{ slot.service.base_price }} Kč</span>
+    <span class="summary-val">{% price_display slot.service.base_price %}</span>
   </div>
 </div>
 

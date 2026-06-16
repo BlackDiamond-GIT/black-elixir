@@ -40,7 +40,7 @@
         <p class="detail-label">{% trans 'Our Massages' %}</p>
         <div class="detail-meta">
           <span class="detail-meta__item">{{ service.duration_minutes }} {% trans 'min' %}</span>
-          <span class="detail-meta__item">{{ service.base_price|price_czk }} Kč</span>
+          <span class="detail-meta__item">{% price_display service.base_price show_all=True %}</span>
         </div>
         <div class="detail-actions detail-actions--hero">
           <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans 'Book Now' %}</a>

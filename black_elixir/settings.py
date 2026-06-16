@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'apps.core.context_processors.site_languages',
                 'apps.core.context_processors.site_settings',
+                'apps.core.context_processors.currency_settings',
             ],
         },
     },

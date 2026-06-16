@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n static %}
+{% load i18n static seo_tags %}
 
 {% block seo_title %}{% trans "Book a Massage — Black Elixir Spa" %}{% endblock %}
 {% block meta_description %}{% trans "Book your massage online in 5 steps. Choose service, masseuse and time." %}{% endblock %}
@@ -58,7 +58,7 @@
                hx-vals='{"service_id":"{{ service.obj.id }}"}' hx-target="#booking-content" hx-swap="innerHTML">
             <div class="opt-card__name">{{ service.name }}</div>
             <div class="opt-card__detail">{{ service.obj.duration_minutes }} min</div>
-            <div class="opt-card__price">{{ service.obj.base_price }} Kč</div>
+            <div class="opt-card__price">{% price_display service.obj.base_price %}</div>
           </div>
           {% endfor %}
         </div>

@@ -50,7 +50,7 @@
           <p class="svc-square__caption">{{ item.caption }}</p>
           <div class="svc-square__meta">
             <span class="svc-square__dur">{{ item.obj.duration_minutes }} min</span>
-            <span class="svc-square__price">{{ item.obj.base_price|price_czk }} Kč</span>
+            <span class="svc-square__price">{% price_display item.obj.base_price %}</span>
           </div>
         </div>
       </a>

@@ -12,7 +12,8 @@
 <header class="page-header">
   <div class="container">
     <h1>{% trans 'Massage Prices' %}</h1>
-    <p>{% trans 'Transparent pricing. All prices in CZK.' %}</p>
+    <p>{% trans 'Transparent pricing in CZK, EUR and USD.' %}</p>
+    {% include 'partials/_currency_switcher.html' %}
   </div>
 </header>
 
@@ -35,7 +36,7 @@
           <p class="price-square__caption">{{ item.caption }}</p>
           <div class="price-square__meta">
             <span class="price-square__dur">{{ item.obj.duration_minutes }} min</span>
-            <span class="price-square__price">{{ item.obj.base_price|price_czk }} Kč</span>
+            <span class="price-square__price">{% price_display item.obj.base_price show_all=True %}</span>
           </div>
         </div>
       </a>

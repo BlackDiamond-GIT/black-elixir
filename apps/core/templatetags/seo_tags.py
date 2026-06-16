@@ -3,6 +3,7 @@ from django import template
 from django.conf import settings
 from django.utils.html import format_html
 
+from apps.core.currency import format_price_czk, format_price_triple, normalize_currency
 from apps.core.i18n_utils import localized_field
 from apps.core.media_utils import media_field_url
 from apps.core.url_utils import absolute_reverse, language_path, strip_language_prefix
@@ -260,3 +261,39 @@ def price_czk(value):
     except (TypeError, ValueError):
         return value
     return f'{amount:,}'.replace(',', ' ')
+
+
+@register.filter
+def price_in_currency(value, currency_code='CZK'):
+    try:
+        amount = int(float(value))
+    except (TypeError, ValueError):
+        return value
+    return format_price_czk(amount, normalize_currency(currency_code))
+
+
+@register.simple_tag(takes_context=True)
+def price_display(context, amount_czk, show_all=False):
+    try:
+        amount = int(float(amount_czk))
+    except (TypeError, ValueError):
+        return amount_czk
+
+    if show_all:
+        triple = format_price_triple(amount)
+        return format_html(
+            '<span class="price-multi">'
+            '<span class="price-multi__czk">{}</span> '
+            '<span class="price-multi__eur">{}</span> '
+            '<span class="price-multi__usd">{}</span>'
+            '</span>',
+            triple['czk'],
+            triple['eur'],
+            triple['usd'],
+        )
+
+    currency = normalize_currency(context.get('currency_code'))
+    return format_html(
+        '<span class="price-single">{}</span>',
+        format_price_czk(amount, currency),
+    )

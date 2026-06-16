@@ -3,10 +3,12 @@ from datetime import datetime
 from django.utils import timezone
 
 from apps.core.i18n_utils import localized_field
-from apps.schedule.models import TimeSlot
-from apps.schedule.weekly_schedule import WEEKLY_SHIFTS
+from apps.schedule.models import TimeSlot, WorkLocation
+from apps.schedule.shift_utils import expand_shift_times
+from apps.schedule.weekly_schedule import DEFAULT_LOCATION, SHIFT_LABELS, WEEKLY_SHIFTS
 
 TIMES = ['09:00', '11:00', '18:30', '20:30', '02:00', '04:00', '06:00']
+NIGHT_ROW_TIMES = {'02:00', '04:00', '06:00'}
 
 DAYS_SHORT = {
     'cs': ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'],
@@ -19,13 +21,33 @@ def today_weekday_index():
     return datetime.now().weekday()
 
 
-def _slot_dict(slot_id, masseuse, service, lang, is_booked):
+def _shift_label(shift_type, lang):
+    labels = SHIFT_LABELS.get(shift_type, SHIFT_LABELS['day'])
+    return labels.get(lang, labels['cs'])
+
+
+def _location_maps(lang):
+    locations = WorkLocation.objects.filter(is_active=True)
+    by_slug = {loc.slug: loc for loc in locations}
+    labels = {}
+    addresses = {}
+    for slug, loc in by_slug.items():
+        labels[slug] = localized_field(loc, 'name', lang)
+        addresses[slug] = localized_field(loc, 'address', lang)
+    return labels, addresses
+
+
+def _slot_dict(slot_id, masseuse, service, lang, is_booked, shift_meta):
     return {
         'id': slot_id,
         'masseuse_id': masseuse.id,
         'masseuse_name': masseuse.name,
         'service_name': localized_field(service, 'name', lang),
         'is_booked': is_booked,
+        'location_name': shift_meta.get('location_name', ''),
+        'location_address': shift_meta.get('location_address', ''),
+        'shift_label': shift_meta.get('shift_label', ''),
+        'shift_type': shift_meta.get('shift_type', ''),
     }
 
 
@@ -38,6 +60,7 @@ def build_demo_grid(masseuses, lang='cs'):
     grid = {day: {time: [] for time in TIMES} for day in range(7)}
     slot_id = 1
     masseuse_by_slug = {m.slug: m for m in masseuses}
+    location_labels, location_addresses = _location_maps(lang)
 
     for slug, day_shifts in WEEKLY_SHIFTS.items():
         masseuse = masseuse_by_slug.get(slug)
@@ -48,13 +71,19 @@ def build_demo_grid(masseuses, lang='cs'):
         if not service:
             continue
 
-        for day, time in day_shifts.items():
-            if time not in TIMES:
-                continue
-            grid[day][time].append(
-                _slot_dict(slot_id, masseuse, service, lang, False)
-            )
-            slot_id += 1
+        for day, shift in day_shifts.items():
+            location_slug = shift.get('location', DEFAULT_LOCATION)
+            shift_meta = {
+                'location_name': location_labels.get(location_slug, ''),
+                'location_address': location_addresses.get(location_slug, ''),
+                'shift_label': _shift_label(shift.get('shift', 'day'), lang),
+                'shift_type': shift.get('shift', 'day'),
+            }
+            for time in expand_shift_times(shift['start'], shift['end']):
+                grid[day][time].append(
+                    _slot_dict(slot_id, masseuse, service, lang, False, shift_meta)
+                )
+                slot_id += 1
 
     return grid
 
@@ -77,6 +106,24 @@ def apply_booked_status(grid, booked_lookup):
                 slot['is_booked'] = booked_lookup.get(key, False)
 
 
+def build_schedule_rows(grid, today_idx):
+    rows = []
+    for time in TIMES:
+        cells = []
+        for day in range(7):
+            cells.append({
+                'day': day,
+                'is_today': day == today_idx,
+                'slots': grid[day][time],
+            })
+        rows.append({
+            'time': time,
+            'is_night_row': time in NIGHT_ROW_TIMES,
+            'cells': cells,
+        })
+    return rows
+
+
 def build_schedule_context(masseuses, lang='cs'):
     today_idx = today_weekday_index()
     grid = build_demo_grid(masseuses, lang)
@@ -91,40 +138,3 @@ def build_schedule_context(masseuses, lang='cs'):
         'today_idx': today_idx,
         'rows': build_schedule_rows(grid, today_idx),
     }
-
-
-def build_db_grid(slots, lang='cs'):
-    grid = {day: {time: [] for time in TIMES} for day in range(7)}
-    seen = set()
-
-    for slot in slots:
-        local_start = timezone.localtime(slot.start_time)
-        time_str = local_start.strftime('%H:%M')
-        if time_str not in TIMES:
-            continue
-
-        day = local_start.weekday()
-        key = (day, time_str, slot.masseuse_id)
-        if key in seen:
-            continue
-        seen.add(key)
-
-        grid[day][time_str].append(
-            _slot_dict(slot.id, slot.masseuse, slot.service, lang, slot.is_booked)
-        )
-
-    return grid
-
-
-def build_schedule_rows(grid, today_idx):
-    rows = []
-    for time in TIMES:
-        cells = []
-        for day in range(7):
-            cells.append({
-                'day': day,
-                'is_today': day == today_idx,
-                'slots': grid[day][time],
-            })
-        rows.append({'time': time, 'cells': cells})
-    return rows

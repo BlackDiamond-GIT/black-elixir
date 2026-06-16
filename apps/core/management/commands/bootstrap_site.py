@@ -8,6 +8,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         call_command('seed_service_descriptions')
         call_command('seed_masseuse_descriptions')
+        call_command('seed_locations')
         call_command('create_initial_posts')
         call_command('sync_schedule')
         call_command('ensure_admin')
