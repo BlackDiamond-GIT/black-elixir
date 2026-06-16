@@ -1,6 +1,3 @@
-from apps.services.content_data import build_service_description
-
-
 def _meta_title(name, suffix='Black Elixir Spa'):
     return f'{name} Praha — {suffix}'[:60]
 
@@ -23,54 +20,39 @@ def _meta_description(keyword, price, duration, lang='cs'):
     return templates[lang][:160]
 
 
+def _description_paragraph(item, lang):
+    templates = {
+        'cs': (
+            '{name} využívá {technique} pro {benefit}. '
+            'Vhodná pro {audience}.'
+        ),
+        'en': (
+            '{name} uses {technique} for {benefit}. '
+            'Ideal for {audience}.'
+        ),
+        'ru': (
+            '{name} использует {technique}. '
+            'Обеспечивает {benefit}. '
+            'Подходит для {audience}.'
+        ),
+    }
+    return templates[lang].format(
+        name=item[f'name_{lang}'],
+        technique=item[f'technique_{lang}'],
+        benefit=item[f'benefit_{lang}'],
+        audience=item[f'audience_{lang}'],
+    )
+
+
 def generate_service_descriptions(item):
-    name_cs = item['name_cs']
-    name_en = item['name_en']
-    name_ru = item['name_ru']
     duration = item['duration_minutes']
     price = item['base_price']
 
-    sections_cs = [
-        (f'Co je {item["keyword_cs"]}?', [
-            f'{name_cs} využívá {item["technique_cs"]} pro {item["benefit_cs"]}.',
-        ]),
-        ('Průběh a pro koho', [
-            f'Sezení trvá {duration} minut v soukromém pokoji. Vhodné pro {item["audience_cs"]}.',
-        ]),
-        ('Cena a rezervace', [
-            f'{price} Kč / {duration} min. Oleje a relaxační zóna v ceně. Rezervujte online.',
-        ]),
-    ]
-
-    sections_en = [
-        (f'What is {item["keyword_en"]}?', [
-            f'{name_en} uses {item["technique_en"]} for {item["benefit_en"]}.',
-        ]),
-        ('Session and who it is for', [
-            f'{duration} minutes in a private room. Ideal for {item["audience_en"]}.',
-        ]),
-        ('Price and booking', [
-            f'{price} CZK / {duration} min. Oils and lounge access included. Book online.',
-        ]),
-    ]
-
-    sections_ru = [
-        (f'Что такое {item["keyword_ru"]}?', [
-            f'{name_ru} использует {item["technique_ru"]} для {item["benefit_ru"]}.',
-        ]),
-        ('Сеанс и для кого', [
-            f'{duration} минут в приватном кабинете. Подходит для {item["audience_ru"]}.',
-        ]),
-        ('Цена и запись', [
-            f'{price} CZK / {duration} мин. Масла и зона релаксации включены. Запись онлайн.',
-        ]),
-    ]
-
     return {
-        'description_cs': build_service_description('', sections_cs),
-        'description_en': build_service_description('', sections_en),
-        'description_ru': build_service_description('', sections_ru),
-        'meta_title': _meta_title(name_cs),
+        'description_cs': _description_paragraph(item, 'cs'),
+        'description_en': _description_paragraph(item, 'en'),
+        'description_ru': _description_paragraph(item, 'ru'),
+        'meta_title': _meta_title(item['name_cs']),
         'meta_description': _meta_description(item['keyword_cs'], price, duration, 'cs'),
     }
 

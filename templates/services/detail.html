@@ -49,30 +49,9 @@
       </div>
 
       <div class="detail-content reveal vis">
-        {% if content_sections %}
-        <div class="detail-sections-wrap">
-          <div class="detail-sections">
-            {% for block in content_sections %}
-            <article class="detail-section-card">
-              <h2 class="detail-section-card__title">{{ block.heading }}</h2>
-              {% for paragraph in block.paragraphs %}
-                <p>{{ paragraph }}</p>
-              {% endfor %}
-            </article>
-            {% endfor %}
-          </div>
-        </div>
-        {% elif description_sections %}
-        <div class="detail-sections-wrap">
-          <div class="detail-sections detail-sections--fallback">
-            {% for block in description_sections %}
-              {% if block.type == 'intro' or block.type == 'paragraph' %}
-              <article class="detail-section-card">
-                <p>{{ block.content }}</p>
-              </article>
-              {% endif %}
-            {% endfor %}
-          </div>
+        {% if service_description %}
+        <div class="detail-description">
+          <p>{{ service_description }}</p>
         </div>
         {% endif %}
       </div>

@@ -7,7 +7,6 @@ from apps.core.i18n_utils import localize_post, localized_field
 from apps.masseurs.models import Masseuse
 from apps.core.media_utils import media_field_url
 from apps.pages.content import SERVICE_IMAGES
-from apps.services.text_utils import parse_description_sections
 from apps.services.content_data import get_service_faqs
 from apps.services.models import MassageType
 
@@ -28,14 +27,6 @@ class ServiceDetailView(DetailView):
 
         context['service_name'] = localized_field(service, 'name', lang)
         context['service_description'] = localized_field(service, 'description', lang)
-        description_sections = parse_description_sections(
-            context['service_description']
-        )
-        context['description_sections'] = description_sections
-        context['content_sections'] = [
-            section for section in description_sections
-            if section['type'] == 'section'
-        ]
         context['service_image'] = media_field_url(
             service.image,
             SERVICE_IMAGES.get(service.slug, ''),
