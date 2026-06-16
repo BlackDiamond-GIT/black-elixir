@@ -455,6 +455,10 @@ msgstr "Ochrana soukromí"
 msgid "About Us"
 msgstr "O nás"
 
+#: templates/partials/_nav.html
+msgid "Information"
+msgstr "Informace"
+
 #: templates/prices/index.html:4
 msgid "Massage Prices — Black Elixir Spa"
 msgstr "Ceník masáží — Black Elixir Spa"

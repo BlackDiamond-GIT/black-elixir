@@ -448,6 +448,10 @@ msgstr "Privacy"
 msgid "About Us"
 msgstr "About Us"
 
+#: templates/partials/_nav.html
+msgid "Information"
+msgstr "Information"
+
 #: templates/prices/index.html:4
 msgid "Massage Prices — Black Elixir Spa"
 msgstr "Massage Prices — Black Elixir Spa"

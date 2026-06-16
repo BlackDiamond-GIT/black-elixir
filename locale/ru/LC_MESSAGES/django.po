@@ -450,6 +450,10 @@ msgstr "Конфиденциальность"
 msgid "About Us"
 msgstr "О нас"
 
+#: templates/partials/_nav.html
+msgid "Information"
+msgstr "Информация"
+
 #: templates/prices/index.html:4
 msgid "Massage Prices — Black Elixir Spa"
 msgstr "Цены на массажи — Black Elixir Spa"

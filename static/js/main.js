@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
       setMobileMenuOpen(false);
     });
 
-    document.querySelectorAll('.nav__link, .mob-link, .mobile-menu__cta').forEach(link => {
+    document.querySelectorAll('.nav__link, .mob-link, .mob-info-link, .mobile-menu__cta').forEach(link => {
       link.addEventListener('click', () => {
         setMobileMenuOpen(false);
       });

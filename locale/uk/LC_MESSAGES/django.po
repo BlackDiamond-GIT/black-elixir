@@ -1406,3 +1406,16 @@ msgstr "Головне фото (Cloudinary)"
 
 msgid "Gallery (Cloudinary)"
 msgstr "Галерея (Cloudinary)"
+
+#: templates/partials/_nav.html
+msgid "Information"
+msgstr "Інформація"
+
+msgid "About Us"
+msgstr "Про нас"
+
+msgid "Salon Rules"
+msgstr "Правила салону"
+
+msgid "Privacy"
+msgstr "Конфіденційність"
