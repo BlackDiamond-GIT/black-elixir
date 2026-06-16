@@ -46,36 +46,15 @@
 
 <section class="section">
   <div class="container">
-    <span class="price-ph-label price-ph-label--section">{% trans 'Schedule' %} — {% trans 'future entries' %}</span>
+    <span class="price-ph-label price-ph-label--section">{% trans 'Schedule' %}</span>
     <h2 class="s-title">{% trans 'Massage Schedule' %}</h2>
     <p class="s-desc" style="margin-bottom:var(--sp-6)">{% trans 'Current availability. Click a free slot to book.' %}</p>
 
-    <div class="price-schedule-ph" aria-label="{% trans 'Schedule placeholder' %}">
-      <div class="price-schedule-ph__scroll">
-        <div class="price-schedule-ph__head" aria-hidden="true">
-          <span></span>
-          {% for day in schedule_days %}
-          <span{% if forloop.counter == 2 %} class="is-today"{% endif %}>{{ day }}</span>
-          {% endfor %}
-        </div>
+    {% include 'schedule/partials/_grid.html' %}
 
-        {% for time in schedule_times %}
-        <div class="price-schedule-ph__row" aria-hidden="true">
-          <span class="price-schedule-ph__time">{{ time }}</span>
-          {% for day in schedule_days %}
-          <div class="price-schedule-ph__cell">
-            {% if forloop.counter0|add:forloop.parentloop.counter0|divisibleby:3 %}
-            <div class="price-schedule-ph__slot">
-              <span class="price-schedule-ph__slot-line"></span>
-              <span class="price-schedule-ph__slot-line price-schedule-ph__slot-line--sm"></span>
-            </div>
-            {% endif %}
-          </div>
-          {% endfor %}
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+    <p class="schedule-hint">
+      {% trans 'Click a free slot to proceed to booking.' %}
+    </p>
   </div>
 </section>
 

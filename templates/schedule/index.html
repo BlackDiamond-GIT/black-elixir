@@ -32,47 +32,7 @@
       {% endfor %}
     </div>
 
-    <div class="schedule-wrap">
-      <table class="sched-table">
-        <thead>
-          <tr>
-            <th style="width: 72px;"></th>
-            {% for day in days_short %}
-            <th class="{% if forloop.counter0 == today_idx %}today-col{% endif %}">
-              {{ day }}
-              {% if forloop.counter0 == today_idx %}
-              <span class="sched-table__today-dot" aria-hidden="true"></span>
-              {% endif %}
-            </th>
-            {% endfor %}
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in rows %}
-          <tr>
-            <td class="time-cell">{{ row.time }}</td>
-            {% for cell in row.cells %}
-            <td class="day-cell{% if cell.is_today %} day-cell--today{% endif %}">
-              {% for slot in cell.slots %}
-              {% if slot.is_booked %}
-              <div class="slot-chip booked" data-masseuse="{{ slot.masseuse_id }}">
-                <div class="slot-chip-name">{{ slot.masseuse_name }}</div>
-                <div class="slot-chip-svc">{{ slot.service_name }}</div>
-              </div>
-              {% else %}
-              <a href="{% url 'booking:index' %}" class="slot-chip" data-masseuse="{{ slot.masseuse_id }}">
-                <div class="slot-chip-name">{{ slot.masseuse_name }}</div>
-                <div class="slot-chip-svc">{{ slot.service_name }}</div>
-              </a>
-              {% endif %}
-              {% endfor %}
-            </td>
-            {% endfor %}
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+    {% include 'schedule/partials/_grid.html' %}
 
     <p class="schedule-hint">
       {% trans 'Click a free slot to proceed to booking.' %}

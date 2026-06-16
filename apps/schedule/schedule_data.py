@@ -3,6 +3,7 @@ from datetime import datetime
 from django.utils import timezone
 
 from apps.core.i18n_utils import localized_field
+from apps.schedule.models import TimeSlot
 from apps.schedule.weekly_schedule import WEEKLY_SHIFTS
 
 TIMES = ['09:00', '11:00', '18:30', '20:30', '02:00', '04:00', '06:00']
@@ -56,6 +57,40 @@ def build_demo_grid(masseuses, lang='cs'):
             slot_id += 1
 
     return grid
+
+
+def _booked_lookup(slots):
+    lookup = {}
+    for slot in slots:
+        if not slot.is_booked:
+            continue
+        local_start = timezone.localtime(slot.start_time)
+        lookup[(local_start.weekday(), local_start.strftime('%H:%M'), slot.masseuse_id)] = True
+    return lookup
+
+
+def apply_booked_status(grid, booked_lookup):
+    for day in range(7):
+        for time in TIMES:
+            for slot in grid[day][time]:
+                key = (day, time, slot['masseuse_id'])
+                slot['is_booked'] = booked_lookup.get(key, False)
+
+
+def build_schedule_context(masseuses, lang='cs'):
+    today_idx = today_weekday_index()
+    grid = build_demo_grid(masseuses, lang)
+
+    booked_slots = TimeSlot.objects.filter(is_booked=True).select_related('masseuse')
+    apply_booked_status(grid, _booked_lookup(booked_slots))
+
+    return {
+        'masseuses': masseuses,
+        'times': TIMES,
+        'days_short': DAYS_SHORT.get(lang, DAYS_SHORT['cs']),
+        'today_idx': today_idx,
+        'rows': build_schedule_rows(grid, today_idx),
+    }
 
 
 def build_db_grid(slots, lang='cs'):
