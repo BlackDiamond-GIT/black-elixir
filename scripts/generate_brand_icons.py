@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate brand icons from lotus reference (screen 2), white bg -> black."""
+"""Generate brand icons from lotus reference image — white bg replaced with black."""
 
 from __future__ import annotations
 
@@ -16,10 +16,10 @@ REF = OUT_DIR / "lotus-reference.png"
 BG = (10, 10, 10, 255)
 
 
-def _is_white(r: int, g: int, b: int, a: int) -> bool:
+def _is_background(r: int, g: int, b: int, a: int) -> bool:
     if a < 20:
         return True
-    return r > 235 and g > 235 and b > 235
+    return r > 230 and g > 230 and b > 230
 
 
 def _load_master(size: int = 512) -> Image.Image:
@@ -34,7 +34,7 @@ def _load_master(size: int = 512) -> Image.Image:
     for y in range(square.height):
         for x in range(square.width):
             r, g, b, a = pixels[x, y]
-            if _is_white(r, g, b, a):
+            if _is_background(r, g, b, a):
                 pixels[x, y] = BG
 
     return square.resize((size, size), Image.Resampling.LANCZOS)
