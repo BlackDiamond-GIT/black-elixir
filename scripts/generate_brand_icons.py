@@ -1,36 +1,43 @@
 #!/usr/bin/env python3
-"""Generate PNG brand icons from lotus + leaves logo geometry."""
+"""Generate brand icons from lotus reference (screen 2), white bg -> black."""
 
 from __future__ import annotations
 
+import base64
+import io
 from pathlib import Path
 
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "static" / "img" / "brand"
+REF = OUT_DIR / "lotus-reference.png"
 
 BG = (10, 10, 10, 255)
-PINK = (232, 138, 171, 255)
-GREEN = (139, 200, 74, 255)
 
-GREEN_LEAVES = (
-    [(16.0, 21.6), (14.7, 27.9), (16.0, 29.0), (17.3, 27.9)],
-    [(13.6, 22.0), (5.8, 24.2), (7.6, 27.8), (13.4, 26.0), (15.0, 23.0)],
-    [(18.4, 22.0), (26.2, 24.2), (24.4, 27.8), (18.6, 26.0), (17.0, 23.0)],
-)
 
-PINK_PETALS = (
-    [(14.8, 8.0), (13.6, 6.5), (12.9, 8.6), (14.3, 10.2)],
-    [(17.2, 8.0), (18.4, 6.5), (19.1, 8.6), (17.7, 10.2)],
-    [(14.4, 15.0), (8.4, 13.4), (4.6, 17.8), (6.8, 23.4), (12.0, 22.2), (14.8, 18.0)],
-    [(17.6, 15.0), (23.6, 13.4), (27.4, 17.8), (25.2, 23.4), (20.0, 22.2), (17.2, 18.0)],
-    [(14.9, 14.4), (10.8, 8.8), (8.2, 11.2), (10.4, 16.6), (13.2, 17.4), (15.0, 15.6)],
-    [(17.1, 14.4), (21.2, 8.8), (23.8, 11.2), (21.6, 16.6), (18.8, 17.4), (17.0, 15.6)],
-    [(15.0, 14.8), (12.0, 9.8), (9.6, 11.8), (11.4, 16.8), (13.8, 17.6), (15.3, 16.0)],
-    [(17.0, 14.8), (20.0, 9.8), (22.4, 11.8), (20.6, 16.8), (18.2, 17.6), (16.7, 16.0)],
-    [(16.0, 5.2), (17.3, 6.2), (17.6, 10.4), (17.1, 13.4), (16.0, 14.6), (14.9, 13.4), (14.4, 10.4), (14.7, 6.2)],
-)
+def _is_white(r: int, g: int, b: int, a: int) -> bool:
+    if a < 20:
+        return True
+    return r > 235 and g > 235 and b > 235
+
+
+def _load_master(size: int = 512) -> Image.Image:
+    ref = Image.open(REF).convert("RGBA")
+    w, h = ref.size
+    side = min(w, h)
+    left = (w - side) // 2
+    top = (h - side) // 2
+    square = ref.crop((left, top, left + side, top + side))
+
+    pixels = square.load()
+    for y in range(square.height):
+        for x in range(square.width):
+            r, g, b, a = pixels[x, y]
+            if _is_white(r, g, b, a):
+                pixels[x, y] = BG
+
+    return square.resize((size, size), Image.Resampling.LANCZOS)
 
 
 def _rounded_rect_mask(size: int, radius: int) -> Image.Image:
@@ -40,32 +47,50 @@ def _rounded_rect_mask(size: int, radius: int) -> Image.Image:
     return mask
 
 
-def render_logo(size: int) -> Image.Image:
-    scale = size / 32.0
-    radius = max(1, round(6 * scale))
-
-    img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(img)
-    draw.rounded_rectangle((0, 0, size - 1, size - 1), radius=radius, fill=BG)
-
-    for leaf in GREEN_LEAVES:
-        draw.polygon([(x * scale, y * scale) for x, y in leaf], fill=GREEN)
-
-    for petal in PINK_PETALS:
-        draw.polygon([(x * scale, y * scale) for x, y in petal], fill=PINK)
-
+def _apply_favicon_mask(img: Image.Image) -> Image.Image:
+    size = img.width
+    radius = max(1, round(6 * size / 32))
     masked = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     masked.paste(img, mask=_rounded_rect_mask(size, radius))
     return masked
 
 
+def _write_svg(png: Image.Image) -> None:
+    buf = io.BytesIO()
+    png.save(buf, format="PNG", optimize=True)
+    encoded = base64.b64encode(buf.getvalue()).decode("ascii")
+    svg = (
+        '<svg xmlns="http://www.w3.org/2000/svg" '
+        'viewBox="0 0 32 32" role="img" aria-label="Black Elixir Spa">\n'
+        f'  <image width="32" height="32" href="data:image/png;base64,{encoded}"/>\n'
+        "</svg>\n"
+    )
+    (OUT_DIR / "favicon.svg").write_text(svg, encoding="utf-8")
+
+
 def main() -> None:
+    if not REF.exists():
+        raise FileNotFoundError(f"Missing reference image: {REF}")
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    render_logo(32).save(OUT_DIR / "favicon-32.png", optimize=True)
-    render_logo(192).save(OUT_DIR / "logo-192.png", optimize=True)
-    render_logo(512).save(OUT_DIR / "logo-512.png", optimize=True)
-    render_logo(256).save(OUT_DIR / "logo.png", optimize=True)
-    print(f"Saved PNG icons to {OUT_DIR}")
+    master = _load_master(512)
+
+    outputs = {
+        "favicon-32.png": 32,
+        "logo-192.png": 192,
+        "logo.png": 256,
+        "logo-512.png": 512,
+    }
+
+    for name, size in outputs.items():
+        scaled = master.resize((size, size), Image.Resampling.LANCZOS)
+        if name == "favicon-32.png":
+            scaled = _apply_favicon_mask(scaled)
+        scaled.save(OUT_DIR / name, optimize=True)
+
+    svg_source = _apply_favicon_mask(master.resize((32, 32), Image.Resampling.LANCZOS))
+    _write_svg(svg_source)
+    print(f"Saved icons to {OUT_DIR}")
 
 
 if __name__ == "__main__":
