@@ -1,7 +1,9 @@
-import math
 from datetime import datetime
 
+from django.utils import timezone
+
 from apps.core.i18n_utils import localized_field
+from apps.schedule.weekly_schedule import WEEKLY_SHIFTS
 
 TIMES = ['09:00', '11:00', '18:30', '20:30', '02:00', '04:00', '06:00']
 
@@ -16,11 +18,6 @@ def today_weekday_index():
     return datetime.now().weekday()
 
 
-def _srand(seed):
-    x = math.sin(seed + 1) * 10000
-    return x - math.floor(x)
-
-
 def _slot_dict(slot_id, masseuse, service, lang, is_booked):
     return {
         'id': slot_id,
@@ -31,44 +28,52 @@ def _slot_dict(slot_id, masseuse, service, lang, is_booked):
     }
 
 
+def _primary_service(masseuse):
+    services = list(masseuse.services.filter(is_active=True))
+    return services[0] if services else None
+
+
 def build_demo_grid(masseuses, lang='cs'):
     grid = {day: {time: [] for time in TIMES} for day in range(7)}
-    seed = 77
     slot_id = 1
+    masseuse_by_slug = {m.slug: m for m in masseuses}
 
-    for masseuse in masseuses:
-        services = list(masseuse.services.filter(is_active=True))
-        if not services:
+    for slug, day_shifts in WEEKLY_SHIFTS.items():
+        masseuse = masseuse_by_slug.get(slug)
+        if not masseuse:
             continue
 
-        for day in range(7):
-            for time in TIMES:
-                seed += 1
-                if _srand(seed) <= 0.42:
-                    continue
+        service = _primary_service(masseuse)
+        if not service:
+            continue
 
-                seed += 1
-                service = services[int(_srand(seed + 500) * len(services)) % len(services)]
-                seed += 1
-                is_booked = _srand(seed + 1000) > 0.52
-
-                grid[day][time].append(
-                    _slot_dict(slot_id, masseuse, service, lang, is_booked)
-                )
-                slot_id += 1
+        for day, time in day_shifts.items():
+            if time not in TIMES:
+                continue
+            grid[day][time].append(
+                _slot_dict(slot_id, masseuse, service, lang, False)
+            )
+            slot_id += 1
 
     return grid
 
 
 def build_db_grid(slots, lang='cs'):
     grid = {day: {time: [] for time in TIMES} for day in range(7)}
+    seen = set()
 
     for slot in slots:
-        time_str = slot.start_time.strftime('%H:%M')
+        local_start = timezone.localtime(slot.start_time)
+        time_str = local_start.strftime('%H:%M')
         if time_str not in TIMES:
             continue
 
-        day = slot.start_time.weekday()
+        day = local_start.weekday()
+        key = (day, time_str, slot.masseuse_id)
+        if key in seen:
+            continue
+        seen.add(key)
+
         grid[day][time_str].append(
             _slot_dict(slot.id, slot.masseuse, slot.service, lang, slot.is_booked)
         )
