@@ -2,21 +2,6 @@
 <section class="schedule-week" aria-labelledby="schedule-week-title">
   <h2 id="schedule-week-title" class="schedule-week__title">{% trans 'Weekly schedule' %}</h2>
 
-  <div class="schedule-legend">
-    <div class="schedule-legend__item">
-      <span class="schedule-legend__swatch schedule-legend__swatch--avail"></span>
-      <span>{% trans 'Available' %}</span>
-    </div>
-    <div class="schedule-legend__item">
-      <span class="schedule-legend__swatch schedule-legend__swatch--booked"></span>
-      <span>{% trans 'Booked' %}</span>
-    </div>
-    <div class="schedule-legend__item">
-      <span class="schedule-legend__swatch schedule-legend__swatch--night"></span>
-      <span>{% trans 'Night shift' %}</span>
-    </div>
-  </div>
-
   <div class="schedule-tabs" role="tablist" data-schedule-tabs>
     {% for card in masseuse_cards %}
     <button type="button"

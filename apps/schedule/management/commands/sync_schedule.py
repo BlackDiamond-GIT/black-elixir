@@ -1,88 +1,145 @@
-from datetime import datetime, timedelta
+"""Sync schedule from tantra-prague.com Hub API into local TimeSlot records.
 
+Replaces the previous approach of hardcoded WEEKLY_SHIFTS in weekly_schedule.py.
+Hub API provides date-specific entries (not recurring weekday patterns).
+
+Flow:
+  Hub API /api/v1/black-elixir/schedule/ → raw entries (who works when) →
+  1. Cache weekly patterns (for schedule page display)
+  2. Expand into individual TimeSlots (per booking slot) using shift_utils →
+     upsert into local TimeSlot table (leave is_booked=True slots untouched)
+"""
+
+from __future__ import annotations
+
+import datetime
+from collections import defaultdict
+
+from django.core.cache import cache
 from django.core.management.base import BaseCommand
 from django.utils import timezone
 
+from apps.hub_client.client import HubClient
+from apps.hub_client.exceptions import HubUnavailableError
 from apps.masseurs.models import Masseuse
 from apps.schedule.models import TimeSlot, WorkLocation
 from apps.schedule.shift_utils import expand_shift_times
-from apps.schedule.weekly_schedule import DEFAULT_LOCATION, WEEKLY_SHIFTS
+
+# Key used by schedule_cards.py to read patterns built from hub sync
+HUB_SHIFTS_CACHE_KEY = "hub:weekly_shifts"
+HUB_SHIFTS_CACHE_TTL = 86400  # 24h — cron refreshes every 30 min
 
 
-def _week_start(reference=None):
-    ref = reference or timezone.localdate()
-    return ref - timedelta(days=ref.weekday())
-
-
-def _shift_datetime(week_start, weekday, time_str):
+def _shift_datetime(day: datetime.date, time_str: str) -> datetime.datetime:
     hour, minute = map(int, time_str.split(':'))
-    day = week_start + timedelta(days=weekday)
-    naive = datetime.combine(day, datetime.min.time().replace(hour=hour, minute=minute))
+    naive = datetime.datetime.combine(day, datetime.time(hour, minute))
     return timezone.make_aware(naive, timezone.get_current_timezone())
 
 
+def _build_weekly_patterns(raw_entries: list[dict]) -> dict:
+    """Convert date-specific hub entries to WEEKLY_SHIFTS-compatible dict.
+
+    Returns {masseuse_slug: {weekday(0-6): {start, end, shift}}}
+    Each weekday keeps only the most-recent entry (last sync wins).
+    """
+    patterns: dict[str, dict] = defaultdict(dict)
+    for entry in raw_entries:
+        day = datetime.date.fromisoformat(entry["date"])
+        weekday = day.weekday()
+        slug = entry["masseuse_slug"]
+        patterns[slug][weekday] = {
+            "start": entry["time_from"],
+            "end": entry["time_to"],
+            "shift": entry.get("shift_type", "day"),
+        }
+    return dict(patterns)
+
+
 class Command(BaseCommand):
-    help = 'Sync weekly schedule from tantra-prague pattern into TimeSlot records'
+    help = "Sync schedule from tantra-prague.com Hub API into local TimeSlot records."
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--weeks',
+            "--days",
             type=int,
-            default=2,
-            help='Number of weeks ahead to generate (default: 2)',
+            default=35,
+            help="Number of days ahead to fetch (default: 35)",
+        )
+        parser.add_argument(
+            "--dry-run",
+            action="store_true",
+            help="Count only, do not write to DB",
         )
 
     def handle(self, *args, **options):
-        weeks = max(1, options['weeks'])
+        days = options["days"]
+        dry_run = options["dry_run"]
         now = timezone.now()
-        week_start = _week_start()
 
-        deleted, _ = TimeSlot.objects.filter(
-            is_booked=False,
-            start_time__gte=now,
-        ).delete()
-        self.stdout.write(f'Removed {deleted} unbooked future slots')
+        client = HubClient()
+        try:
+            raw_entries = client.fetch_schedule_json(days=days)
+        except HubUnavailableError as exc:
+            self.stderr.write(self.style.ERROR(f"Hub unavailable: {exc}"))
+            return
+
+        # Always update the weekly patterns cache (used by schedule page display)
+        weekly_patterns = _build_weekly_patterns(raw_entries)
+        if not dry_run:
+            cache.set(HUB_SHIFTS_CACHE_KEY, weekly_patterns, HUB_SHIFTS_CACHE_TTL)
+            self.stdout.write(f"Cached weekly patterns for {len(weekly_patterns)} masseuses.")
 
         masseuse_by_slug = {
-            m.slug: m for m in Masseuse.objects.filter(is_active=True).prefetch_related('services')
+            m.slug: m
+            for m in Masseuse.objects.filter(is_active=True).prefetch_related("services")
         }
-        location_by_slug = {loc.slug: loc for loc in WorkLocation.objects.filter(is_active=True)}
+        default_location = WorkLocation.objects.filter(is_active=True).first()
+
+        skipped = 0
         created = 0
 
-        for week_offset in range(weeks):
-            start = week_start + timedelta(weeks=week_offset)
+        for entry in raw_entries:
+            masseuse = masseuse_by_slug.get(entry["masseuse_slug"])
+            if not masseuse:
+                skipped += 1
+                continue
 
-            for slug, day_shifts in WEEKLY_SHIFTS.items():
-                masseuse = masseuse_by_slug.get(slug)
-                if not masseuse:
-                    self.stdout.write(self.style.WARNING(f'Skip unknown slug: {slug}'))
+            services = list(masseuse.services.filter(is_active=True))
+            if not services:
+                skipped += 1
+                continue
+
+            day = datetime.date.fromisoformat(entry["date"])
+            shift_type = entry.get("shift_type", TimeSlot.SHIFT_DAY)
+
+            for time_str in expand_shift_times(entry["time_from"], entry["time_to"]):
+                start_time = _shift_datetime(day, time_str)
+                if start_time < now:
                     continue
 
-                services = list(masseuse.services.filter(is_active=True))
-                if not services:
+                if dry_run:
+                    created += len(services)
                     continue
 
-                for weekday, shift in day_shifts.items():
-                    location = location_by_slug.get(shift.get('location', DEFAULT_LOCATION))
-                    shift_type = shift.get('shift', TimeSlot.SHIFT_DAY)
+                for service in services:
+                    _, was_created = TimeSlot.objects.get_or_create(
+                        masseuse=masseuse,
+                        service=service,
+                        start_time=start_time,
+                        defaults={
+                            "is_booked": False,
+                            "location": default_location,
+                            "shift_type": shift_type,
+                        },
+                    )
+                    if was_created:
+                        created += 1
 
-                    for time_str in expand_shift_times(shift['start'], shift['end']):
-                        start_time = _shift_datetime(start, weekday, time_str)
-                        if start_time < now:
-                            continue
+        prefix = "[dry-run] " if dry_run else ""
+        self.stdout.write(
+            f"{prefix}Fetched {len(raw_entries)} entries, created {created} slots, "
+            f"skipped {skipped} (unknown masseuse/no services)"
+        )
+        if not dry_run:
+            self.stdout.write(self.style.SUCCESS("Schedule synced from hub API."))
 
-                        for service in services:
-                            _, was_created = TimeSlot.objects.get_or_create(
-                                masseuse=masseuse,
-                                service=service,
-                                start_time=start_time,
-                                defaults={
-                                    'is_booked': False,
-                                    'location': location,
-                                    'shift_type': shift_type,
-                                },
-                            )
-                            if was_created:
-                                created += 1
-
-        self.stdout.write(self.style.SUCCESS(f'Created {created} schedule slots'))

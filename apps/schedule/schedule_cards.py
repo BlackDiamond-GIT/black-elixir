@@ -18,6 +18,19 @@ CONTINUATION_LABELS = {
     'uk': 'Продовження ночі',
 }
 
+# Cache key where sync_schedule writes hub-derived weekly patterns
+_HUB_SHIFTS_CACHE_KEY = "hub:weekly_shifts"
+
+
+def _shifts_source() -> dict:
+    """Return WEEKLY_SHIFTS dict — prefer hub-synced cache over hardcoded fallback."""
+    from django.core.cache import cache
+
+    cached = cache.get(_HUB_SHIFTS_CACHE_KEY)
+    if cached:
+        return cached
+    return WEEKLY_SHIFTS
+
 
 def _shift_label(shift_type, lang):
     labels = SHIFT_LABELS.get(shift_type, SHIFT_LABELS['day'])
@@ -89,7 +102,7 @@ def build_masseuse_week_cards(masseuses, lang='cs'):
     booked_lookup = _booked_lookup()
     cards = []
 
-    for slug, day_shifts in WEEKLY_SHIFTS.items():
+    for slug, day_shifts in _shifts_source().items():
         masseuse = masseuse_by_slug.get(slug)
         if not masseuse:
             continue
@@ -139,7 +152,7 @@ def build_on_shift_now(cards, lang='cs', now=None):
     now_minutes = now.hour * 60 + now.minute
     active = []
 
-    for slug, day_shifts in WEEKLY_SHIFTS.items():
+    for slug, day_shifts in _shifts_source().items():
         card = next((c for c in cards if c['slug'] == slug), None)
         if not card:
             continue

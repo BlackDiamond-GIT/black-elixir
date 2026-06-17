@@ -85,11 +85,6 @@
   margin: 0 0 var(--sp-4);
 }
 
-.schedule-legend__swatch--night {
-  background: rgba(201, 169, 138, 0.12);
-  border: 1px solid rgba(201, 169, 138, 0.35);
-}
-
 .schedule-tabs {
   display: flex;
   flex-wrap: wrap;
