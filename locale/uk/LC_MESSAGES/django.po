@@ -1263,9 +1263,6 @@ msgstr "Шаблон — російська"
 msgid "Client"
 msgstr "Клієнт"
 
-msgid "Today"
-msgstr "Сьогодні"
-
 msgid "Reservation wizard"
 msgstr "Майстер резервації"
 

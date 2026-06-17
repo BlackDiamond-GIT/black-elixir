@@ -44,9 +44,12 @@ def compile_with_polib():
 
 
 def main():
-    if compile_with_msgfmt():
-        print('Compiled translations with msgfmt')
-        return
+    try:
+        if compile_with_msgfmt():
+            print('Compiled translations with msgfmt')
+            return
+    except subprocess.CalledProcessError as exc:
+        print(f'msgfmt failed ({exc}), trying polib...')
 
     try:
         subprocess.run(

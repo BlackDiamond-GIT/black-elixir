@@ -20,10 +20,11 @@ from django.core.management.base import BaseCommand
 from django.utils import timezone
 
 from apps.hub_client.client import HubClient
-from apps.hub_client.exceptions import HubUnavailableError
+from apps.hub_client.exceptions import HubAPIError, HubUnavailableError
 from apps.masseurs.models import Masseuse
 from apps.schedule.models import TimeSlot, WorkLocation
 from apps.schedule.shift_utils import expand_shift_times
+from apps.schedule.weekly_schedule import WEEKLY_SHIFTS
 
 # Key used by schedule_cards.py to read patterns built from hub sync
 HUB_SHIFTS_CACHE_KEY = "hub:weekly_shifts"
@@ -34,6 +35,27 @@ def _shift_datetime(day: datetime.date, time_str: str) -> datetime.datetime:
     hour, minute = map(int, time_str.split(':'))
     naive = datetime.datetime.combine(day, datetime.time(hour, minute))
     return timezone.make_aware(naive, timezone.get_current_timezone())
+
+
+def _weekly_fallback_entries(days: int) -> list[dict]:
+    """Build date-specific entries from hardcoded WEEKLY_SHIFTS."""
+    today = timezone.localdate()
+    entries: list[dict] = []
+    for offset in range(days):
+        day = today + datetime.timedelta(days=offset)
+        weekday = day.weekday()
+        for slug, day_shifts in WEEKLY_SHIFTS.items():
+            shift = day_shifts.get(weekday)
+            if not shift:
+                continue
+            entries.append({
+                'date': day.isoformat(),
+                'masseuse_slug': slug,
+                'time_from': shift['start'],
+                'time_to': shift['end'],
+                'shift_type': shift.get('shift', 'day'),
+            })
+    return entries
 
 
 def _build_weekly_patterns(raw_entries: list[dict]) -> dict:
@@ -77,11 +99,23 @@ class Command(BaseCommand):
         now = timezone.now()
 
         client = HubClient()
+        source = 'hub'
         try:
             raw_entries = client.fetch_schedule_json(days=days)
         except HubUnavailableError as exc:
-            self.stderr.write(self.style.ERROR(f"Hub unavailable: {exc}"))
-            return
+            self.stderr.write(
+                self.style.WARNING(f'Hub unavailable: {exc}. Using WEEKLY_SHIFTS fallback.')
+            )
+            raw_entries = _weekly_fallback_entries(days)
+            source = 'fallback'
+        except HubAPIError as exc:
+            self.stderr.write(
+                self.style.WARNING(
+                    f'Hub API error ({exc.status_code}): {exc}. Using WEEKLY_SHIFTS fallback.'
+                )
+            )
+            raw_entries = _weekly_fallback_entries(days)
+            source = 'fallback'
 
         # Always update the weekly patterns cache (used by schedule page display)
         weekly_patterns = _build_weekly_patterns(raw_entries)
@@ -141,5 +175,5 @@ class Command(BaseCommand):
             f"skipped {skipped} (unknown masseuse/no services)"
         )
         if not dry_run:
-            self.stdout.write(self.style.SUCCESS("Schedule synced from hub API."))
+            self.stdout.write(self.style.SUCCESS(f'Schedule synced from {source}.'))
 
