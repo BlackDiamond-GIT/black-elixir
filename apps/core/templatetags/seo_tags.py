@@ -6,6 +6,7 @@ from django.utils.html import format_html
 from apps.core.currency import format_price_czk, format_price_triple, normalize_currency
 from apps.core.i18n_utils import localized_field
 from apps.core.media_utils import media_field_url
+from apps.core.site_address import POSTAL_CODE, STREET
 from apps.core.url_utils import absolute_reverse, language_path, strip_language_prefix
 from apps.pages.content import BLOG_IMAGES, MASSEUSE_IMAGES, SERVICE_IMAGES
 
@@ -210,6 +211,8 @@ def schema_faq(faqs):
 def schema_local_business(context):
     request = context['request']
     home_url = absolute_reverse(request, 'pages:home')
+    lang = getattr(request, 'LANGUAGE_CODE', 'cs')
+    locality = 'Prague' if lang == 'en' else 'Praha'
     schema = {
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
@@ -222,9 +225,9 @@ def schema_local_business(context):
         'email': 'info@blackelixir.cz',
         'address': {
             '@type': 'PostalAddress',
-            'streetAddress': 'Václavské náměstí 12',
-            'addressLocality': 'Prague',
-            'postalCode': '110 00',
+            'streetAddress': STREET,
+            'addressLocality': locality,
+            'postalCode': POSTAL_CODE,
             'addressCountry': 'CZ',
         },
         'openingHours': [

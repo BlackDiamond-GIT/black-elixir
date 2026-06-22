@@ -2,6 +2,7 @@ from django.conf import settings
 from django.urls import translate_url
 
 from apps.core.currency import CURRENCIES, normalize_currency
+from apps.core.site_address import STREET, get_address
 
 
 def site_languages(request):
@@ -19,10 +20,14 @@ def site_languages(request):
 
 def site_settings(request):
     from apps.services.models import MassageType
+    lang = request.LANGUAGE_CODE
+    address = get_address(lang)
     return {
-        'current_language': request.LANGUAGE_CODE,
+        'current_language': lang,
         'site_name': 'Black Elixir Spa',
         'footer_services': MassageType.objects.filter(is_active=True),
+        'site_address': address,
+        'site_street': STREET,
     }
 
 

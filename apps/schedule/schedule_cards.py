@@ -9,6 +9,7 @@ from apps.schedule.shift_utils import (
     merge_shift_days,
     split_shift_to_days,
 )
+from apps.core.site_address import get_address
 from apps.schedule.weekly_schedule import DEFAULT_LOCATION, SHIFT_LABELS, WEEKLY_SHIFTS
 
 CONTINUATION_LABELS = {
@@ -45,7 +46,7 @@ def _salon_address(lang):
     loc = WorkLocation.objects.filter(slug=DEFAULT_LOCATION, is_active=True).first()
     if loc:
         return localized_field(loc, 'address', lang)
-    return 'Opletalova 1566/30, 110 00 Nové Město, Praha'
+    return get_address(lang)['full']
 
 
 def _location_meta(lang):

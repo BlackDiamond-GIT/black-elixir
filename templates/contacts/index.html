@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block seo_title %}{% trans "Contact — Black Elixir Spa" %}{% endblock %}
-{% block meta_description %}{% trans "Find us in the heart of Prague. Wenceslas Square 12. Phone: +420 777 123 456" %}{% endblock %}
+{% block meta_description %}{% blocktrans with street=site_address.short %}Find us in the heart of Prague at {{ street }}. Phone: +420 777 123 456{% endblocktrans %}{% endblock %}
 
 {% block content %}
 <header class="page-header">
@@ -20,9 +20,11 @@
           <div class="nap-icon">{% include "partials/_nap_icon.html" with icon="location" %}</div>
           <div>
             <div class="nap-label">{% trans 'Address' %}</div>
-            <div class="nap-value">{% blocktrans trimmed %}Wenceslas Square 12
-Prague 1, 110 00
-Czech Republic{% endblocktrans %}</div>
+            <div class="nap-value">
+              {% for line in site_address.lines %}
+              {{ line }}{% if not forloop.last %}<br>{% endif %}
+              {% endfor %}
+            </div>
           </div>
         </div>
         

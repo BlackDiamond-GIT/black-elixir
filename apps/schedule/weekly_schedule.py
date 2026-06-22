@@ -1,6 +1,12 @@
 """Weekly shifts synced from tantra-prague.com/cs/rozvrh/."""
 
-DEFAULT_LOCATION = 'opletalova'
+from apps.core.site_address import get_address
+
+DEFAULT_LOCATION = 'soukenicka'
+
+_addr = get_address('cs')
+_addr_en = get_address('en')
+_addr_ru = get_address('ru')
 
 WEEKLY_SHIFTS = {
     'julia': {
@@ -31,13 +37,13 @@ WEEKLY_SHIFTS = {
 
 LOCATION_CATALOG = [
     {
-        'slug': 'opletalova',
-        'name_cs': 'Opletalova 1566/30',
-        'name_en': 'Opletalova 1566/30',
-        'name_ru': 'Opletalova 1566/30',
-        'address_cs': 'Opletalova 1566/30, 110 00 Nové Město, Praha',
-        'address_en': 'Opletalova 1566/30, 110 00 Nové Město, Prague',
-        'address_ru': 'Opletalova 1566/30, 110 00 Nové Město, Прага',
+        'slug': 'soukenicka',
+        'name_cs': _addr['short'],
+        'name_en': _addr_en['short'],
+        'name_ru': _addr_ru['short'],
+        'address_cs': _addr['full'],
+        'address_en': _addr_en['full'],
+        'address_ru': _addr_ru['full'],
         'order': 1,
     },
 ]

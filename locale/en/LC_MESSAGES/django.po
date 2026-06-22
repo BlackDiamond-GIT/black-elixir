@@ -86,9 +86,8 @@ msgid "Contact — Black Elixir Spa"
 msgstr "Contact — Black Elixir Spa"
 
 #: templates/contacts/index.html:5
-msgid ""
-"Find us in the heart of Prague. Wenceslas Square 12. Phone: +420 777 123 456"
-msgstr "Find us in the heart of Prague. Wenceslas Square 12. Phone: +420 777 123 456"
+msgid "Find us in the heart of Prague at %(street)s. Phone: +420 777 123 456"
+msgstr "Find us in the heart of Prague at %(street)s. Phone: +420 777 123 456"
 
 #: templates/contacts/index.html:8 templates/contacts/index.html:10
 #: templates/faq/index.html:36 templates/partials/_footer.html:27
@@ -105,10 +104,6 @@ msgstr "Find us in the heart of Prague. We look forward to your visit."
 #: templates/contacts/index.html:22
 msgid "Address"
 msgstr "Address"
-
-#: templates/contacts/index.html:23
-msgid "Wenceslas Square 12 Prague 1, 110 00 Czech Republic"
-msgstr "Wenceslas Square 12 Prague 1, 110 00 Czech Republic"
 
 #: templates/contacts/index.html:32
 #: templates/reservation/partials/step_4.html:38
