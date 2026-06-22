@@ -2,7 +2,7 @@ from django.conf import settings
 from django.urls import translate_url
 
 from apps.core.currency import CURRENCIES, normalize_currency
-from apps.core.site_address import STREET, get_address
+from apps.core.site_address import STREET, get_address, get_opening_hours
 
 
 def site_languages(request):
@@ -28,6 +28,7 @@ def site_settings(request):
         'footer_services': MassageType.objects.filter(is_active=True),
         'site_address': address,
         'site_street': STREET,
+        'site_opening_hours': get_opening_hours(lang),
     }
 
 

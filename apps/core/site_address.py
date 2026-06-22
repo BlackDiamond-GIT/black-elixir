@@ -1,8 +1,11 @@
-"""Salon address — single source of truth."""
+"""Salon address and opening hours — single source of truth."""
 
 STREET = 'Soukenická'
 POSTAL_CODE = '110 00'
 DISTRICT = 'Nové Město'
+
+OPENS = '11:00'
+CLOSES = '04:00'
 
 ADDRESSES = {
     'cs': {
@@ -28,5 +31,17 @@ ADDRESSES = {
 }
 
 
+OPENING_HOURS = {
+    'cs': 'Denně od 11:00 do 4:00',
+    'en': 'Daily from 11 am to 4 am',
+    'ru': 'С 11 утра до 4 утра',
+    'uk': 'Щодня з 11:00 до 4:00',
+}
+
+
 def get_address(lang='cs'):
     return ADDRESSES.get(lang, ADDRESSES['cs'])
+
+
+def get_opening_hours(lang='cs'):
+    return OPENING_HOURS.get(lang, OPENING_HOURS['cs'])

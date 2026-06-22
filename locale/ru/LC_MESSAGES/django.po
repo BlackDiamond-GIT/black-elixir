@@ -119,12 +119,6 @@ msgstr "E-mail"
 msgid "Opening Hours"
 msgstr "Часы работы"
 
-#: templates/contacts/index.html:49
-msgid "Mon–Fri: 10:00–21:00 Sat–Sun: 10:00–19:00"
-msgstr ""
-"Пн–Пт: 10:00–21:00\n"
-"Сб–Вс: 10:00–19:00"
-
 #: templates/contacts/index.html:57
 msgid "Map placeholder"
 msgstr "Карта - заполнитель"

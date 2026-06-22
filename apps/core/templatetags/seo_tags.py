@@ -6,7 +6,7 @@ from django.utils.html import format_html
 from apps.core.currency import format_price_czk, format_price_triple, normalize_currency
 from apps.core.i18n_utils import localized_field
 from apps.core.media_utils import media_field_url
-from apps.core.site_address import POSTAL_CODE, STREET
+from apps.core.site_address import CLOSES, OPENS, POSTAL_CODE, STREET
 from apps.core.url_utils import absolute_reverse, language_path, strip_language_prefix
 from apps.pages.content import BLOG_IMAGES, MASSEUSE_IMAGES, SERVICE_IMAGES
 
@@ -233,15 +233,12 @@ def schema_local_business(context):
         'openingHours': [
             {
                 '@type': 'OpeningHoursSpecification',
-                'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                'opens': '10:00',
-                'closes': '21:00',
-            },
-            {
-                '@type': 'OpeningHoursSpecification',
-                'dayOfWeek': ['Saturday', 'Sunday'],
-                'opens': '10:00',
-                'closes': '19:00',
+                'dayOfWeek': [
+                    'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+                    'Friday', 'Saturday', 'Sunday',
+                ],
+                'opens': OPENS,
+                'closes': CLOSES,
             },
         ],
         'aggregateRating': {

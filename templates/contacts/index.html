@@ -48,8 +48,7 @@
           <div class="nap-icon">{% include "partials/_nap_icon.html" with icon="hours" %}</div>
           <div>
             <div class="nap-label">{% trans 'Opening Hours' %}</div>
-            <div class="nap-value">{% blocktrans trimmed %}Mon–Fri: 10:00–21:00
-Sat–Sun: 10:00–19:00{% endblocktrans %}</div>
+            <div class="nap-value">{{ site_opening_hours }}</div>
           </div>
         </div>
       </div>
