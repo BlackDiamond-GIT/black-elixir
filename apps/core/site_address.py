@@ -4,8 +4,8 @@ STREET = 'Soukenická'
 POSTAL_CODE = '110 00'
 DISTRICT = 'Nové Město'
 
-OPENS = '11:00'
-CLOSES = '04:00'
+OPENS = '09:00'
+CLOSES = '05:00'
 
 ADDRESSES = {
     'cs': {
@@ -32,10 +32,10 @@ ADDRESSES = {
 
 
 OPENING_HOURS = {
-    'cs': 'Denně od 11:00 do 4:00',
-    'en': 'Daily from 11 am to 4 am',
-    'ru': 'С 11 утра до 4 утра',
-    'uk': 'Щодня з 11:00 до 4:00',
+    'cs': 'Denně od 9:00 do 5:00 ráno',
+    'en': 'Daily from 9 AM to 5 AM',
+    'ru': 'Ежедневно с 9:00 до 5:00 утра',
+    'uk': 'Щодня з 9:00 до 5:00 ранку',
 }
 
 

@@ -181,14 +181,14 @@ const NETWORK_SALONS = [
     badge: 'Praha 2',
     name:  'Black Elixir Vinohrady',
     addr:  { cs:'Mánesova 28\nPraha 2, 120 00', en:'28 Mánesova\nPrague 2, 120 00', ru:'Mánesova 28\nПрага 2, 120 00' },
-    hours: { cs:'Po–Pá 10:00–21:00 · So–Ne 10:00–19:00', en:'Mon–Fri 10:00–21:00 · Sat–Sun 10:00–19:00', ru:'Пн–Пт 10:00–21:00 · Сб–Вс 10:00–19:00' },
+    hours: { cs:'Denně od 9:00 do 5:00 ráno', en:'Daily from 9 AM to 5 AM', ru:'Ежедневно с 9:00 до 5:00 утра' },
     phone: '+420 777 456 789',
   },
   {
     badge: 'Praha 6',
     name:  'Black Elixir Dejvice',
     addr:  { cs:'Dejvická 14\nPraha 6, 160 00', en:'14 Dejvická\nPrague 6, 160 00', ru:'Dejvická 14\nПрага 6, 160 00' },
-    hours: { cs:'Po–Pá 10:00–20:00 · So 10:00–18:00', en:'Mon–Fri 10:00–20:00 · Sat 10:00–18:00', ru:'Пн–Пт 10:00–20:00 · Сб 10:00–18:00' },
+    hours: { cs:'Denně od 9:00 do 5:00 ráno', en:'Daily from 9 AM to 5 AM', ru:'Ежедневно с 9:00 до 5:00 утра' },
     phone: '+420 777 567 890',
   },
 ];

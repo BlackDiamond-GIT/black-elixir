@@ -420,8 +420,8 @@ msgid "Schedule"
 msgstr "Schedule"
 
 #: templates/partials/_footer.html:47
-msgid "Mon–Fri 10–21 · Sat–Sun 10–19"
-msgstr "Mon–Fri 10–21 · Sat–Sun 10–19"
+msgid "Daily from 9 AM to 5 AM"
+msgstr "Daily from 9 AM to 5 AM"
 
 #: templates/partials/_footer.html:53
 msgid "All rights reserved."

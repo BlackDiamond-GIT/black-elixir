@@ -55,7 +55,7 @@ const T = {
       addr:'Adresa', addrV:'Václavské náměstí 12\nPraha 1, 110 00\nČeská republika',
       phone:'Telefon', phoneV:'+420 777 123 456',
       email:'E-mail',  emailV:'info@blackelixir.cz',
-      hours:'Otevírací hodiny', hoursV:'Po–Pá: 10:00–21:00\nSo–Ne: 10:00–19:00',
+      hours:'Otevírací hodiny', hoursV:'Denně od 9:00 do 5:00 ráno',
     },
     mas: {
       ti:'Naše masérky — Black Elixir Spa', ds:'Certifikované odbornice s odborným přístupem k masáži a wellbeingu.',
@@ -134,7 +134,7 @@ const T = {
       addr:'Address', addrV:'12 Václavské náměstí\nPrague 1, 110 00\nCzech Republic',
       phone:'Phone', phoneV:'+420 777 123 456',
       email:'Email',  emailV:'info@blackelixir.cz',
-      hours:'Opening Hours', hoursV:'Mon–Fri: 10:00–21:00\nSat–Sun: 10:00–19:00',
+      hours:'Opening Hours', hoursV:'Daily from 9 AM to 5 AM',
     },
     mas: {
       ti:'Our Masseuses — Black Elixir Spa', ds:'Certified professionals dedicated to massage and wellbeing.',
@@ -213,7 +213,7 @@ const T = {
       addr:'Адрес', addrV:'Václavské náměstí 12\nПрага 1, 110 00\nЧехия',
       phone:'Телефон', phoneV:'+420 777 123 456',
       email:'E-mail',  emailV:'info@blackelixir.cz',
-      hours:'Часы работы', hoursV:'Пн–Пт: 10:00–21:00\nСб–Вс: 10:00–19:00',
+      hours:'Часы работы', hoursV:'Ежедневно с 9:00 до 5:00 утра',
     },
     mas: {
       ti:'Наши массажистки — Black Elixir Spa', ds:'Сертифицированные специалисты с профессиональным подходом к массажу и велнесу.',
