@@ -58,44 +58,6 @@
   },
   {
     "model": "services.massagetype",
-    "pk": 4,
-    "fields": {
-      "slug": "sportovni-masaz",
-      "name_cs": "Sportovní masáž",
-      "name_en": "Sports Massage",
-      "name_ru": "Спортивный массаж",
-      "description_cs": "Sportovní masáž zaměřená na regeneraci po tréninku a uvolnění svalových skupin.",
-      "description_en": "Sports massage focused on post-workout recovery and muscle group release.",
-      "description_ru": "Спортивный массаж для восстановления после тренировок и расслабления мышечных групп.",
-      "duration_minutes": 60,
-      "base_price": 2500,
-      "meta_title": "Sportovní masáž — Black Elixir Spa",
-      "meta_description": "Sportovní masáž pro regeneraci a prevenci zranění.",
-      "order": 4,
-      "is_active": true
-    }
-  },
-  {
-    "model": "services.massagetype",
-    "pk": 5,
-    "fields": {
-      "slug": "lymfaticka-masaz",
-      "name_cs": "Lymfatická masáž",
-      "name_en": "Lymphatic Massage",
-      "name_ru": "Лимфодренажный массаж",
-      "description_cs": "Lymfatická masáž podporující detoxikaci, redukci otoků a pocit lehkosti.",
-      "description_en": "Lymphatic massage supporting detoxification, reduced swelling and lightness.",
-      "description_ru": "Лимфодренажный массаж для детоксикации, уменьшения отёков и чувства легкости.",
-      "duration_minutes": 60,
-      "base_price": 3300,
-      "meta_title": "Lymfatická masáž — Black Elixir Spa",
-      "meta_description": "Lymfatická masáž pro detoxikaci a lehkost těla.",
-      "order": 5,
-      "is_active": true
-    }
-  },
-  {
-    "model": "services.massagetype",
     "pk": 6,
     "fields": {
       "slug": "aromaterapie",
