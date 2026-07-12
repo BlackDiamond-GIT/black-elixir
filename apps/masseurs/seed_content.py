@@ -4,21 +4,21 @@ def generate_masseuse_content(item):
     spec_en = item['spec_en']
     spec_ru = item['spec_ru']
     bio_cs = (
-        f'{name} je certifikovaná masérka specializující se na {spec_cs.lower()}. '
+        f'{name} je zkušená masérka specializující se na {spec_cs.lower()}. '
         f'V Black Elixir Spa v Praze přizpůsobuje každé sezení potřebám klienta a aktuálnímu stavu těla. '
         f'Její přístup spojuje odborné techniky s klidnou péčí, která navozuje pocit bezpečí a hluboké relaxace. '
         f'Klienti oceňují precizní práci, empatii a schopnost uvolnit napětí v zádech, krku a ramenou. '
         f'Věří, že kvalitní masáž je investice do fyzického i duševního zdraví.'
     )
     bio_en = (
-        f'{name} is a certified massage therapist specialising in {spec_en.lower()}. '
+        f'{name} is an experienced massage therapist specialising in {spec_en.lower()}. '
         f'At Black Elixir Spa Prague she tailors each session to the client\'s needs and current condition. '
         f'Her calm, attentive approach combines professional techniques with a sense of safety and deep relaxation. '
         f'Clients appreciate her precise work, empathy and ability to release tension in the back, neck and shoulders. '
         f'She believes quality massage is an investment in physical and mental health.'
     )
     bio_ru = (
-        f'{name} — сертифицированный массажист, специализирующийся на {spec_ru.lower()}. '
+        f'{name} — опытный массажист, специализирующийся на {spec_ru.lower()}. '
         f'В Black Elixir Spa Praha она адаптирует каждый сеанс под потребности клиента и состояние тела. '
         f'Её спокойный подход сочетает профессиональные техники с ощущением безопасности и глубокой релаксацией. '
         f'Клиенты ценят точную работу, эмпатию и умение снимать напряжение в спине, шее и плечах. '

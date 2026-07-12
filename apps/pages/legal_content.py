@@ -15,7 +15,7 @@ LEGAL_PAGES = {
                 {
                     'heading': 'Náš tým',
                     'paragraphs': [
-                        'Pracujeme s certifikovanými masérkami, které pravidelně prohlubují své '
+                        'Pracujeme se zkušenými masérkami, které pravidelně prohlubují své '
                         'dovednosti a přizpůsobují techniky potřebám každého klienta.',
                     ],
                 },
@@ -43,7 +43,7 @@ LEGAL_PAGES = {
                 {
                     'heading': 'Our team',
                     'paragraphs': [
-                        'We work with certified therapists who continuously deepen their skills '
+                        'We work with experienced therapists who continuously deepen their skills '
                         'and adapt techniques to each client\'s needs.',
                     ],
                 },
@@ -71,7 +71,7 @@ LEGAL_PAGES = {
                 {
                     'heading': 'Наша команда',
                     'paragraphs': [
-                        'С нами работают сертифицированные массажистки, которые регулярно совершенствуют навыки '
+                        'С нами работают опытные массажистки, которые регулярно совершенствуют навыки '
                         'и адаптируют техники под потребности каждого клиента.',
                     ],
                 },

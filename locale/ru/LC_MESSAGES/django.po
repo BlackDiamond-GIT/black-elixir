@@ -344,9 +344,9 @@ msgstr "Наши массажистки — Black Elixir Spa"
 
 #: templates/masseurs/list.html:5
 msgid ""
-"Certified professionals dedicated to massage and wellbeing. Meet our team."
+"Experienced professionals dedicated to massage and wellbeing. Meet our team."
 msgstr ""
-"Сертифицированные специалисты с профессиональным подходом к массажу и "
+"Опытные специалисты с профессиональным подходом к массажу и "
 "велнесу. Познакомьтесь с нашей командой."
 
 #: templates/masseurs/list.html:12 templates/partials/_footer.html:24
@@ -384,9 +384,9 @@ msgid "Our Masseuses"
 msgstr "Наши массажистки"
 
 #: templates/masseurs/list.html:16
-msgid "Certified professionals dedicated to massage and wellbeing."
+msgid "Experienced professionals dedicated to massage and wellbeing."
 msgstr ""
-"Сертифицированные специалисты с профессиональным подходом к массажу и "
+"Опытные специалисты с профессиональным подходом к массажу и "
 "велнесу."
 
 #: templates/masseurs/list.html:35

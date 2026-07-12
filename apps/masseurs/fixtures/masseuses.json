@@ -5,9 +5,9 @@
     "fields": {
       "name": "Julia",
       "slug": "julia",
-      "bio_cs": "Julia je certifikovaná masérka specializující se na klasickou a hlubokotkanivní masáž.",
-      "bio_en": "Julia is a certified massage therapist specialising in classic and deep tissue massage.",
-      "bio_ru": "Julia — сертифицированный массажист, специализирующийся на классическом и глубокотканном массаже.",
+      "bio_cs": "Julia je zkušená masérka specializující se na klasickou a hlubokotkanivní masáž.",
+      "bio_en": "Julia is an experienced massage therapist specialising in classic and deep tissue massage.",
+      "bio_ru": "Julia — опытный массажист, специализирующийся на классическом и глубокотканном массаже.",
       "spec_cs": "Klasická & Hlubokotkanivní masáž",
       "spec_en": "Classic & Deep Tissue Massage",
       "spec_ru": "Классический & Глубокотканный массаж",

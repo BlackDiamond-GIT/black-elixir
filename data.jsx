@@ -17,7 +17,7 @@ const T = {
     },
     sec: {
       svc:  { ey:'Naše masáže',   ti:'Vyberte si masáž',            ds:'Nabízíme širokou škálu profesionálních masáží pro vaši relaxaci a regeneraci.' },
-      mas:  { ey:'Náš tým',       ti:'Poznejte naše masérky',       ds:'Každá z našich masérek je certifikovaná odbornice s odborným přístupem ke svému oboru.' },
+      mas:  { ey:'Náš tým',       ti:'Poznejte naše masérky',       ds:'Každá z našich masérek je zkušená odbornice s odborným přístupem ke svému oboru.' },
       proc: { ey:'Jak to funguje',ti:'Vaše cesta k relaxaci',       ds:'' },
       pr:   { ey:'Ceník',         ti:'Transparentní ceny',          ds:'Žádné skryté poplatky. Cena zahrnuje celý zážitek — od uvítání po závěrečný čaj.' },
       faq:  { ey:'FAQ',           ti:'Časté dotazy',                ds:'' },
@@ -58,7 +58,7 @@ const T = {
       hours:'Otevírací hodiny', hoursV:'Denně od 9:00 do 5:00 ráno',
     },
     mas: {
-      ti:'Naše masérky — Black Elixir Spa', ds:'Certifikované odbornice s odborným přístupem k masáži a wellbeingu.',
+      ti:'Naše masérky — Black Elixir Spa', ds:'Zkušené odbornice s odborným přístupem k masáži a wellbeingu.',
       svcOf:'Masáže, které nabízí', bookWith:'Rezervovat s',
       yearsExp:'let zkušeností',
     },
@@ -96,7 +96,7 @@ const T = {
     },
     sec: {
       svc:  { ey:'Our Massages',    ti:'Choose Your Massage',          ds:'We offer a wide range of professional massages for your relaxation and rejuvenation.' },
-      mas:  { ey:'Our Team',        ti:'Meet Our Masseuses',           ds:'Each of our masseuses is a certified professional dedicated to their craft.' },
+      mas:  { ey:'Our Team',        ti:'Meet Our Masseuses',           ds:'Each of our masseuses is an experienced professional dedicated to their craft.' },
       proc: { ey:'How It Works',    ti:'Your Journey to Relaxation',   ds:'' },
       pr:   { ey:'Pricing',         ti:'Transparent Pricing',          ds:'No hidden fees. Price includes the full experience — from welcome to farewell tea.' },
       faq:  { ey:'FAQ',             ti:'Frequently Asked Questions',   ds:'' },
@@ -137,7 +137,7 @@ const T = {
       hours:'Opening Hours', hoursV:'Daily from 9 AM to 5 AM',
     },
     mas: {
-      ti:'Our Masseuses — Black Elixir Spa', ds:'Certified professionals dedicated to massage and wellbeing.',
+      ti:'Our Masseuses — Black Elixir Spa', ds:'Experienced professionals dedicated to massage and wellbeing.',
       svcOf:'Massages offered', bookWith:'Book with',
       yearsExp:'years experience',
     },
@@ -175,7 +175,7 @@ const T = {
     },
     sec: {
       svc:  { ey:'Наши массажи',      ti:'Выберите вид массажа',               ds:'Мы предлагаем широкий спектр профессиональных массажей для вашей релаксации и восстановления.' },
-      mas:  { ey:'Наша команда',      ti:'Познакомьтесь с нашими массажистками', ds:'Каждая массажистка — сертифицированный специалист с любовью к своей профессии.' },
+      mas:  { ey:'Наша команда',      ti:'Познакомьтесь с нашими массажистками', ds:'Каждая массажистка — опытный специалист с любовью к своей профессии.' },
       proc: { ey:'Как это работает',  ti:'Ваш путь к релаксации',              ds:'' },
       pr:   { ey:'Цены',              ti:'Прозрачные цены',                    ds:'Никаких скрытых платежей. Цена включает весь опыт — от приветствия до прощального чая.' },
       faq:  { ey:'FAQ',               ti:'Частые вопросы',                     ds:'' },
@@ -216,7 +216,7 @@ const T = {
       hours:'Часы работы', hoursV:'Ежедневно с 9:00 до 5:00 утра',
     },
     mas: {
-      ti:'Наши массажистки — Black Elixir Spa', ds:'Сертифицированные специалисты с профессиональным подходом к массажу и велнесу.',
+      ti:'Наши массажистки — Black Elixir Spa', ds:'Опытные специалисты с профессиональным подходом к массажу и велнесу.',
       svcOf:'Предлагаемые массажи', bookWith:'Забронировать с',
       yearsExp:'лет опыта',
     },
@@ -269,14 +269,6 @@ const SERVICES = [
     alt:'Aromaterapeutická masáž — Black Elixir Spa Praha',
   },
   {
-    id:4, slug:'horke-kameny',
-    name:{ cs:'Masáž horkými kameny', en:'Hot Stone Massage', ru:'Массаж горячими камнями' },
-    desc:{ cs:'Luxusní masáž s vulkanickými lávovými kameny pro hluboké uvolnění svalů, zahřátí tkání a celkovou harmonii.', en:'Luxurious massage with volcanic lava stones for deep muscle release, tissue warming and total harmony.', ru:'Роскошный массаж с вулканическими лавовыми камнями для глубокого расслабления мышц и прогревания тканей.' },
-    duration:90, price:1800,
-    img:'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=600&h=450&q=80',
-    alt:'Masáž horkými kameny — Black Elixir Spa Praha',
-  },
-  {
     id:5, slug:'parova-masaz',
     name:{ cs:'Párová masáž', en:'Couples Massage', ru:'Парный массаж' },
     desc:{ cs:'Sdílený zážitek pro dva — obě masérky pracují současně v jednom soukromém pokoji. Ideální jako dárek.', en:'A shared experience for two — both masseuses work simultaneously in one private room. Ideal as a gift.', ru:'Совместное переживание для двоих — обе массажистки работают одновременно в одном приватном кабинете.' },
@@ -293,9 +285,9 @@ const MASSEUSES = [
     name:'Elena', surname:'Nováková',
     spec:{ cs:'Švédská & Klasická masáž', en:'Swedish & Classic Massage', ru:'Шведский & Классический массаж' },
     bio:{
-      cs:'Elena je certifikovaná masérka s 8 lety zkušeností ve švédské a klasické masáži. Vystudovala fyzioterapii na Karlově Univerzitě a specializuje se na uvolňování chronického svalového napětí a stresových uzlů. Její práce je přesná, intuitivní a přizpůsobená individuálním potřebám každého klienta. Elena věří, že masáž není jen fyzický zážitek, ale i cesta k celkové duševní rovnováze a vnitřní harmonii.',
-      en:'Elena is a certified massage therapist with 8 years of experience in Swedish and classic massage. She studied physiotherapy at Charles University and specialises in releasing chronic muscle tension and stress knots. Her approach is precise, intuitive and tailored to each client\'s individual needs. Elena believes massage is not just a physical experience, but also a path to mental balance and inner harmony.',
-      ru:'Елена — сертифицированный массажист с 8-летним опытом в области шведского и классического массажа. Она изучала физиотерапию в Карловом университете и специализируется на снятии хронического мышечного напряжения. Её подход точен, интуитивен и адаптирован к индивидуальным потребностям каждого клиента.',
+      cs:'Elena je zkušená masérka s 8 lety praxe ve švédské a klasické masáži. Vystudovala fyzioterapii na Karlově Univerzitě a specializuje se na uvolňování chronického svalového napětí a stresových uzlů. Její práce je přesná, intuitivní a přizpůsobená individuálním potřebám každého klienta. Elena věří, že masáž není jen fyzický zážitek, ale i cesta k celkové duševní rovnováze a vnitřní harmonii.',
+      en:'Elena is an experienced massage therapist with 8 years of practice in Swedish and classic massage. She studied physiotherapy at Charles University and specialises in releasing chronic muscle tension and stress knots. Her approach is precise, intuitive and tailored to each client\'s individual needs. Elena believes massage is not just a physical experience, but also a path to mental balance and inner harmony.',
+      ru:'Елена — опытный массажист с 8-летней практикой в области шведского и классического массажа. Она изучала физиотерапию в Карловом университете и специализируется на снятии хронического мышечного напряжения. Её подход точен, интуитивен и адаптирован к индивидуальным потребностям каждого клиента.',
     },
     img:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=500&h=667&q=80',
     alt:'Elena Nováková — masérka Black Elixir Spa Praha',
@@ -313,7 +305,7 @@ const MASSEUSES = [
     },
     img:'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?auto=format&fit=crop&w=500&h=667&q=80',
     alt:'Lucie Procházková — masérka Black Elixir Spa Praha',
-    services:[2,4], exp:5,
+    services:[2], exp:5,
     tags:{ cs:['Thajská masáž','Reflexologie','Energetická'], en:['Thai','Reflexology','Energy'], ru:['Тайский','Рефлексология','Энергетический'] },
   },
   {
@@ -321,9 +313,9 @@ const MASSEUSES = [
     name:'Natália', surname:'Horváth',
     spec:{ cs:'Aromaterapie & Relaxační masáž', en:'Aromatherapy & Relaxation', ru:'Ароматерапия & Релаксация' },
     bio:{
-      cs:'Natália je specialistka na aromaterapii a relaxační masáže, certifikovaná Mezinárodní federací aromaterapeutů (IFA). Osobně vybírá a kombinuje éterické oleje pro každého klienta individuálně. Její pomalý, meditativní přístup navozuje hluboký stav klidu a obnovy. Natália pracuje i s klienty se stresem, úzkostí a poruchami spánku a vnímá masáž jako holistický nástroj péče.',
-      en:'Natália specialises in aromatherapy and relaxation massage, certified by the International Federation of Aromatherapists (IFA). She personally selects and blends essential oils for each client. Her slow, meditative approach creates a deep state of calm and renewal. Natália also works with clients dealing with stress, anxiety and sleep disorders.',
-      ru:'Наталья специализируется на ароматерапии и расслабляющих массажах, сертифицирована Международной федерацией ароматерапевтов (IFA). Она лично подбирает и смешивает эфирные масла для каждого клиента.',
+      cs:'Natália je specialistka na aromaterapii a relaxační masáže s rozsáhlými znalostmi éterických olejů. Osobně vybírá a kombinuje éterické oleje pro každého klienta individuálně. Její pomalý, meditativní přístup navozuje hluboký stav klidu a obnovy. Natália pracuje i s klienty se stresem, úzkostí a poruchami spánku a vnímá masáž jako holistický nástroj péče.',
+      en:'Natália specialises in aromatherapy and relaxation massage with extensive knowledge of essential oils. She personally selects and blends essential oils for each client. Her slow, meditative approach creates a deep state of calm and renewal. Natália also works with clients dealing with stress, anxiety and sleep disorders.',
+      ru:'Наталья специализируется на ароматерапии и расслабляющих массажах и обладает обширными знаниями в области эфирных масел. Она лично подбирает и смешивает эфирные масла для каждого клиента.',
     },
     img:'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&h=667&q=80',
     alt:'Natália Horváth — masérka Black Elixir Spa Praha',
@@ -333,16 +325,16 @@ const MASSEUSES = [
   {
     id:4, slug:'klara',
     name:'Klára', surname:'Dvořáčková',
-    spec:{ cs:'Horké kameny & Deep Tissue', en:'Hot Stones & Deep Tissue', ru:'Горячие камни & Глубокий массаж' },
+    spec:{ cs:'Deep Tissue & Lymfatická masáž', en:'Deep Tissue & Lymphatic Massage', ru:'Глубокий массаж & Лимфодренаж' },
     bio:{
-      cs:'Klára je zkušená terapeutka specializovaná na masáže horkými kameny a hlubokou tkáňovou masáž. Vystudovala masérské umění ve Vídni a absolvovala pokročilé kurzy hot stone terapie v Praze a Berlíně. Její přístup kombinuje tepelnou terapii s hlubokými tlakovými technikami pro maximální uvolnění svalů a zlepšení cirkulace. Klára má 10 let praxe a patří k nejzkušenějším členkám týmu.',
-      en:'Klára is an experienced therapist specialising in hot stone massage and deep tissue therapy. She studied massage in Vienna and completed advanced hot stone courses in Prague and Berlin. Her approach combines thermal therapy with deep pressure techniques for maximum muscle release and improved circulation. With 10 years of practice, Klára is the most experienced member of the team.',
-      ru:'Клара — опытный терапевт, специализирующийся на массаже горячими камнями и глубокотканном массаже. Она изучала массаж в Вене и прошла курсы горячих камней в Праге и Берлине. 10 лет практики.',
+      cs:'Klára je zkušená terapeutka specializovaná na hlubokou tkáňovou masáž a lymfatické techniky. Vystudovala masérské umění ve Vídni a absolvovala pokročilé kurzy v Praze a Berlíně. Její přístup kombinuje hluboké tlakové techniky s lymfatickými prvky pro maximální uvolnění svalů a zlepšení cirkulace. Klára má 10 let praxe a patří k nejzkušenějším členkám týmu.',
+      en:'Klára is an experienced therapist specialising in deep tissue massage and lymphatic techniques. She studied massage in Vienna and completed advanced courses in Prague and Berlin. Her approach combines deep pressure techniques with lymphatic elements for maximum muscle release and improved circulation. With 10 years of practice, Klára is the most experienced member of the team.',
+      ru:'Клара — опытный терапевт, специализирующийся на глубокотканном и лимфодренажном массаже. Она изучала массаж в Вене и прошла курсы в Праге и Берлине. 10 лет практики.',
     },
     img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=500&h=667&q=80',
     alt:'Klára Dvořáčková — masérka Black Elixir Spa Praha',
-    services:[1,4], exp:10,
-    tags:{ cs:['Horké kameny','Deep tissue','Lymfatická'], en:['Hot Stones','Deep Tissue','Lymphatic'], ru:['Горячие камни','Глубокий','Лимфодренаж'] },
+    services:[1], exp:10,
+    tags:{ cs:['Deep tissue','Lymfatická'], en:['Deep Tissue','Lymphatic'], ru:['Глубокий','Лимфодренаж'] },
   },
 ];
 
