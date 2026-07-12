@@ -6,7 +6,6 @@ from django.views.decorators.cache import cache_page
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import redirect
 
-from apps.masseurs.models import Masseuse
 from apps.services.models import MassageType
 from apps.blog.models import Post
 
@@ -58,20 +57,6 @@ class HomeSitemap(Sitemap):
     def priority(self, item):
         return item['priority']
 
-class MasseuseSitemap(Sitemap):
-    i18n = True
-    priority = 0.8
-    changefreq = 'monthly'
-    
-    def items(self):
-        return Masseuse.objects.filter(is_active=True)
-    
-    def location(self, obj):
-        return f"/masseurs/{obj.slug}/"
-    
-    def lastmod(self, obj):
-        return obj.updated_at
-
 class ServiceSitemap(Sitemap):
     i18n = True
     priority = 0.8
@@ -100,8 +85,6 @@ class StaticPagesSitemap(Sitemap):
             {'loc': '/about/', 'priority': 0.5},
             {'loc': '/salon-rules/', 'priority': 0.4},
             {'loc': '/privacy/', 'priority': 0.4},
-            {'loc': '/schedule/', 'priority': 0.6},
-            {'loc': '/reservation/', 'priority': 0.8},
             {'loc': '/blog/', 'priority': 0.5},
         ]
     
@@ -127,7 +110,6 @@ class BlogSitemap(Sitemap):
 
 sitemaps = {
     'home': HomeSitemap,
-    'masseuses': MasseuseSitemap,
     'services': ServiceSitemap,
     'static': StaticPagesSitemap,
     'blog': BlogSitemap,

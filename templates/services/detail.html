@@ -43,7 +43,7 @@
           <span class="detail-meta__item">{% price_display service.base_price show_all=True %}</span>
         </div>
         <div class="detail-actions detail-actions--hero">
-          <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans 'Book Now' %}</a>
+          <a href="{% url 'booking_clicks:whatsapp_general' %}?placement=service_detail_hero" class="btn btn--primary" rel="noopener noreferrer">{% trans 'Book Now' %}</a>
           <a href="{% url 'pages:prices' %}" class="btn btn--ghost">{% trans 'Full price list' %}</a>
         </div>
       </div>
@@ -57,18 +57,7 @@
       </div>
     </div>
 
-    {% if masseuses %}
-    <div class="detail-related reveal vis">
-      <h2 class="detail-related__title">{% trans 'Masseuses for this massage' %}</h2>
-      <div class="detail-links">
-        {% for masseuse in masseuses %}
-          <a href="{% url 'masseurs:detail' masseuse.slug %}">{{ masseuse.name }}</a>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-
-    {% if faqs %}
+{% if faqs %}
     <div class="detail-related reveal vis">
       <p class="detail-label detail-label--related">{% trans 'FAQ' %}</p>
       <h2 class="detail-related__title">{% trans 'Frequently Asked Questions' %}</h2>
@@ -102,7 +91,7 @@
     {% endif %}
 
     <div class="detail-actions reveal vis">
-      <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans 'Book Online' %}</a>
+      <a href="{% url 'booking_clicks:whatsapp_general' %}?placement=service_detail_cta" class="btn btn--primary" rel="noopener noreferrer">{% trans 'Book Online' %}</a>
       <a href="{% url 'pages:contacts' %}" class="btn btn--ghost">{% trans 'Contact' %}</a>
     </div>
   </div>

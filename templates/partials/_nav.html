@@ -6,9 +6,7 @@
 
   <ul class="nav__links">
     <li><a href="{% url 'pages:home' %}" class="nav__link">{% trans "Home" %}</a></li>
-    <li><a href="{% url 'masseurs:list' %}" class="nav__link">{% trans "Masseuses" %}</a></li>
     <li><a href="{% url 'pages:massages' %}" class="nav__link">{% trans "Massages" %}</a></li>
-    <li><a href="{% url 'schedule:index' %}" class="nav__link">{% trans "Schedule" %}</a></li>
     <li><a href="{% url 'pages:prices' %}" class="nav__link">{% trans "Prices" %}</a></li>
     <li><a href="{% url 'blog:list' %}" class="nav__link">{% trans "Blog" %}</a></li>
     <li><a href="{% url 'pages:contacts' %}" class="nav__link">{% trans "Contact" %}</a></li>
@@ -28,7 +26,7 @@
       <a href="{{ lang.url }}" class="lang-btn{% if lang.active %} active{% endif %}" lang="{{ lang.code }}">{{ lang.code|upper }}</a>
       {% endfor %}
     </div>
-    <a href="{% url 'booking:index' %}" class="btn btn--primary btn--sm nav-res-btn">{% trans "Booking" %}</a>
+    <a href="{% url 'booking_clicks:whatsapp_general' %}?placement=nav_book" class="btn btn--primary btn--sm nav-res-btn" rel="noopener noreferrer">{% trans "Booking" %}</a>
     <button type="button" class="nav__hamburger" aria-label="Menu">
       <span></span>
       <span></span>
@@ -44,13 +42,11 @@
   <div class="mobile-menu__body">
     <div class="mobile-menu__links">
       <a href="{% url 'pages:home' %}" class="mob-link">{% trans "Home" %}</a>
-      <a href="{% url 'masseurs:list' %}" class="mob-link">{% trans "Masseuses" %}</a>
       <a href="{% url 'pages:massages' %}" class="mob-link">{% trans "Massages" %}</a>
-      <a href="{% url 'schedule:index' %}" class="mob-link">{% trans "Schedule" %}</a>
       <a href="{% url 'pages:prices' %}" class="mob-link">{% trans "Prices" %}</a>
       <a href="{% url 'blog:list' %}" class="mob-link">{% trans "Blog" %}</a>
       <a href="{% url 'pages:contacts' %}" class="mob-link">{% trans "Contact" %}</a>
-      <a href="{% url 'booking:index' %}" class="btn btn--primary mobile-menu__cta">{% trans "Booking" %}</a>
+      <a href="{% url 'booking_clicks:whatsapp_general' %}?placement=mobile_menu_book" class="btn btn--primary mobile-menu__cta" rel="noopener noreferrer">{% trans "Booking" %}</a>
     </div>
     <div class="mobile-menu__info">
       <p class="mobile-menu__info-label">{% trans "Information" %}</p>

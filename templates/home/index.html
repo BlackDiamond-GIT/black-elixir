@@ -20,7 +20,7 @@
     </h1>
     <p class="hero__subtitle" style="margin-top:var(--sp-3)">{% trans "Indulge in the luxury of professional massage in a private, elegant setting. Our masseuses care for your body and mind." %}</p>
     <div class="hero__actions">
-      <a href="{% url 'booking:index' %}" class="btn btn--primary">{% trans "Book Now" %}</a>
+      <a href="{% url 'booking_clicks:whatsapp_general' %}?placement=hero_cta" class="btn btn--primary" rel="noopener noreferrer">{% trans "Book Now" %}</a>
       <a href="{% url 'pages:massages' %}" class="btn btn--ghost">{% trans "Our Massages" %}</a>
     </div>
   </div>
@@ -63,33 +63,6 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:var(--sp-8)">
-      <div>
-        <p class="s-eyebrow reveal vis">{% trans "Our Team" %}</p>
-        <h2 class="s-title reveal vis">{% trans "Meet Our Masseuses" %}</h2>
-      </div>
-      <a href="{% url 'masseurs:list' %}" class="btn btn--ghost btn--sm" style="flex-shrink:0">{% trans "All masseuses →" %}</a>
-    </div>
-
-    <div class="grid-4">
-      {% for item in masseuses_preview %}
-      <a href="{% url 'masseurs:detail' item.obj.slug %}" class="card card--m reveal d{{ forloop.counter }}">
-        <div class="mass-photo-wrap">
-          <img src="{{ item.image }}" alt="{{ item.obj.photo_alt }}" loading="lazy" width="500" height="667">
-          <div class="mass-photo-hint">
-            <span class="mass-photo-hint-text">{% trans "View" %}</span>
-          </div>
-        </div>
-        <div class="card__body">
-          <div class="card--m card__name">{{ item.obj.name }} {{ item.surname }}</div>
-        </div>
-      </a>
-      {% endfor %}
-    </div>
-  </div>
-</section>
 
 <section class="section section--surf">
   <div class="container">

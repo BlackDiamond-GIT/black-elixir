@@ -8,8 +8,7 @@ from apps.masseurs.models import Masseuse
 from apps.schedule.schedule_data import build_schedule_context
 from apps.services.models import MassageType
 from .content import (
-    SERVICE_IMAGES, MASSEUSE_IMAGES, MASSEUSE_SURNAMES,
-    SERVICE_CAPTIONS, FAQ_ITEMS,
+    SERVICE_IMAGES, SERVICE_CAPTIONS, FAQ_ITEMS,
 )
 from .legal_content import LEGAL_PAGES
 
@@ -37,7 +36,6 @@ class HomeView(TemplateView):
         lang = self.request.LANGUAGE_CODE
         captions = SERVICE_CAPTIONS.get(lang, SERVICE_CAPTIONS['cs'])
         services = list(MassageType.objects.filter(is_active=True))
-        masseuses = list(Masseuse.objects.filter(is_active=True)[:4])
 
         context['services_preview'] = [
             {
@@ -47,14 +45,6 @@ class HomeView(TemplateView):
                 'caption': captions[i % len(captions)],
             }
             for i, svc in enumerate(services[:4])
-        ]
-        context['masseuses_preview'] = [
-            {
-                'obj': mas,
-                'image': media_field_url(mas.photo, MASSEUSE_IMAGES.get(mas.slug, '')),
-                'surname': MASSEUSE_SURNAMES.get(mas.slug, ''),
-            }
-            for mas in masseuses
         ]
         context['faqs'] = FAQ_ITEMS.get(lang, FAQ_ITEMS['cs'])
         return context
