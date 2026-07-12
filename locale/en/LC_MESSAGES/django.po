@@ -157,9 +157,9 @@ msgstr "Massage & Relaxation — Black Elixir Spa"
 
 #: templates/home/index.html:5
 msgid ""
-"Premium massage and relaxation in the heart of Prague. Classic, Thai, "
-"aromatherapy and hot stone massage."
-msgstr "Premium massage and relaxation in the heart of Prague."
+"Premium massage and relaxation in the heart of Prague. VIP, relaxation, "
+"women's and couples massage."
+msgstr "Premium massage and relaxation in the heart of Prague. VIP, relaxation, women's and couples massage."
 
 #: templates/home/index.html:17
 msgid "Premium Spa"
@@ -367,8 +367,8 @@ msgid "View all massages"
 msgstr "View all massages"
 
 #: templates/massages/index.html:15
-msgid "Choose from six professional massages tailored to your needs."
-msgstr "Choose from six professional massages tailored to your needs."
+msgid "Choose from four professional massages tailored to your needs."
+msgstr "Choose from four professional massages tailored to your needs."
 
 #: templates/massages/index.html:4
 msgid "Our Massages — Black Elixir Spa"
@@ -376,13 +376,11 @@ msgstr "Our Massages — Black Elixir Spa"
 
 #: templates/massages/index.html:5
 msgid ""
-"Six premium massages for relaxation and recovery. Classic, relax, sports, "
-"lymphatic and aroma massage."
+"Four premium massages for relaxation and recovery. VIP, relaxation, women's "
+"and couples massage."
 msgstr ""
-"Six premium massages for relaxation and recovery. Classic, relax, sports, "
-"lymphatic and aroma massage."
-"Six premium massages for relaxation and recovery. Classic, relax, sports, "
-"lymphatic and aroma massage."
+"Four premium massages for relaxation and recovery. VIP, relaxation, women's "
+"and couples massage."
 
 #: templates/masseurs/list.html:15
 msgid "Our Masseuses"
@@ -448,11 +446,11 @@ msgstr "Massage Prices — Black Elixir Spa"
 
 #: templates/prices/index.html:5
 msgid ""
-"Transparent massage prices with no hidden fees. Classic, Thai, aromatherapy "
-"and more."
+"Transparent massage prices with no hidden fees. VIP, relaxation, women's "
+"and couples massage."
 msgstr ""
-"Transparent massage prices with no hidden fees. Classic, Thai, aromatherapy "
-"and more."
+"Transparent massage prices with no hidden fees. VIP, relaxation, women's "
+"and couples massage."
 
 #: templates/prices/index.html:14
 msgid "Massage Prices"

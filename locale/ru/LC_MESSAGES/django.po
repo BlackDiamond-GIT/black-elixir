@@ -156,11 +156,11 @@ msgstr "Массаж и релаксация — Black Elixir Spa"
 #: templates/home/index.html:5
 #| msgid "Premium massage and relaxation in the heart of Prague."
 msgid ""
-"Premium massage and relaxation in the heart of Prague. Classic, Thai, "
-"aromatherapy and hot stone massage."
+"Premium massage and relaxation in the heart of Prague. VIP, relaxation, "
+"women's and couples massage."
 msgstr ""
-"Премиальный массаж и релаксация в сердце Праги. Классический, тайский, "
-"ароматерапевтический и массаж горячими камнями."
+"Премиальный массаж и релаксация в сердце Праги. VIP, расслабляющий, "
+"для женщин и парный."
 
 #: templates/home/index.html:17
 msgid "Premium Spa"
@@ -364,8 +364,8 @@ msgid "View all massages"
 msgstr "Смотреть все массажи"
 
 #: templates/massages/index.html:15
-msgid "Choose from six professional massages tailored to your needs."
-msgstr "Выберите один из шести профессиональных массажей под ваши потребности."
+msgid "Choose from four professional massages tailored to your needs."
+msgstr "Выберите один из четырёх профессиональных массажей под ваши потребности."
 
 #: templates/massages/index.html:4
 msgid "Our Massages — Black Elixir Spa"
@@ -373,11 +373,11 @@ msgstr "Наши массажи — Black Elixir Spa"
 
 #: templates/massages/index.html:5
 msgid ""
-"Six premium massages for relaxation and recovery. Classic, relax, sports, "
-"lymphatic and aroma massage."
+"Four premium massages for relaxation and recovery. VIP, relaxation, women's "
+"and couples massage."
 msgstr ""
-"Шесть премиальных массажей для релаксации и восстановления. Классический, "
-"релакс, спортивный, лимфотический и аромамассаж."
+"Четыре премиальных массажа для релаксации и восстановления. VIP, "
+"расслабляющий, для женщин и парный."
 
 #: templates/masseurs/list.html:15
 msgid "Our Masseuses"
@@ -445,11 +445,11 @@ msgstr "Цены на массажи — Black Elixir Spa"
 
 #: templates/prices/index.html:5
 msgid ""
-"Transparent massage prices with no hidden fees. Classic, Thai, aromatherapy "
-"and more."
+"Transparent massage prices with no hidden fees. VIP, relaxation, women's "
+"and couples massage."
 msgstr ""
-"Прозрачные цены на массажи без скрытых платежей. Классический, тайский, "
-"ароматерапия и другие."
+"Прозрачные цены на массажи без скрытых платежей. VIP, расслабляющий, "
+"для женщин и парный."
 
 #: templates/prices/index.html:14
 msgid "Massage Prices"

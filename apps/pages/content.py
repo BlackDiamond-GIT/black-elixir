@@ -1,10 +1,8 @@
 SERVICE_IMAGES = {
-    'klasicka-masaz': '/static/img/services/klasicka-masaz.webp',
-    'cbd-relaxacni-masaz': '/static/img/services/cbd-relaxacni-masaz.webp',
-    'thajska-masaz': '/static/img/services/thajska-masaz.webp',
-    'sportovni-masaz': '/static/img/services/sportovni-masaz.webp',
-    'lymfaticka-masaz': '/static/img/services/lymfaticka-masaz.webp',
-    'aromaterapie': '/static/img/services/aromaterapie.webp',
+    'vip-masaz': '/static/img/services/klasicka-masaz.webp',
+    'relaxacni-masaz': '/static/img/services/thajska-masaz.webp',
+    'masaz-pro-zeny': '/static/img/services/aromaterapie.webp',
+    'masaz-pro-pary': '/static/img/services/cbd-relaxacni-masaz.webp',
 }
 
 BLOG_IMAGES = {

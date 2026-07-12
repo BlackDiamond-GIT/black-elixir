@@ -161,11 +161,11 @@ msgstr "Masáže a relaxace — Black Elixir Spa"
 #: templates/home/index.html:5
 #| msgid "Premium massage and relaxation in the heart of Prague."
 msgid ""
-"Premium massage and relaxation in the heart of Prague. Classic, Thai, "
-"aromatherapy and hot stone massage."
+"Premium massage and relaxation in the heart of Prague. VIP, relaxation, "
+"women's and couples massage."
 msgstr ""
-"Prémiová masáž a relaxace v srdci Prahy. Klasická, thajská, "
-"aromaterapeutická masáž a masáž horkými kameny."
+"Prémiová masáž a relaxace v srdci Prahy. VIP, relaxační, "
+"pro ženy a pro páry."
 
 #: templates/home/index.html:17
 msgid "Premium Spa"
@@ -369,8 +369,8 @@ msgid "View all massages"
 msgstr "Zobrazit všechny masáže"
 
 #: templates/massages/index.html:15
-msgid "Choose from six professional massages tailored to your needs."
-msgstr "Vyberte si z šesti profesionálních masáží podle vašich potřeb."
+msgid "Choose from four professional massages tailored to your needs."
+msgstr "Vyberte si z čtyř profesionálních masáží podle vašich potřeb."
 
 #: templates/massages/index.html:4
 msgid "Our Massages — Black Elixir Spa"
@@ -378,11 +378,11 @@ msgstr "Naše masáže — Black Elixir Spa"
 
 #: templates/massages/index.html:5
 msgid ""
-"Six premium massages for relaxation and recovery. Classic, relax, sports, "
-"lymphatic and aroma massage."
+"Four premium massages for relaxation and recovery. VIP, relaxation, women's "
+"and couples massage."
 msgstr ""
-"Šest prémiových masáží pro relaxaci a regeneraci. Klasická, relax, sportovní, "
-"lymfatická a aromamasáž."
+"Čtyři prémiové masáže pro relaxaci a regeneraci. VIP, relaxační, "
+"pro ženy a pro páry."
 
 #: templates/masseurs/list.html:15
 msgid "Our Masseuses"
@@ -448,11 +448,11 @@ msgstr "Ceník masáží — Black Elixir Spa"
 
 #: templates/prices/index.html:5
 msgid ""
-"Transparent massage prices with no hidden fees. Classic, Thai, aromatherapy "
-"and more."
+"Transparent massage prices with no hidden fees. VIP, relaxation, women's "
+"and couples massage."
 msgstr ""
-"Transparentní ceny masáží bez skrytých poplatků. Klasická, thajská, "
-"aromaterapie a další."
+"Transparentní ceny masáží bez skrytých poplatků. VIP, relaxační, "
+"pro ženy a pro páry."
 
 #: templates/prices/index.html:14
 msgid "Massage Prices"
