@@ -420,7 +420,7 @@ msgstr "Rozvrh"
 
 #: templates/partials/_footer.html:47
 msgid "Daily from 9 AM to 5 AM"
-msgstr "Denně od 9:00 do 5:00 ráno"
+msgstr "Denně od 9:00 do 5:00"
 
 #: templates/partials/_footer.html:53
 msgid "All rights reserved."

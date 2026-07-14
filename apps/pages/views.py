@@ -4,8 +4,6 @@ from django.urls import reverse
 from apps.core.breadcrumbs import build_breadcrumbs, make_breadcrumb
 from apps.core.i18n_utils import localized_field
 from apps.core.media_utils import media_field_url
-from apps.masseurs.models import Masseuse
-from apps.schedule.schedule_data import build_schedule_context
 from apps.services.models import MassageType
 from .content import (
     SERVICE_IMAGES, SERVICE_CAPTIONS, FAQ_ITEMS,
@@ -96,8 +94,6 @@ class PricesView(TemplateView):
             ('Home', reverse('pages:home')),
             ('Prices', '#'),
         )
-        masseuses = Masseuse.objects.filter(is_active=True).prefetch_related('services')
-        context.update(build_schedule_context(masseuses, lang))
         return context
 
 class ContactsView(TemplateView):

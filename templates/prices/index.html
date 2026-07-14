@@ -46,17 +46,6 @@
   </div>
 </section>
 
-<section class="section section--schedule-embed">
-  <div class="container">
-    <span class="price-ph-label price-ph-label--section">{% trans 'Schedule' %}</span>
-    {% if salon_address %}
-    <p class="schedule-address">{{ salon_address }}</p>
-    {% endif %}
-    {% include 'schedule/partials/_on_shift.html' %}
-    {% include 'schedule/partials/_week_section.html' %}
-  </div>
-</section>
-
 {% include 'partials/_cta_banner.html' %}
 {% endblock %}
 

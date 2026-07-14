@@ -17,7 +17,7 @@ def build_whatsapp_url(
     """Build wa.me URL with pre-filled booking message."""
     number = getattr(settings, 'SITE_WHATSAPP', '').replace('+', '').replace(' ', '')
     if not number:
-        number = '420000000000'
+        number = '420777123456'
 
     if not lang:
         lang = get_language() or 'cs'

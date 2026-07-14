@@ -417,7 +417,7 @@ msgstr "Расписание"
 
 #: templates/partials/_footer.html:47
 msgid "Daily from 9 AM to 5 AM"
-msgstr "Ежедневно с 9:00 до 5:00 утра"
+msgstr "Ежедневно с 9:00 до 5:00"
 
 #: templates/partials/_footer.html:53
 msgid "All rights reserved."
