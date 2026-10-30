@@ -161,7 +161,7 @@ function Footer({ lang, setPage }) {
           <ul className="footer__links">
             <li><span className="footer__link" style={{cursor:'default'}}>VĂˇclavskĂ© nĂˇm. 12, Praha 1</span></li>
             <li><span className="footer__link" style={{cursor:'default'}}>+420 607 365 598</span></li>
-            <li><span className="footer__link" style={{cursor:'default'}}>info@blackelixir.cz</span></li>
+            <li><span className="footer__link" style={{cursor:'default'}}>info@black-elixir.cz</span></li>
             <li><span className="footer__link" style={{cursor:'default', fontSize:'0.75rem'}}>DennÄ› od 9:00 do 5:00 rĂˇno</span></li>
           </ul>
         </div>
