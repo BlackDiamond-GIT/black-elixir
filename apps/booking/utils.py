@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import urllib.parse
 
-from django.conf import settings
 from django.utils.translation import get_language
+
+from apps.core.phone_constants import PHONE_MAIN_WA
 
 
 def build_whatsapp_url(
@@ -15,9 +16,9 @@ def build_whatsapp_url(
     lang: str | None = None,
 ) -> str:
     """Build wa.me URL with pre-filled booking message."""
-    number = getattr(settings, 'SITE_WHATSAPP', '').replace('+', '').replace(' ', '')
-    if not number:
-        number = '420777123456'
+    # Number is hard-coded per owner decision 2026-10-30; must not read from
+    # settings/env/DB/hub API.
+    number = PHONE_MAIN_WA
 
     if not lang:
         lang = get_language() or 'cs'

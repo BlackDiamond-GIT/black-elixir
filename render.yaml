@@ -29,7 +29,7 @@ services:
       - key: SITE_DOMAIN
         value: black-elixir.cz
       - key: SITE_WHATSAPP
-        value: "+420777123456"
+        value: "+420607365598"
       - key: WEB_CONCURRENCY
         value: "2"
       - key: CLOUDINARY_URL

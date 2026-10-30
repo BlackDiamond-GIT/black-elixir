@@ -214,7 +214,7 @@ LOGGING = {
     'root': {'handlers': ['console'], 'level': 'INFO'},
 }
 
-SITE_WHATSAPP = config('SITE_WHATSAPP', default='+420777123456')
+SITE_WHATSAPP = config('SITE_WHATSAPP', default='+420607365598')
 
 from apps.core.unfold_config import UNFOLD  # noqa: E402
 
