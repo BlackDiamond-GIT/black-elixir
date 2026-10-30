@@ -54,7 +54,7 @@ const T = {
       ti:'Kontakt â€” Black Elixir Spa', ds:'Najdete nĂˇs v srdci Prahy. TÄ›ĹˇĂ­me se na vaĹˇi nĂˇvĹˇtÄ›vu.',
       addr:'Adresa', addrV:'VĂˇclavskĂ© nĂˇmÄ›stĂ­ 12\nPraha 1, 110 00\nÄŚeskĂˇ republika',
       phone:'Telefon', phoneV:'+420 607 365 598',
-      email:'E-mail',  emailV:'info@blackelixir.cz',
+      email:'E-mail',  emailV:'info@black-elixir.cz',
       hours:'OtevĂ­racĂ­ hodiny', hoursV:'DennÄ› od 9:00 do 5:00 rĂˇno',
     },
     mas: {
@@ -133,7 +133,7 @@ const T = {
       ti:'Contact â€” Black Elixir Spa', ds:'Find us in the heart of Prague. We look forward to your visit.',
       addr:'Address', addrV:'12 VĂˇclavskĂ© nĂˇmÄ›stĂ­\nPrague 1, 110 00\nCzech Republic',
       phone:'Phone', phoneV:'+420 607 365 598',
-      email:'Email',  emailV:'info@blackelixir.cz',
+      email:'Email',  emailV:'info@black-elixir.cz',
       hours:'Opening Hours', hoursV:'Daily from 9 AM to 5 AM',
     },
     mas: {
@@ -212,7 +212,7 @@ const T = {
       ti:'ĐšĐľĐ˝Ń‚Đ°ĐşŃ‚ â€” Black Elixir Spa', ds:'ĐťĐ°ĐąĐ´Đ¸Ń‚Đµ Đ˝Đ°Ń Đ˛ ŃĐµŃ€Đ´Ń†Đµ ĐźŃ€Đ°ĐłĐ¸. Đ–Đ´Ń‘ĐĽ Đ˛Đ°ŃĐµĐłĐľ Đ˛Đ¸Đ·Đ¸Ń‚Đ°.',
       addr:'ĐĐ´Ń€ĐµŃ', addrV:'VĂˇclavskĂ© nĂˇmÄ›stĂ­ 12\nĐźŃ€Đ°ĐłĐ° 1, 110 00\nĐ§ĐµŃ…Đ¸ŃŹ',
       phone:'Đ˘ĐµĐ»ĐµŃ„ĐľĐ˝', phoneV:'+420 607 365 598',
-      email:'E-mail',  emailV:'info@blackelixir.cz',
+      email:'E-mail',  emailV:'info@black-elixir.cz',
       hours:'Đ§Đ°ŃŃ‹ Ń€Đ°Đ±ĐľŃ‚Ń‹', hoursV:'Đ•Đ¶ĐµĐ´Đ˝ĐµĐ˛Đ˝Đľ Ń 9:00 Đ´Đľ 5:00 ŃŃ‚Ń€Đ°',
     },
     mas: {

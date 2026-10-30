@@ -9,5 +9,5 @@ class Command(BaseCommand):
         call_command('seed_service_descriptions')
         call_command('seed_locations')
         call_command('create_initial_posts')
-        call_command('ensure_admin')
+        call_command('lock_default_admin')
         self.stdout.write(self.style.SUCCESS('Site bootstrap completed.'))

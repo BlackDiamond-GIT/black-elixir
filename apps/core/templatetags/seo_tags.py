@@ -13,7 +13,7 @@ from apps.pages.content import BLOG_IMAGES, MASSEUSE_IMAGES, SERVICE_IMAGES
 
 register = template.Library()
 
-SITE_ORIGIN = 'https://blackelixir.cz'
+SITE_ORIGIN = 'https://black-elixir.cz'
 
 
 @register.simple_tag(takes_context=True)
@@ -223,7 +223,7 @@ def schema_local_business(context):
         'image': f'{SITE_ORIGIN}/static/logo.svg',
         'description': 'Premium spa with massage services in Prague',
         'telephone': PHONE_MAIN,
-        'email': 'info@blackelixir.cz',
+        'email': 'info@black-elixir.cz',
         'address': {
             '@type': 'PostalAddress',
             'streetAddress': STREET,

@@ -191,7 +191,7 @@ LEGAL_PAGES = {
                     'heading': 'Vaše práva',
                     'paragraphs': [
                         'Máte právo na přístup, opravu nebo výmaz údajů. '
-                        'Kontaktujte nás na info@blackelixir.cz s žádostí o uplatnění práv podle GDPR.',
+                        'Kontaktujte nás na info@black-elixir.cz s žádostí o uplatnění práv podle GDPR.',
                     ],
                 },
             ],
@@ -218,7 +218,7 @@ LEGAL_PAGES = {
                     'heading': 'Your rights',
                     'paragraphs': [
                         'You have the right to access, correct or delete your data. '
-                        'Contact us at info@blackelixir.cz to exercise your rights under GDPR.',
+                        'Contact us at info@black-elixir.cz to exercise your rights under GDPR.',
                     ],
                 },
             ],
@@ -245,7 +245,7 @@ LEGAL_PAGES = {
                     'heading': 'Ваши права',
                     'paragraphs': [
                         'Вы имеете право на доступ, исправление или удаление данных. '
-                        'Свяжитесь с нами: info@blackelixir.cz для реализации прав в рамках GDPR.',
+                        'Свяжитесь с нами: info@black-elixir.cz для реализации прав в рамках GDPR.',
                     ],
                 },
             ],
