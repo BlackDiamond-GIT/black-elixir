@@ -1,9 +1,9 @@
-/* ============================================================
-   SHARED.JSX — Nav, Footer, hooks, common components
+﻿/* ============================================================
+   SHARED.JSX â€” Nav, Footer, hooks, common components
    ============================================================ */
 const { useState, useEffect, useRef, useCallback } = React;
 
-/* ── Hooks ─────────────────────────────────────────────── */
+/* â”€â”€ Hooks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function useScrollY() {
   const [y, setY] = useState(0);
   useEffect(() => {
@@ -31,7 +31,7 @@ function useReveal(threshold = 0.05) {
   return [ref, vis];
 }
 
-/* ── Nav ───────────────────────────────────────────────── */
+/* â”€â”€ Nav â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Nav({ lang, setLang, page, setPage }) {
   const { T } = window;
   const t = T[lang];
@@ -106,7 +106,7 @@ function Nav({ lang, setLang, page, setPage }) {
   );
 }
 
-/* ── Footer ────────────────────────────────────────────── */
+/* â”€â”€ Footer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Footer({ lang, setPage }) {
   const { T, SERVICES } = window;
   const t = T[lang];
@@ -159,15 +159,15 @@ function Footer({ lang, setPage }) {
         <div>
           <h4 className="footer__heading">{t.footer.contact}</h4>
           <ul className="footer__links">
-            <li><span className="footer__link" style={{cursor:'default'}}>Václavské nám. 12, Praha 1</span></li>
-            <li><span className="footer__link" style={{cursor:'default'}}>+420 777 123 456</span></li>
+            <li><span className="footer__link" style={{cursor:'default'}}>VĂˇclavskĂ© nĂˇm. 12, Praha 1</span></li>
+            <li><span className="footer__link" style={{cursor:'default'}}>+420 607 365 598</span></li>
             <li><span className="footer__link" style={{cursor:'default'}}>info@blackelixir.cz</span></li>
-            <li><span className="footer__link" style={{cursor:'default', fontSize:'0.75rem'}}>Denně od 9:00 do 5:00 ráno</span></li>
+            <li><span className="footer__link" style={{cursor:'default', fontSize:'0.75rem'}}>DennÄ› od 9:00 do 5:00 rĂˇno</span></li>
           </ul>
         </div>
       </div>
       <div className="footer__bottom">
-        <p className="footer__copy">© 2026 Black Elixir Spa. {t.footer.rights}</p>
+        <p className="footer__copy">Â© 2026 Black Elixir Spa. {t.footer.rights}</p>
         <div style={{ display:'flex', gap:'24px' }}>
           <button className="footer__link">{t.footer.terms}</button>
           <button className="footer__link">{t.footer.privacy}</button>
@@ -177,7 +177,7 @@ function Footer({ lang, setPage }) {
   );
 }
 
-/* ── Section header ────────────────────────────────────── */
+/* â”€â”€ Section header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function SectionHeader({ eyebrow, title, desc, center }) {
   const [ref, vis] = useReveal();
   const align = center ? { textAlign:'center' } : {};
@@ -190,7 +190,7 @@ function SectionHeader({ eyebrow, title, desc, center }) {
   );
 }
 
-/* ── Page header (inner pages) ─────────────────────────── */
+/* â”€â”€ Page header (inner pages) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function PageHeader({ title, children, breadcrumbs }) {
   return (
     <header className="page-header" data-title={title}>
@@ -203,7 +203,7 @@ function PageHeader({ title, children, breadcrumbs }) {
   );
 }
 
-/* ── CTA Banner ────────────────────────────────────────── */
+/* â”€â”€ CTA Banner â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function CTABanner({ lang, setPage }) {
   const { T } = window;
   const s = T[lang].sec.cta;

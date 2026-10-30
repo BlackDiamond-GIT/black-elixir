@@ -1,5 +1,5 @@
-/* ============================================================
-   RESERVATION-PAGE.JSX — 5-step booking form
+﻿/* ============================================================
+   RESERVATION-PAGE.JSX â€” 5-step booking form
    ============================================================ */
 const { useState: useStateR, useEffect: useEffectR } = React;
 
@@ -13,7 +13,7 @@ function getAvailableTimes(masId) {
   return times;
 }
 
-/* ── Step indicator ────────────────────────────────────── */
+/* â”€â”€ Step indicator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function StepIndicator({ step, labels }) {
   return (
     <div className="booking-steps">
@@ -34,7 +34,7 @@ function StepIndicator({ step, labels }) {
   );
 }
 
-/* ── Step 1: Select service ────────────────────────────── */
+/* â”€â”€ Step 1: Select service â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Step1({ lang, booking, setBooking, onNext }) {
   const { T, SERVICES } = window;
   const t = T[lang].res;
@@ -42,9 +42,9 @@ function Step1({ lang, booking, setBooking, onNext }) {
     <div>
       <h3 style={{ fontFamily:'var(--f-head)', fontSize:'1.6rem', fontWeight:400, marginBottom:'8px' }}>{t.selSvc}</h3>
       <p style={{ color:'var(--text-muted)', fontSize:'0.9375rem', marginBottom:'var(--sp-6)' }}>
-        {lang === 'cs' ? 'Vyberte typ masáže, o který máte zájem.' :
+        {lang === 'cs' ? 'Vyberte typ masĂˇĹľe, o kterĂ˝ mĂˇte zĂˇjem.' :
          lang === 'en' ? 'Select the type of massage you would like.' :
-         'Выберите вид массажа, который вас интересует.'}
+         'Đ’Ń‹Đ±ĐµŃ€Đ¸Ń‚Đµ Đ˛Đ¸Đ´ ĐĽĐ°ŃŃĐ°Đ¶Đ°, ĐşĐľŃ‚ĐľŃ€Ń‹Đą Đ˛Đ°Ń Đ¸Đ˝Ń‚ĐµŃ€ĐµŃŃĐµŃ‚.'}
       </p>
       <div className="option-grid">
         {SERVICES.map(svc => (
@@ -55,7 +55,7 @@ function Step1({ lang, booking, setBooking, onNext }) {
           >
             <div className="opt-card__name">{svc.name[lang]}</div>
             <div className="opt-card__detail">{svc.duration} min</div>
-            <div className="opt-card__price">{svc.price.toLocaleString()} Kč</div>
+            <div className="opt-card__price">{svc.price.toLocaleString()} KÄŤ</div>
           </div>
         ))}
       </div>
@@ -65,13 +65,13 @@ function Step1({ lang, booking, setBooking, onNext }) {
           disabled={!booking.service}
           style={{ opacity: booking.service ? 1 : 0.45 }}
           onClick={onNext}
-        >{t.next} →</button>
+        >{t.next} â†’</button>
       </div>
     </div>
   );
 }
 
-/* ── Step 2: Select masseuse ───────────────────────────── */
+/* â”€â”€ Step 2: Select masseuse â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Step2({ lang, booking, setBooking, onNext, onBack }) {
   const { T, MASSEUSES } = window;
   const t = T[lang].res;
@@ -83,9 +83,9 @@ function Step2({ lang, booking, setBooking, onNext, onBack }) {
     <div>
       <h3 style={{ fontFamily:'var(--f-head)', fontSize:'1.6rem', fontWeight:400, marginBottom:'8px' }}>{t.selMas}</h3>
       <p style={{ color:'var(--text-muted)', fontSize:'0.9375rem', marginBottom:'var(--sp-6)' }}>
-        {lang === 'cs' ? `Masáž: ${booking.service?.name[lang]}` :
+        {lang === 'cs' ? `MasĂˇĹľ: ${booking.service?.name[lang]}` :
          lang === 'en' ? `Service: ${booking.service?.name[lang]}` :
-         `Услуга: ${booking.service?.name[lang]}`}
+         `ĐŁŃĐ»ŃĐłĐ°: ${booking.service?.name[lang]}`}
       </p>
       <div className="option-grid">
         {eligible.map(mas => (
@@ -118,13 +118,13 @@ function Step2({ lang, booking, setBooking, onNext, onBack }) {
           disabled={!booking.masseuse}
           style={{ opacity: booking.masseuse ? 1 : 0.45 }}
           onClick={onNext}
-        >{t.next} →</button>
+        >{t.next} â†’</button>
       </div>
     </div>
   );
 }
 
-/* ── Step 3: Select time slot ──────────────────────────── */
+/* â”€â”€ Step 3: Select time slot â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Step3({ lang, booking, setBooking, onNext, onBack }) {
   const { T } = window;
   const t = T[lang].res;
@@ -150,7 +150,7 @@ function Step3({ lang, booking, setBooking, onNext, onBack }) {
     ? SCHEDULE.filter(s => s.mas.id === booking.masseuse.id && s.day === dayIdx && s.svc.id === booking.service?.id)
     : [];
 
-  const dayLabels = { cs:['Ne','Po','Út','St','Čt','Pá','So'], en:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], ru:['Вс','Пн','Вт','Ср','Чт','Пт','Сб'] };
+  const dayLabels = { cs:['Ne','Po','Ăšt','St','ÄŚt','PĂˇ','So'], en:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], ru:['Đ’Ń','ĐźĐ˝','Đ’Ń‚','ĐˇŃ€','Đ§Ń‚','ĐźŃ‚','ĐˇĐ±'] };
 
   return (
     <div>
@@ -158,7 +158,7 @@ function Step3({ lang, booking, setBooking, onNext, onBack }) {
         {t.selDate}
       </h3>
       <p style={{ color:'var(--text-muted)', fontSize:'0.9375rem', marginBottom:'var(--sp-4)' }}>
-        {booking.masseuse?.name} · {booking.service?.name[lang]}
+        {booking.masseuse?.name} Â· {booking.service?.name[lang]}
       </p>
 
       {/* Date selector */}
@@ -187,7 +187,7 @@ function Step3({ lang, booking, setBooking, onNext, onBack }) {
               <div style={{ fontSize:'0.6875rem', letterSpacing:'0.1em', textTransform:'uppercase', color: selDate === i ? 'var(--accent)' : 'var(--text-muted)' }}>{label}</div>
               <div style={{ fontFamily:'var(--f-head)', fontSize:'1.3rem', color: selDate === i ? 'var(--text)' : 'var(--text-muted)', lineHeight:1, marginTop:'4px' }}>{num}</div>
               {isToday && <div style={{ fontSize:'0.55rem', letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--accent)', marginTop:'4px' }}>
-                {lang === 'cs' ? 'dnes' : lang === 'en' ? 'today' : 'сегодня'}
+                {lang === 'cs' ? 'dnes' : lang === 'en' ? 'today' : 'ŃĐµĐłĐľĐ´Đ˝ŃŹ'}
               </div>}
             </button>
           );
@@ -200,9 +200,9 @@ function Step3({ lang, booking, setBooking, onNext, onBack }) {
       </p>
       {availSlots.length === 0 ? (
         <div style={{ padding:'var(--sp-6)', textAlign:'center', color:'var(--text-muted)', fontSize:'0.9375rem', background:'var(--surface-2)', borderRadius:'var(--r-md)' }}>
-          {lang === 'cs' ? 'Žádný volný termín — zkuste jiný den.' :
-           lang === 'en' ? 'No slots available — try another day.' :
-           'Нет свободного времени — попробуйте другой день.'}
+          {lang === 'cs' ? 'Ĺ˝ĂˇdnĂ˝ volnĂ˝ termĂ­n â€” zkuste jinĂ˝ den.' :
+           lang === 'en' ? 'No slots available â€” try another day.' :
+           'ĐťĐµŃ‚ ŃĐ˛ĐľĐ±ĐľĐ´Đ˝ĐľĐłĐľ Đ˛Ń€ĐµĐĽĐµĐ˝Đ¸ â€” ĐżĐľĐżŃ€ĐľĐ±ŃĐąŃ‚Đµ Đ´Ń€ŃĐłĐľĐą Đ´ĐµĐ˝ŃŚ.'}
         </div>
       ) : (
         <div className="time-grid">
@@ -226,13 +226,13 @@ function Step3({ lang, booking, setBooking, onNext, onBack }) {
           disabled={!booking.slot}
           style={{ opacity: booking.slot ? 1 : 0.45 }}
           onClick={onNext}
-        >{t.next} →</button>
+        >{t.next} â†’</button>
       </div>
     </div>
   );
 }
 
-/* ── Step 4: Contact form ──────────────────────────────── */
+/* â”€â”€ Step 4: Contact form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Step4({ lang, booking, setBooking, onNext, onBack }) {
   const { T } = window;
   const t = T[lang].res;
@@ -249,16 +249,16 @@ function Step4({ lang, booking, setBooking, onNext, onBack }) {
     <div>
       <h3 style={{ fontFamily:'var(--f-head)', fontSize:'1.6rem', fontWeight:400, marginBottom:'8px' }}>{t.contactTi}</h3>
       <p style={{ color:'var(--text-muted)', fontSize:'0.9375rem', marginBottom:'var(--sp-6)' }}>
-        {booking.service?.name[lang]} · {booking.masseuse?.name} · {booking.slot?.time}
+        {booking.service?.name[lang]} Â· {booking.masseuse?.name} Â· {booking.slot?.time}
       </p>
       <div className="form-2col">
         <div className="form-group">
           <label className="form-label">{t.name} *</label>
-          <input className="form-input" type="text" value={form.name} onChange={e => upd('name', e.target.value)} placeholder={lang === 'cs' ? 'Jana Nováková' : lang === 'en' ? 'Jane Smith' : 'Анна Иванова'} />
+          <input className="form-input" type="text" value={form.name} onChange={e => upd('name', e.target.value)} placeholder={lang === 'cs' ? 'Jana NovĂˇkovĂˇ' : lang === 'en' ? 'Jane Smith' : 'ĐĐ˝Đ˝Đ° ĐĐ˛Đ°Đ˝ĐľĐ˛Đ°'} />
         </div>
         <div className="form-group">
           <label className="form-label">{t.phone} *</label>
-          <input className="form-input" type="tel" value={form.phone} onChange={e => upd('phone', e.target.value)} placeholder="+420 777 000 000" />
+          <input className="form-input" type="tel" value={form.phone} onChange={e => upd('phone', e.target.value)} placeholder="+420 xxx xxx xxx" />
         </div>
       </div>
       <div className="form-group">
@@ -270,7 +270,7 @@ function Step4({ lang, booking, setBooking, onNext, onBack }) {
         <textarea className="form-textarea" value={form.msg} onChange={e => upd('msg', e.target.value)} placeholder={t.msgP} />
       </div>
       <p style={{ fontSize:'0.75rem', color:'var(--text-muted)', marginBottom:'var(--sp-4)' }}>
-        {lang === 'cs' ? '* Povinné pole' : lang === 'en' ? '* Required field' : '* Обязательное поле'}
+        {lang === 'cs' ? '* PovinnĂ© pole' : lang === 'en' ? '* Required field' : '* ĐžĐ±ŃŹĐ·Đ°Ń‚ĐµĐ»ŃŚĐ˝ĐľĐµ ĐżĐľĐ»Đµ'}
       </p>
       <div style={{ display:'flex', justifyContent:'space-between' }}>
         <button className="btn btn--ghost" onClick={onBack}>{t.back}</button>
@@ -285,14 +285,14 @@ function Step4({ lang, booking, setBooking, onNext, onBack }) {
   );
 }
 
-/* ── Step 5: Confirmation ──────────────────────────────── */
+/* â”€â”€ Step 5: Confirmation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function Step5({ lang, booking, onReset, setPage }) {
   const { T } = window;
   const t = T[lang].res;
 
   return (
     <div className="confirm-box">
-      <div className="confirm-icon">✓</div>
+      <div className="confirm-icon">âś“</div>
       <h2 style={{ fontFamily:'var(--f-head)', fontSize:'2.2rem', fontWeight:400, marginBottom:'12px' }}>{t.done}</h2>
       <p style={{ color:'var(--text-muted)', marginBottom:'var(--sp-6)', maxWidth:'44ch', margin:'0 auto var(--sp-6)' }}>{t.doneText}</p>
 
@@ -302,7 +302,7 @@ function Step5({ lang, booking, onReset, setPage }) {
           [t.sum_mas, `${booking.masseuse?.name} ${booking.masseuse?.surname}`],
           [t.sum_dt,  booking.slot?.time],
           [t.sum_dur, `${booking.service?.duration} min`],
-          [t.sum_pr,  `${booking.service?.price?.toLocaleString()} Kč`],
+          [t.sum_pr,  `${booking.service?.price?.toLocaleString()} KÄŤ`],
         ].filter(([,v]) => v).map(([l, v]) => (
           <div key={l} className="summary-row">
             <span className="summary-label">{l}</span>
@@ -320,14 +320,14 @@ function Step5({ lang, booking, onReset, setPage }) {
       <div style={{ display:'flex', gap:'var(--sp-2)', justifyContent:'center', marginTop:'var(--sp-6)', flexWrap:'wrap' }}>
         <button className="btn btn--ghost" onClick={onReset}>{t.again}</button>
         <button className="btn btn--primary" onClick={() => { setPage('home'); window.scrollTo(0,0); }}>
-          {lang === 'cs' ? 'Zpět na hlavní stránku' : lang === 'en' ? 'Back to Home' : 'На главную'}
+          {lang === 'cs' ? 'ZpÄ›t na hlavnĂ­ strĂˇnku' : lang === 'en' ? 'Back to Home' : 'ĐťĐ° ĐłĐ»Đ°Đ˛Đ˝ŃŃŽ'}
         </button>
       </div>
     </div>
   );
 }
 
-/* ── ReservationPage ───────────────────────────────────── */
+/* â”€â”€ ReservationPage â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function ReservationPage({ lang, setPage }) {
   const { T, PageHeader } = window;
   const t = T[lang].res;
@@ -345,7 +345,7 @@ function ReservationPage({ lang, setPage }) {
       <button onClick={() => { setPage('home'); window.scrollTo(0,0); }}>
         {T[lang].nav.home}
       </button>
-      <span className="breadcrumbs__sep">›</span>
+      <span className="breadcrumbs__sep">â€ş</span>
       <span style={{ color:'var(--text)' }}>{T[lang].nav.reservation}</span>
     </>
   );
@@ -353,9 +353,9 @@ function ReservationPage({ lang, setPage }) {
   return (
     <main className="page-enter">
       <PageHeader title={t.ti} breadcrumbs={breadcrumbs}>
-        {lang === 'cs' ? 'Rezervace trvá jen pár minut.' :
+        {lang === 'cs' ? 'Rezervace trvĂˇ jen pĂˇr minut.' :
          lang === 'en' ? 'Booking takes just a few minutes.' :
-         'Бронирование займёт всего несколько минут.'}
+         'Đ‘Ń€ĐľĐ˝Đ¸Ń€ĐľĐ˛Đ°Đ˝Đ¸Đµ Đ·Đ°ĐąĐĽŃ‘Ń‚ Đ˛ŃĐµĐłĐľ Đ˝ĐµŃĐşĐľĐ»ŃŚĐşĐľ ĐĽĐ¸Đ˝ŃŃ‚.'}
       </PageHeader>
 
       <section className="section">
